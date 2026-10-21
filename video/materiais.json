@@ -1,0 +1,289 @@
+{
+  "base_dos_caminhos": "raiz do projeto",
+  "disponiveis": [
+    {
+      "arquivo": "assets/README.md",
+      "status": "disponivel",
+      "tipo": "codigo_ou_painel_atual"
+    },
+    {
+      "arquivo": "assets/esquemas_historicos/Etapa2_TCRT5000_Ventoinha_RPM.png",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "assets/esquemas_historicos/Ligacao_ESP32_Ventoinha_IRLZ44N.png",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "assets/esquemas_historicos/Montagem_Completa_ESP32_TCRT5000_IRLZ44N.png",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "assets/esquemas_historicos/TCRT5000_ESP32_Contagem_GPIO4.png",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "assets/esquemas_historicos/Teste_TCRT5000_Avulso.png",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "assets/fotos_sensor/sensor_original_01.jpg",
+      "status": "disponivel",
+      "tipo": "foto_real_sensor"
+    },
+    {
+      "arquivo": "assets/fotos_sensor/sensor_original_02.jpg",
+      "status": "disponivel",
+      "tipo": "foto_real_sensor"
+    },
+    {
+      "arquivo": "assets/fotos_sensor/sensor_original_03.jpg",
+      "status": "disponivel",
+      "tipo": "foto_real_sensor"
+    },
+    {
+      "arquivo": "assets/visuais/01_visao_sistema.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/01_visao_sistema.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/02_esquema_gpio21.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/02_esquema_gpio21.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/03_um_pulso_por_volta.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/03_um_pulso_por_volta.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/04_compensacao.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/04_compensacao.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/05_legenda_grafico.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/05_legenda_grafico.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_01.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_01.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_02.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_02.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_03.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_03.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_04.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_04.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_05.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_05.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_06.png",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "assets/visuais/codigo_06.svg",
+      "status": "disponivel",
+      "tipo": "arte_conceitual_ou_codigo"
+    },
+    {
+      "arquivo": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+      "status": "disponivel",
+      "tipo": "codigo_ou_painel_atual"
+    },
+    {
+      "arquivo": "historico/README.md",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "historico/firmware_leitura_por_espacos/Ventoinha_TCRT5000_GPIO21.ino",
+      "status": "disponivel",
+      "tipo": "historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/LEIA_PRIMEIRO.md",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/Previa_Suporte_V1.png",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/Prompt_para_Claude.md",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/00_conjunto_integral_FIXO.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/01_moldura.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/02_braco_sensor.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/03_braco_alvo_branco.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/04_espacador_frontal_7mm.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/stl/05_espacador_traseiro_0_6mm.stl",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/suporte_parametrico.scad",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "mecanica/v1_original/verificacao_malhas.json",
+      "status": "disponivel",
+      "tipo": "cad_v1_historico"
+    },
+    {
+      "arquivo": "web/dist/Painel_Ventoinha.html",
+      "status": "disponivel",
+      "tipo": "codigo_ou_painel_atual"
+    }
+  ],
+  "pendencias": [
+    {
+      "id": "A01",
+      "tipo": "narracao_real",
+      "status": "a_gravar",
+      "destino_sugerido": "video/entrada/narracao.wav"
+    },
+    {
+      "id": "V01",
+      "tipo": "montagem_funcionando",
+      "status": "a_gravar"
+    },
+    {
+      "id": "V02",
+      "tipo": "demonstracao_pwm_real",
+      "status": "a_gravar"
+    },
+    {
+      "id": "V03",
+      "tipo": "demonstracao_rpm_real",
+      "status": "a_gravar"
+    },
+    {
+      "id": "V04",
+      "tipo": "encerramento_real",
+      "status": "a_gravar"
+    },
+    {
+      "id": "V05",
+      "tipo": "marca_sensor_e_peca_impressa",
+      "status": "a_gravar"
+    },
+    {
+      "id": "V06",
+      "tipo": "conexoes_atuais",
+      "status": "a_gravar"
+    },
+    {
+      "id": "G01",
+      "tipo": "github_url",
+      "status": "nao_informado",
+      "config": "video/config.json"
+    },
+    {
+      "id": "M01",
+      "tipo": "cad_revisado_se_existir",
+      "status": "nao_fornecido"
+    }
+  ],
+  "observacoes": [
+    "Um pulso por volta no firmware atual.",
+    "Nao usar o firmware por espacos como principal.",
+    "Nao inventar medições ou URL."
+  ]
+}

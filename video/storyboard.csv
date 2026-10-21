@@ -1,0 +1,9 @@
+﻿cena;inicio_s;fim_s;titulo;imagem_acao;recurso;texto_tela
+01;0;25;O resultado antes da explicação;Gravação real da ventoinha + painel;V01: montagem e interface;Uma ventoinha de dois fios. Como medir e controlar?
+02;25;65;Quem mede, decide e aciona;01_visao_sistema + 02_esquema_gpio21 + detalhes reais;"assets/visuais/01_visao_sistema.png; assets/visuais/02_esquema_gpio21.png";Sensor GPIO4 • ESP32 • IRLZ44N / GPIO21
+03;65;110;Uma marca vira uma volta;Foto/vídeo da pá marcada + visual conceitual;assets/visuais/03_um_pulso_por_volta.png;9 pás • 1 marca • 1 pulso por volta
+04;110;145;Suporte e leitura;"Prévia CAD V1 e peça atual; trechos reais";"mecanica/v1_original/Previa_Suporte_V1.png; assets/visuais/codigo_01.png; assets/visuais/codigo_02.png";Montagem 3D • Limiares 1300 / 2350
+05;145;180;PWM ou velocidade desejada;Painel real, modos e legenda;"assets/visuais/05_legenda_grafico.png; assets/visuais/codigo_06.png";PWM escolhido ≠ RPM garantido
+06;180;240;Compensação automática;Exemplo conceitual e trecho de controle;"assets/visuais/04_compensacao.png; assets/visuais/codigo_04.png";Erro = desejado − medido • Exemplo didático
+07;240;310;Demonstração real;Gravação painel + montagem com dois modos;"V02: percentual; V03: RPM com mudança de alvo";Desejado laranja • Medido azul • PWM roxo pontilhado
+08;310;330;Resultado e repositório;"Montagem; GitHub só após URL real";"V04: encerramento; video/config.json";Medição óptica • PWM • Realimentação

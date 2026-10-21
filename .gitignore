@@ -1,0 +1,23 @@
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Gravações e exportações locais: manter fora do Git por padrão
+video/entrada/*
+!video/entrada/README.md
+!video/entrada/.gitkeep
+video/saida/*
+!video/saida/README.md
+!video/saida/.gitkeep
+*.blend1
+*.zip

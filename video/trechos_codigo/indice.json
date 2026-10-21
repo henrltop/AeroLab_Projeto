@@ -1,0 +1,44 @@
+[
+  {
+    "id": "01_leitura",
+    "arquivo": "01_leitura.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 120,
+    "linha_final": 120
+  },
+  {
+    "id": "02_contagem",
+    "arquivo": "02_contagem.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 123,
+    "linha_final": 130
+  },
+  {
+    "id": "03_calculo_rpm",
+    "arquivo": "03_calculo_rpm.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 137,
+    "linha_final": 138
+  },
+  {
+    "id": "04_compensacao",
+    "arquivo": "04_compensacao.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 35,
+    "linha_final": 53
+  },
+  {
+    "id": "05_receber_serial",
+    "arquivo": "05_receber_serial.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 88,
+    "linha_final": 98
+  },
+  {
+    "id": "06_aplicar_pwm",
+    "arquivo": "06_aplicar_pwm.cpp",
+    "origem": "firmware/Ventoinha_Percentual_RPM/Ventoinha_Percentual_RPM.ino",
+    "linha_inicial": 28,
+    "linha_final": 33
+  }
+]

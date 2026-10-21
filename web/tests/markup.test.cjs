@@ -1,0 +1,4 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.join(__dirname,'..');
+test('todos os IDs usados no app existem e nao ha IDs duplicados',()=>{const html=fs.readFileSync(path.join(root,'src/template.html'),'utf8'),js=fs.readFileSync(path.join(root,'src/app.js'),'utf8');const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);for(const m of js.matchAll(/\$\('([^']+)'\)/g))assert.ok(ids.includes(m[1]),'ID ausente: '+m[1]);});
+test('HTML independente nao depende de CDN ou scripts externos',()=>{const html=fs.readFileSync(path.join(root,'dist/Painel_Ventoinha.html'),'utf8');assert.ok(!/\/\*__[A-Z]+__\*\//.test(html));assert.ok(!/<script[^>]+src=/i.test(html));assert.ok(!/<link[^>]+href=/i.test(html));assert.ok(html.includes('AeroProtocol'));assert.ok(html.includes('new AeroSerial.SerialLink'));});

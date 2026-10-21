@@ -1,0 +1,74 @@
+[
+  {
+    "part": "00_conjunto_integral_FIXO",
+    "triangles": 1884,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 22332.906,
+    "size_mm": [
+      65.8,
+      84.9,
+      31.6
+    ]
+  },
+  {
+    "part": "01_moldura",
+    "triangles": 844,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 18608.58,
+    "size_mm": [
+      65.8,
+      84.9,
+      18.0
+    ]
+  },
+  {
+    "part": "02_braco_sensor",
+    "triangles": 276,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 1954.64,
+    "size_mm": [
+      14.4,
+      39.5,
+      9.0
+    ]
+  },
+  {
+    "part": "03_braco_alvo_branco",
+    "triangles": 232,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 1241.84,
+    "size_mm": [
+      16.0,
+      38.5,
+      3.0
+    ]
+  },
+  {
+    "part": "04_espacador_frontal_7mm",
+    "triangles": 384,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 484.837,
+    "size_mm": [
+      10.0,
+      10.0,
+      7.0
+    ]
+  },
+  {
+    "part": "05_espacador_traseiro_0_6mm",
+    "triangles": 384,
+    "closed_mesh": true,
+    "connected_components": 1,
+    "volume_mm3": 41.557,
+    "size_mm": [
+      10.0,
+      10.0,
+      0.6
+    ]
+  }
+]

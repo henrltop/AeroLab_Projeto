@@ -1,0 +1,78 @@
+{
+  "data_organizacao": "2026-10-21",
+  "fontes_recuperadas": [
+    {
+      "nome_original": "AeroLab_Ventoinha_Completo.zip",
+      "descricao": "Pacote recuperado; painel com cores distintas, versão 2",
+      "sha256": "e935020d8e1afb403b703e6606043c855ae3f512baa178b1257c4217a97898f3",
+      "tamanho_bytes": 46138
+    },
+    {
+      "nome_original": "Ventoinha_Percentual_RPM.ino",
+      "descricao": "Firmware principal; idêntico ao contido no pacote do painel",
+      "sha256": "6fabdaaa2a6c183533ce25ce3cd71d539a7eb89b1b0e8fc88ee685b180a1892b",
+      "tamanho_bytes": 4212
+    },
+    {
+      "nome_original": "Ventoinha_TCRT5000_GPIO21.ino",
+      "descricao": "Firmware histórico por espaços",
+      "sha256": "04e600f1e84f08d3591ebbdcd9ba682bce74eda453786d919b6f59cd0d6d1dbb",
+      "tamanho_bytes": 5821
+    },
+    {
+      "nome_original": "Suporte_Ventoinha_TCRT5000_V1.zip",
+      "descricao": "Fonte mecânica V1 original",
+      "sha256": "4dbbe0e26c0e4e83abc5da392ce8b53fe0016eb3d93e57408231426985d42aca",
+      "tamanho_bytes": 415403
+    },
+    {
+      "nome_original": "Montagem_Completa_ESP32_TCRT5000_IRLZ44N.png",
+      "descricao": "Esquema completo antigo, GPIO25",
+      "sha256": "56918cc5b7dd4c3295380f30ec110551c84d9de7daefe1543a207b6ae742f85c",
+      "tamanho_bytes": 141429
+    },
+    {
+      "nome_original": "Ligacao_ESP32_Ventoinha_IRLZ44N.png",
+      "descricao": "Proposta inicial com módulo digital",
+      "sha256": "2da337f8c0926a5f5e0971b10a5e22e49d9442f4e6ed4de20c10b2c4ccf1cf77",
+      "tamanho_bytes": 115060
+    },
+    {
+      "nome_original": "Etapa2_TCRT5000_Ventoinha_RPM.png",
+      "descricao": "Medição óptica, antes da união ao MOSFET",
+      "sha256": "ed9ad0fc298f8ea1dacfa3693b25956834e2c05a90a9136a07c1276334d43a27",
+      "tamanho_bytes": 130291
+    },
+    {
+      "nome_original": "TCRT5000_ESP32_Contagem_GPIO4.png",
+      "descricao": "Teste de contagem",
+      "sha256": "1d886f59669b5f5c170a9ea9daf664268f9de82587a6b5482527fd86fdb2ad94",
+      "tamanho_bytes": 117235
+    },
+    {
+      "nome_original": "Teste_TCRT5000_Avulso.png",
+      "descricao": "Teste com multímetro",
+      "sha256": "93e2874ac8659ce10595f26b789aabafccb5db252d4009b558d04a49a3034a56",
+      "tamanho_bytes": 96216
+    },
+    {
+      "nome_original": "1000585313.jpg",
+      "descricao": "Foto original do sensor",
+      "sha256": "ffc4401810392cc5da4cbf6a6ce735d52ab47a76e0b6e9e50db2d4f36ad927e7",
+      "tamanho_bytes": 321781
+    },
+    {
+      "nome_original": "1000585314.jpg",
+      "descricao": "Foto original do sensor",
+      "sha256": "24e125567fdf03117317ae6e36e5fbb33b4fd26d371bc272097fa779bcf9e445",
+      "tamanho_bytes": 156713
+    },
+    {
+      "nome_original": "1000585315.jpg",
+      "descricao": "Foto original do sensor",
+      "sha256": "3742537430ffa4b7b8efe44234ea20b7484baae70ca234136185d86b5f9b58e1",
+      "tamanho_bytes": 158541
+    }
+  ],
+  "novos_materiais": "Documentação, roteiro, storyboard e artes vetoriais produzidos para este pacote; código principal preservado."
+}

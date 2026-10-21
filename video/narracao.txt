@@ -1,0 +1,80 @@
+CENA 1 — cena1.wav
+
+Essa ventoinha só tem dois fios: positivo e negativo. Nenhum deles informa a velocidade. Então, como medir a rotação e fazer com que ela tente manter a velocidade que eu escolher?
+
+Esse foi o desafio deste projeto. Eu sou Henrique e vou mostrar como usei um ESP32, um sensor óptico e uma interface para medir e controlar essa ventoinha.
+
+
+CENA 2 — cena2.wav
+
+O sistema tem três partes: quem mede, quem decide e quem aciona.
+
+Quem mede é o TCRT5000, um sensor que emite luz infravermelha e detecta a luz refletida. Quem decide é o ESP32. E quem aciona é o MOSFET IRLZ44N, que liga e desliga a ventoinha de doze volts muito rapidamente.
+
+No esquema, o sensor vai no GPIO quatro, e o PWM sai pelo GPIO vinte e um até o gate do MOSFET. O ESP32 usa a USB, a ventoinha usa a fonte de doze volts, e os dois compartilham o terra.
+
+
+CENA 3 — cena3.wav
+
+O detalhe que permite medir a velocidade é esta marca.
+
+A ventoinha tem nove pás, mas só uma está marcada. Quando ela passa na frente do sensor, a leitura muda. Então, cada passagem corresponde a uma volta completa.
+
+O ESP32 conta essas passagens e, mais ou menos a cada segundo, calcula o RPM: rotações por minuto.
+
+Por exemplo: trinta passagens em um segundo são trinta voltas por segundo. Vezes sessenta, mil e oitocentas RPM.
+
+
+CENA 4 — cena4.wav
+
+Para manter o sensor no lugar, usei este suporte impresso em 3D. Ele prende a ventoinha e deixa o sensor de frente para as pás, sem encostar no que gira.
+
+No início, o modelo foi pensado para ler os espaços entre as pás. Depois, passei a usar uma única pá marcada.
+
+No código, esta linha lê o sensor de forma analógica, o tempo todo.
+
+E para reconhecer a passagem, uso dois limites. Quando a leitura cai abaixo de mil e trezentos, a marca chegou e o programa conta uma volta. Uma nova contagem só vale depois que a leitura sobe acima de dois mil trezentos e cinquenta. Isso evita contar a mesma passagem várias vezes.
+
+
+CENA 5 — cena5.wav
+
+Na interface, dá para controlar a ventoinha de dois jeitos.
+
+No modo percentual, eu escolho direto o PWM, que é a fração do tempo em que o acionamento fica ligado. Cinquenta por cento de PWM não quer dizer metade da velocidade máxima: isso depende da ventoinha.
+
+No modo RPM, eu escolho a velocidade desejada, o setpoint. Aí o próprio ESP32 usa o sensor para ajustar o PWM sozinho.
+
+
+CENA 6 — cena6.wav
+
+Um exemplo: eu peço duas mil RPM, mas o sensor mede mil e seiscentas.
+
+O erro é desejado menos medido: mais quatrocentas RPM. Como está abaixo do alvo, o PWM precisa subir. Essa conta acontece aqui.
+
+Depois, o erro é multiplicado pelo ganho, que define a força da correção. Com ganho de zero vírgula zero zero cinco, quatrocentas RPM viram dois pontos percentuais de PWM em um segundo.
+
+O ajuste vai sendo acumulado e medido de novo. Se a velocidade passar do alvo, o erro fica negativo e o PWM diminui.
+
+Dentro de sessenta RPM, o programa não mexe no PWM. E esse número não é por acaso: com uma marca por volta, um pulso a mais em um segundo já vale sessenta RPM. Além disso, a correção é limitada a cinco pontos por segundo, para evitar mudanças bruscas.
+
+
+CENA 7 — cena7.wav (gravar assistindo à gravação da demonstração)
+
+Agora, na prática. Primeiro, no modo percentual, eu escolho um PWM e observo a velocidade medida.
+
+Depois, passo para o modo RPM e escolho uma velocidade desejada.
+
+A linha laranja é o setpoint. A azul é o RPM medido. E a roxa pontilhada é o PWM, no eixo da direita.
+
+Quando eu mudo o alvo, o ESP32 recalcula o erro e vai ajustando o acionamento.
+
+Isso é uma malha fechada: a medição volta para o controlador e influencia a próxima correção. A interface só envia comandos e mostra os dados; o controle roda no ESP32.
+
+
+CENA 8 — cena8.wav
+
+Com esse projeto, consegui medir a rotação de uma ventoinha de dois fios e controlar sua velocidade pela interface.
+
+No modo percentual, eu escolho o acionamento. No modo RPM, eu escolho a velocidade, e o sistema tenta alcançá-la dentro do que a ventoinha consegue.
+
+O código, o painel e o modelo 3D estão no repositório, no link da descrição.

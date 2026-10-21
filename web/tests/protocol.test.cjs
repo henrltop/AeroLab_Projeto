@@ -1,0 +1,10 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const P=require('../src/protocol.js');
+test('interpreta a linha exata do sketch original sem alvo',()=>{assert.deepEqual(P.parseLine('PWM: 50% | RPM: 1680 | Passagens: 144'),{type:'sample',rpm:1680,pwm:50,passes:144,target:null,mode:'pwm'});});
+test('interpreta alvo confirmado e casas decimais',()=>{assert.deepEqual(P.parseLine('PWM: 72% | RPM: 1974.5 | Passagens: 920 | Alvo: 2000 RPM'),{type:'sample',rpm:1974.5,pwm:72,passes:920,target:2000,mode:'rpm'});});
+test('aceita decimal com virgula e zeros',()=>{assert.equal(P.parseLine('PWM: 0% | RPM: 0,0 | Passagens: 0').rpm,0);});
+test('rejeita amostras corrompidas e linhas de boot nao viram amostras',()=>{assert.equal(P.parseLine('PWM: 150% | RPM: 2000 | Passagens: 4'),null);assert.equal(P.parseLine('PWM: 12% | RPM: NaN | Passagens: 1'),null);assert.equal(P.parseLine('rst:0x1 (POWERON_RESET)').type,'boot');assert.equal(P.parseLine('load:0x3fff0030,len:4876'),null);});
+test('separa confirmacao de PWM e RPM',()=>{assert.deepEqual(P.parseLine('PWM ajustado para 75%'),{type:'pwm_ack',pwm:75});assert.deepEqual(P.parseLine('Modo RPM: alvo de 1500 RPM'),{type:'rpm_ack',target:1500});});
+test('envia percentual numerico compativel com sketch antigo',()=>{assert.equal(P.encodeCommand('pwm',50),'50\n');assert.equal(P.encodeCommand('pwm',0),'0\n');assert.equal(P.encodeCommand('rpm',1500),'1500rpm\n');});
+test('valida entradas antes de acionar hardware',()=>{for(const [m,v]of [['pwm',101],['pwm',-1],['rpm',Infinity],['rpm',50001],['rpm',1500.5],['invalido',50],['pwm','<script>']])assert.throws(()=>P.encodeCommand(m,v));});
+test('CSV registra origem de simulacao e alvo vazio de modo manual',()=>{const csv=P.csv([{t:0,source:'simulado',rpm:1800,target:null,pwm:60,passes:45}]);assert.ok(csv.includes('1970-01-01T00:00:00.000Z;simulado;1800;;60;45'));assert.ok(csv.startsWith('\uFEFFsep=;'));});

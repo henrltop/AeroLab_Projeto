@@ -1,0 +1,23 @@
+{
+  "titulo": "AeroLab — controle e medição de ventoinha com ESP32",
+  "apresentador": "Henrique",
+  "github_url": null,
+  "duracao_alvo_s": 330,
+  "duracao_maxima_s": 360,
+  "largura": 1920,
+  "altura": 1080,
+  "fps": 30,
+  "idioma": "pt-BR",
+  "fontes_gravacao": {
+    "narracao": null,
+    "montagem": null,
+    "demonstracao_pwm": null,
+    "demonstracao_rpm": null
+  },
+  "cores": {
+    "rpm_desejado": "#c66a16",
+    "rpm_medido": "#2478c8",
+    "pwm": "#8656b9"
+  },
+  "aviso": "Datas e durações de cenas são planejamento; sincronizar a partir da narração gravada."
+}

@@ -1,0 +1,13 @@
+{
+  "name": "aerolab-ventoinha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Painel local e documentação do projeto ESP32",
+  "scripts": {
+    "build": "node web/build.cjs",
+    "test": "node --test web/tests/*.test.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

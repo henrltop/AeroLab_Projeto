@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102c30"><title>AeroLab · Controle de rotação</title><style>:root{--bg:#f3f5f6;--paper:#fff;--ink:#172b35;--muted:#7b8990;--line:#e8edef;--teal:#118b80;--amber:#d28c36;--violet:#8c78bd;--mono:'Cascadia Code',Consolas,monospace;--font:Inter,'Segoe UI',Arial,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:var(--font);color:var(--ink);font-size:14px}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #65c8bf;outline-offset:3px}svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.svg-defs{position:absolute;width:0;height:0;overflow:hidden}.hidden{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.app-shell{display:flex;min-height:100vh}.sidebar{width:218px;background:#102c30;color:#d5e4e4;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;padding:35px 20px 24px;z-index:10}.brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:white;font-size:26px;font-weight:700;letter-spacing:-1px}.brand-light{font-weight:350;color:#b8d3d1}.brand small{display:block;font-size:8px;letter-spacing:1.8px;margin-top:4px;font-weight:500;color:#9abbb9}.brand-icon{display:flex;align-items:center;justify-content:center;background:#1a4647;border:1px solid #31585a;width:43px;height:43px;border-radius:13px;color:#7fd6c7}.brand-icon svg{width:28px;height:28px}.nav-label{font-size:9px;letter-spacing:1.7px;font-weight:600;color:#6f9798;margin:51px 13px 15px}.nav-item{display:flex;align-items:center;gap:12px;width:100%;border:none;background:transparent;border-radius:8px;text-decoration:none;color:#a6bfc1;padding:13px 12px;font-size:12px;margin:4px 0;text-align:left}.nav-item svg{width:17px;height:17px}.nav-item:hover{background:#1b3d40;color:#fff}.nav-item.active{color:#d9f3ee;background:#215153}.nav-dot{height:5px;width:5px;background:#72d1ba;border-radius:50%;margin-left:auto}.setup-card{margin-top:42px;background:#15363a;border:1px solid #25474a;border-radius:11px;padding:17px 13px}.setup-label{font-size:9px;letter-spacing:1.3px;color:#85aaa9}.setup-device{display:flex;align-items:center;gap:11px;margin:19px 0;color:#e8f0ef;font-size:12px}.setup-device svg{width:29px;height:29px;color:#88b6af}.setup-device small{display:block;color:#7fa3a4;font-size:10px;margin-top:5px}.setup-card dl{font-size:9px;margin:0}.setup-card dl div{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid #28494b}.setup-card dt{color:#88abad}.setup-card dd{margin:0;color:#c5d9d8;font-family:var(--mono)}.setup-note{font-size:9px;display:block;color:#6e9695;margin-top:9px}.side-bottom{margin-top:auto;padding:27px 7px 0;font-size:9px;color:#8bb0ad;line-height:1.6}.side-bottom small{display:block;color:#648b8a;font-size:9px;margin-top:6px}.tiny-dot{display:inline-block;width:5px;height:5px;background:#75b3a8;border-radius:50%;margin-right:5px}main{margin-left:218px;padding:0 34px 23px;width:calc(100% - 218px);max-width:1880px}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e4e9eb}.breadcrumb{color:#78858b;font-size:11px}.breadcrumb span{margin:0 10px;color:#bec7cb}.text-button{display:inline-flex;align-items:center;gap:7px;background:none;border:none;color:#75858c;padding:5px 0;font-size:11px}.text-button svg{width:15px;height:15px}.text-button:hover{color:var(--teal)}.page-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:31px 0 24px}.eyebrow{font-size:9px;letter-spacing:1.9px;color:#73858b;font-weight:700}.eyebrow span{margin-left:7px;color:#a7b4b9}h1{font-size:29px;font-weight:600;letter-spacing:-1.25px;line-height:1.2;margin:9px 0}h1 span{color:var(--teal)}.page-heading p{font-size:11px;color:#859198;margin:8px 0 0;line-height:1.6}.heading-actions{display:flex;gap:10px;flex-shrink:0}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:7px;border:1px solid transparent;min-height:39px;padding:0 15px;font-size:11px;font-weight:600;transition:background .2s,transform .15s}.button svg{width:17px;height:17px}.button:active:not(:disabled){transform:translateY(1px)}.button.primary{background:var(--teal);color:white;box-shadow:0 3px 8px #118b8014}.button.primary:hover:not(:disabled){background:#08776d}.button.subtle{background:#fff;border-color:#e0e7e9;color:#687c82}.button.subtle:hover{background:#f8fbfa}.connection-strip{min-height:39px;display:flex;justify-content:space-between;align-items:center;color:#8a969c;font-size:10px;margin-bottom:21px;gap:12px}.connection-left{display:flex;align-items:center;gap:12px}.strip-divider{height:11px;width:1px;background:#d5dfe2}.status-pill{display:inline-flex;align-items:center;gap:6px;background:#e8edef;padding:6px 9px;border-radius:20px;color:#78868d;font-size:10px;white-space:nowrap;font-weight:600}.status-pill i{width:5px;height:5px;border-radius:50%;background:currentColor}.status-pill.live{color:#197d6e;background:#e1f0ea}.status-pill.demo{background:#fff0d8;color:#99702e}.status-pill.stale{background:#fae8dc;color:#af7242}.baud{font-family:var(--mono);font-size:10px;color:#96a1a6;white-space:nowrap}.demo-banner,.pending-banner{border:1px solid #eadbc2;background:#fff9ee;border-radius:7px;padding:10px 13px;margin:-4px 0 17px;font-size:11px;display:flex;align-items:center;gap:12px;color:#9c783e}.demo-banner button{margin-left:auto;background:none;border:none;color:#8a6428;font-size:11px;text-decoration:underline}.pending-banner{background:#edf7f5;border-color:#cde7e2;color:#317f72}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:21px}.metric{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 18px 15px;min-height:139px;box-shadow:0 2px 3px #152f3802}.metric-label{font-size:8px;font-weight:700;letter-spacing:.9px;color:#879298;display:flex;align-items:center;gap:6px;white-space:nowrap}.metric-label svg{width:15px;height:15px;margin-left:auto;color:#a3b1b6}.metric-symbol{margin-left:auto;color:#a3b1b6;font-size:17px;line-height:12px}.metric-dot{height:5px;width:5px;border-radius:50%;background:var(--teal)}.metric-dot.amber{background:var(--amber)}.metric-dot.violet{background:var(--violet)}.metric-dot.gray{background:#9ba9af}.metric-value{display:flex;align-items:baseline;gap:7px;margin:15px 0 9px;font-size:33px;letter-spacing:-1px;font-variant-numeric:tabular-nums;font-weight:550;line-height:1}.metric:first-child .metric-value{color:#146d66}.metric-value small{font-size:10px;font-weight:400;color:#9ca7ac;letter-spacing:0}.metric-foot{font-size:9px;color:#98a2a8;display:flex;justify-content:space-between;align-items:center;min-height:14px;line-height:1.5}.metric-foot #sparkline{color:#65ae9f;font-size:19px;line-height:10px}.mini-meter{height:3px;background:#f0ecf7;border-radius:3px;overflow:hidden;margin:0 0 8px}.mini-meter i{display:block;height:100%;background:#9b87ca;width:0;transition:width .4s}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:20px;align-items:stretch}.panel{background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 3px 8px #1d394004}.panel-heading{display:flex;justify-content:space-between;align-items:center;padding:24px 22px 0}.section-kicker{font-size:8px;font-weight:700;letter-spacing:1.4px;color:#9ca7ad}h2{font-size:15px;letter-spacing:-.35px;font-weight:600;margin:6px 0 0}.chart-tools{display:flex;align-items:center;gap:8px}.icon-button{background:white;border:1px solid #e5ebed;width:29px;height:29px;border-radius:5px;color:#89999f;display:inline-flex;align-items:center;justify-content:center;font-size:14px}.icon-button:hover{background:#f3f8f6}.chart-tools select{border:1px solid #e5ebed;border-radius:5px;background:white;color:#75878e;font-size:10px;padding:7px}.legend{display:flex;gap:16px;padding:22px 23px 4px;flex-wrap:wrap}.legend button{background:none;border:none;color:#8a969d;display:flex;align-items:center;gap:6px;padding:0;font-size:9px}.legend button[aria-pressed=false]{opacity:.4;text-decoration:line-through}.legend span{font-size:8px;color:#b0b9be}.line{display:inline-block;width:13px;height:2px;background:var(--teal)}.line.amber{background:var(--amber)}.line.violet{background:var(--violet)}.line.dashed{background:repeating-linear-gradient(to right,var(--amber) 0 4px,transparent 4px 7px)}.plot-wrap{position:relative;height:278px;margin:8px 13px 0;touch-action:pan-y}canvas{display:block;width:100%;height:100%}.chart-empty{position:absolute;inset:15px 0;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(90deg,#ffffff66,#ffffffd9 30%,#ffffffd9 70%,#ffffff66);text-align:center}.empty-icon{width:42px;height:42px;background:#eff7f4;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#6ca89c;margin-bottom:13px}.chart-empty strong{font-size:12px;font-weight:500;color:#52746e}.chart-empty p{font-size:10px;color:#9aaaa8;line-height:1.8}.chart-empty .text-button{color:var(--teal);font-size:10px}.chart-tooltip{pointer-events:none;position:absolute;top:20px;left:55px;z-index:3;min-width:157px;background:#163b3c;color:#e2f1ed;border-radius:7px;padding:12px;font-size:10px;box-shadow:0 8px 22px #193c4022}.chart-tooltip strong{font-family:var(--mono);font-size:10px;display:block;margin-bottom:9px;color:#b3d6d0}.chart-tooltip div{display:flex;justify-content:space-between;gap:17px;margin:6px 0}.chart-tooltip b{font-weight:500;font-variant-numeric:tabular-nums}.paused-badge{position:absolute;top:9px;left:50%;transform:translateX(-50%);font-size:9px;white-space:nowrap;background:#fff7e4;color:#a67d37;padding:7px 9px;border-radius:4px}.chart-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 22px;border-top:1px solid #f0f3f4;color:#9ba6ac;font-size:9px}.chart-bottom>span:first-child{display:flex;align-items:center;gap:5px}.chart-bottom .text-button{font-size:9px;color:#647e83}.chart-bottom .text-button svg{width:13px;height:13px}.control-panel{padding:0 21px 18px}.control-panel .panel-heading{padding:24px 0 0}.control-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:#eef6f3;color:#67a297;border-radius:9px}.control-icon svg{width:20px;height:20px}.mode-tabs{display:flex;gap:3px;border:1px solid #edf1f2;background:#f3f6f6;padding:3px;border-radius:7px;margin-top:24px}.mode-tabs button{width:50%;background:transparent;border:none;padding:9px 2px;font-size:10px;color:#97a4a9;border-radius:4px}.mode-tabs button.selected{background:white;color:#2e7569;box-shadow:0 1px 4px #1c3f3610;font-weight:600}.control-intro{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#87979d;margin:24px 0 7px}.small-badge{font-size:7px;font-weight:700;letter-spacing:.5px;padding:4px 6px;background:#f1f5f4;color:#6e9287;border-radius:3px}.setpoint{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:8px 0 10px}.setpoint input{font-size:42px;letter-spacing:-2px;font-weight:500;color:#183e3e;width:150px;text-align:right;border:0;outline:0;background:transparent;padding:0;appearance:textfield;font-variant-numeric:tabular-nums}.setpoint input::-webkit-inner-spin-button{appearance:none}.setpoint span{font-size:15px;color:#a4b1b5;min-width:33px}.range{width:100%;height:4px;appearance:none;border-radius:5px;background:linear-gradient(90deg,#2b9987 50%,#e5eeeb 50%);cursor:pointer;accent-color:var(--teal);margin:17px 0 8px}.range::-webkit-slider-thumb{appearance:none;background:#fff;border:3px solid var(--teal);width:15px;height:15px;border-radius:50%;box-shadow:0 1px 3px #0c5e421a}.range::-moz-range-thumb{background:#fff;border:3px solid var(--teal);width:10px;height:10px;border-radius:50%}.range-labels{display:flex;justify-content:space-between;font-size:8px;color:#a3b1b5}.presets{display:flex;gap:6px;margin:15px 0}.presets button{flex:1;background:white;border:1px solid #e6edef;color:#8da0a6;font-size:9px;border-radius:4px;padding:7px 0}.presets button.chosen{color:#168577;background:#f0f9f5;border-color:#c9e6db}.apply{width:100%;justify-content:space-between;padding:0 13px}.control-hint{font-size:9px;line-height:1.7;color:#9ca9ae;margin:10px 0 0;min-height:32px}.control-separator{height:1px;background:#eef2f3;margin:17px 0 14px}.stop-button{width:100%;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #efd9d4;background:#fff8f6;color:#b66e60;border-radius:6px;padding:10px;font-size:10px;font-weight:600}.stop-button svg{width:13px;height:13px;fill:currentColor}.stop-button:hover:not(:disabled){background:#f9e9e3}.stop-note{color:#b1a6a2;font-size:8px;text-align:center;margin-top:7px}.bottom-grid{margin:18px 0}.experiment-note{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px solid #e1e9e6;border-radius:9px;background:#edf3f0}.note-symbol{color:#7aa392;font-size:24px;margin-right:2px}.experiment-note h3{margin:0 0 5px;font-size:11px;font-weight:600;color:#4a7367}.experiment-note p{font-size:9px;color:#8b9d97;margin:0;line-height:1.7;max-width:660px}.experiment-tag{font-size:8px;letter-spacing:1px;color:#86a398;margin-left:auto;white-space:nowrap}.serial-heading{display:flex;align-items:center;justify-content:space-between;padding:15px 20px}.serial-heading>div{display:flex;align-items:center;gap:9px}.serial-heading svg{width:15px;height:15px;color:#94a4aa}.serial-heading h2{font-size:11px;margin:0;font-weight:500}.serial-heading span{font-size:9px;color:#a6b1b6;padding-left:6px}.serial-heading .text-button{font-size:9px}.serial-log{border-top:1px solid #eff2f3;background:#fafcfc;border-radius:0 0 11px 11px;padding:12px 20px;height:125px;overflow:auto;font:10px/1.9 var(--mono);color:#7b9097;scroll-behavior:smooth}.log-line{display:flex;gap:14px;white-space:pre-wrap;overflow-wrap:anywhere}.log-time{color:#b2bec2;flex-shrink:0}.log-line.tx .log-text{color:#218e7a}.log-line.event .log-text{color:#9b864e}.log-placeholder{color:#b1bdc2;font-family:var(--font);padding-top:5px}.page-footer{display:flex;justify-content:space-between;font-size:8px;color:#a4afb4;margin-top:21px;letter-spacing:.45px}.page-footer i{font-style:normal;margin:0 6px;color:#bdc7cc}dialog{border:1px solid #dfe9e6;border-radius:16px;padding:24px 30px 27px;max-width:585px;width:calc(100% - 30px);max-height:88vh;color:var(--ink);box-shadow:0 20px 100px #102c3033}dialog::backdrop{background:#102c3066;backdrop-filter:blur(3px)}.dialog-heading{display:flex;align-items:center;justify-content:space-between}.dialog-heading .icon-button{font-size:23px}dialog h2{font-size:27px;letter-spacing:-1px;margin:17px 0 24px}dialog ol{padding-left:22px}dialog li{padding-left:7px;margin-bottom:17px;color:#a3b4ae}dialog li strong{font-size:12px;color:#33584f}dialog p{font-size:11px;line-height:1.8;color:#82928f;margin:5px 0}code{font:10px var(--mono);background:#eef3f1;color:#58776e;padding:2px 4px;border-radius:3px}.dialog-tip{background:#fff7e9;padding:12px;border-radius:7px}.dialog-tip strong{font-size:11px;color:#997a41}.dialog-note{margin-top:15px}.toast{position:fixed;right:25px;bottom:25px;max-width:min(440px,calc(100% - 40px));background:#183e3d;color:#e5f3ee;padding:14px 19px;border-radius:9px;z-index:100;font-size:12px;line-height:1.6;box-shadow:0 8px 30px #153b3c28}.toast.error{background:#7c473e}@media(min-width:1600px){main{padding-left:50px;padding-right:50px}.plot-wrap{height:340px}.control-panel{padding-left:26px;padding-right:26px}.workspace{grid-template-columns:minmax(0,1fr) 320px}.metric{padding:22px}.metric-value{font-size:38px}.page-heading{margin-top:39px}h1{font-size:34px}}@media(max-width:1180px){.sidebar{width:185px;padding-left:14px;padding-right:14px}main{margin-left:185px;width:calc(100% - 185px);padding-left:23px;padding-right:23px}.brand{font-size:24px}.workspace{grid-template-columns:minmax(0,1fr) 263px;gap:15px}.metric{padding:15px 12px}.metric-label{font-size:7px;letter-spacing:.5px}.metric-value{font-size:29px}.metric-foot{font-size:8px}.page-heading{align-items:flex-start}h1{font-size:26px}.heading-actions{flex-direction:column}.heading-actions .button{min-height:32px;font-size:10px}.panel-heading{padding-left:16px;padding-right:16px}.legend{padding-left:17px;gap:9px}.chart-tools{gap:4px}.chart-tools select{font-size:9px;padding:6px}.experiment-tag{display:none}.chart-bottom{padding-left:16px;padding-right:16px}.chart-bottom>span:nth-child(2){display:none}}@media(max-width:930px){.workspace{grid-template-columns:1fr}.control-panel{display:block;padding-bottom:22px}.control-panel .panel-heading{padding-top:22px}.control-panel .mode-tabs{max-width:350px}.control-intro{max-width:350px}.setpoint{justify-content:flex-start;max-width:350px}.range,.range-labels,.presets,.apply,.control-hint,.stop-button,.stop-note{max-width:350px}.control-panel .control-separator{max-width:350px}.control-panel .control-hint{min-height:0}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-tools select{font-size:10px}.plot-wrap{height:300px}.connectionDetail{max-width:100%}.brand{font-size:22px}.metric-label{font-size:8px}.metric-foot{font-size:9px}.page-heading p{max-width:300px}.chart-bottom>span:nth-child(2){display:block}}@media(max-width:650px){.sidebar{position:relative;width:100%;padding:17px 19px;flex-direction:row;align-items:center;justify-content:space-between}.brand{font-size:23px}.brand small{font-size:7px}.brand-icon{height:36px;width:36px}.brand-icon svg{width:24px;height:24px}.sidebar nav{display:flex;gap:4px}.sidebar .nav-item{width:36px;height:36px;padding:9px;overflow:hidden;font-size:0;gap:0;margin:0}.nav-dot{display:none}.sidebar .nav-label,.setup-card,.side-bottom{display:none}.app-shell{display:block}main{margin:0;width:100%;padding:0 17px 24px}.topbar{height:48px}.topbar>.text-button{font-size:10px}.page-heading{margin:24px 0 16px;display:block}.heading-actions{flex-direction:row;margin-top:17px}.heading-actions .button{min-height:38px;font-size:11px}.connection-strip{align-items:flex-start;margin-bottom:17px}.connection-left{align-items:flex-start;flex-wrap:wrap;gap:7px}.strip-divider,.baud{display:none}#connectionDetail{width:100%;font-size:9px;line-height:1.6}.metrics{gap:10px;margin-bottom:16px}.metric{min-height:127px;padding:15px 13px}.metric-label{font-size:7px}.metric-value{font-size:30px}.metric-foot{font-size:8px}.metric-value small{font-size:9px}.panel-heading{padding-top:20px}.section-kicker{font-size:7px}h2{font-size:13px}.chart-tools select{max-width:110px;font-size:9px}.legend{gap:13px;padding-top:18px}.legend button{font-size:8px}.legend span{display:none}.plot-wrap{height:255px;margin-left:4px;margin-right:4px}.chart-bottom{padding:12px;font-size:8px}.chart-bottom>span:nth-child(2){display:none}.chart-bottom .text-button{font-size:8px}.control-panel{padding:0 18px 22px}.control-panel .mode-tabs,.control-intro,.range,.range-labels,.presets,.apply,.control-hint,.stop-button,.stop-note,.control-panel .control-separator{max-width:none}.setpoint{justify-content:center;max-width:none}.control-panel .mode-tabs{margin-top:20px}.experiment-note{padding:15px;gap:10px}.experiment-note p{font-size:9px}.serial-heading{padding:14px}.serial-log{font-size:9px;padding:10px 13px}.serial-heading span{display:none}.page-footer{line-height:1.6;gap:18px;align-items:flex-start;font-size:7px}.demo-banner{flex-wrap:wrap;line-height:1.6}.demo-banner span{flex:1;min-width:160px;font-size:10px}.demo-banner button{margin:0}dialog{padding:19px}.toast{right:15px;bottom:15px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Leitura confortável em telas de bancada. */
+@media(min-width:1100px){.button{font-size:12px}.metric-label{font-size:9px}.metric-foot{font-size:10px}.control-hint{font-size:10px}.legend button{font-size:10px}.serial-log{font-size:11px}.setup-card dl{font-size:10px}}
+
+/* Setpoint de velocidade como referência principal. */
+.metric-setpoint{background:#fff7ed;border-color:#f0d3b5;border-top:3px solid #c66a16}
+.metric-setpoint .metric-label{color:#a25511;font-weight:750}
+.metric-setpoint .metric-value{color:#c66a16!important;font-size:41px;font-weight:700;letter-spacing:-1.4px}
+.metric-setpoint .metric-foot{color:#94704f}
+.metric:not(.metric-setpoint) .metric-value{color:#41635f;font-size:30px;font-weight:500}
+.metric-setpoint .metric-dot{background:#c66a16}
+.metric-dot.measured{background:#2478c8}
+.metric-dot.violet{background:#8656b9}
+.line.setpoint{height:3px;width:18px;background:#c66a16;border-radius:2px}
+.line.measured{background:#2478c8}
+.line.dotted{height:3px;width:18px;background:radial-gradient(circle,#8656b9 1px,transparent 1.3px) 0 center/5px 3px repeat-x}
+.legend .legend-primary{color:#a25511;font-weight:700;font-size:10px}
+.control-panel.rpm-mode{border-color:#f0d3b5;box-shadow:0 4px 16px #c66a1608}
+.control-panel.rpm-mode .setpoint input{font-size:49px;font-weight:650;color:#c66a16}
+.control-panel.rpm-mode #controlModeLabel{color:#a25511}
+@media(max-width:650px){.metric-setpoint .metric-value{font-size:36px}.metric:not(.metric-setpoint) .metric-value{font-size:29px}.legend .legend-primary{font-size:9px}.control-panel.rpm-mode .setpoint input{font-size:46px}}
+</style></head>
+<body>
+<svg class="svg-defs" aria-hidden="true"><defs>
+<symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.3"/><path d="M10 10C3 10 3 3 8 3c4 0 2 5 4 7M14 10c0-7 7-7 7-2 0 4-5 2-7 4M14 14c7 0 7 7 2 7-4 0-2-5-4-7M10 14c0 7-7 7-7 2 0-4 5-2 7-4"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M7 14l4-5 4 3 5-7"/></symbol>
+<symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 21V4m-3 3 3-4 3 4M12 14l-6-4V7m6 10 6-5V8"/><circle cx="6" cy="6" r="1"/><path d="M17 5h3v3h-3z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9c0-4 7-4 6 0-.4 2-3 2-3 5m0 2v1"/></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 6 5 5-5 5m8 0h8"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+</defs></svg>
+<div class="app-shell">
+<aside class="sidebar">
+<a class="brand" href="#bancada"><span class="brand-icon"><svg><use href="#i-fan"/></svg></span><span>Aero<span class="brand-light">Lab</span><small>CONTROLE DE ROTAÇÃO</small></span></a>
+<div class="nav-label">EXPERIMENTO</div>
+<nav aria-label="Navegação"><a class="nav-item active" href="#bancada"><svg><use href="#i-chart"/></svg>Bancada<span class="nav-dot"></span></a><a class="nav-item" href="#registro"><svg><use href="#i-terminal"/></svg>Registro serial</a><button class="nav-item help-trigger"><svg><use href="#i-help"/></svg>Como conectar</button></nav>
+<div class="setup-card"><div class="setup-label">SUA MONTAGEM</div><div class="setup-device"><svg><use href="#i-fan"/></svg><span>Ventoinha DC<small>12 V · 2 fios</small></span></div><dl><div><dt>Sensor TCRT5000</dt><dd>GPIO 4</dd></div><div><dt>MOSFET IRLZ44N</dt><dd>GPIO 21</dd></div><div><dt>Marca óptica</dt><dd>1 / volta</dd></div></dl><span class="setup-note">9 pás · apenas uma marcada</span></div>
+<div class="side-bottom"><span class="tiny-dot"></span>Seus dados ficam neste navegador<small>USB direto · sem conta ou nuvem</small></div>
+</aside>
+<main id="bancada">
+<header class="topbar"><div class="breadcrumb">Experimentos <span>/</span> Ventoinha</div><button class="text-button help-trigger"><svg><use href="#i-help"/></svg>Guia de conexão</button></header>
+<section class="page-heading"><div><div class="eyebrow">BANCADA EXPERIMENTAL <span>01</span></div><h1>Rotação sob controle<span>.</span></h1><p>Acompanhe a resposta da ventoinha e ajuste o próximo ponto de operação.</p></div><div class="heading-actions"><button id="demoBtn" class="button subtle">Ver demonstração</button><button id="connectBtn" class="button primary"><svg><use href="#i-usb"/></svg><span>Conectar ESP32</span></button></div></section>
+<div class="connection-strip"><div class="connection-left"><span id="connectionPill" class="status-pill"><i></i><span>Desconectado</span></span><span class="strip-divider"></span><span id="connectionDetail">Conecte por USB para receber os dados reais.</span></div><span class="baud">115200 baud</span></div>
+<div id="demoBanner" class="demo-banner hidden"><strong>Modo demonstração</strong><span>Dados simulados. Nenhum comando está sendo enviado a uma ventoinha real.</span><button id="exitDemo">Encerrar</button></div>
+<div id="pendingBanner" class="pending-banner hidden" role="status"></div>
+<section class="metrics" aria-label="Medições atuais"><article class="metric metric-setpoint"><div class="metric-label"><span class="metric-dot teal"></span>SETPOINT DE VELOCIDADE<span class="metric-symbol">◎</span></div><div class="metric-value"><span id="targetMetric">—</span><small>RPM</small></div><div class="metric-foot" id="targetFoot">Defina e aplique um RPM alvo</div></article>
+<article class="metric"><div class="metric-label"><span class="metric-dot measured"></span>ROTAÇÃO MEDIDA<svg><use href="#i-fan"/></svg></div><div class="metric-value"><span id="rpmMetric">—</span><small>RPM</small></div><div class="metric-foot"><span id="rpmFoot">Aguardando primeira leitura</span><span id="sparkline" aria-hidden="true">↗</span></div></article>
+<article class="metric"><div class="metric-label"><span class="metric-dot violet"></span>PWM APLICADO<span class="metric-symbol">⌁</span></div><div class="metric-value"><span id="pwmMetric">—</span><small>%</small></div><div class="mini-meter"><i id="pwmMeter"></i></div><div class="metric-foot" id="pwmFoot">Comando informado pelo ESP32</div></article>
+<article class="metric"><div class="metric-label"><span class="metric-dot gray"></span>PASSAGENS ÓPTICAS<svg><use href="#i-clock"/></svg></div><div class="metric-value"><span id="passesMetric">—</span><small>pulsos</small></div><div class="metric-foot">Uma passagem da marca = uma volta</div></article></section>
+<section class="workspace"><article class="chart-panel panel"><div class="panel-heading"><div><span class="section-kicker">RESPOSTA DO SISTEMA</span><h2>Velocidade · setpoint e resposta</h2></div><div class="chart-tools"><button id="pauseBtn" class="icon-button" title="Pausar apenas o gráfico" aria-label="Pausar gráfico">Ⅱ</button><label class="sr-only" for="windowSelect">Janela do gráfico</label><select id="windowSelect"><option value="60">Último minuto</option><option value="120" selected>Últimos 2 min</option><option value="300">Últimos 5 min</option></select></div></div>
+<div class="legend"><button data-series="target" aria-pressed="true" class="legend-primary"><i class="line setpoint"></i>RPM desejado <span>setpoint</span></button><button data-series="rpm" aria-pressed="true"><i class="line measured"></i>RPM medido</button><button data-series="pwm" aria-pressed="true"><i class="line violet dotted"></i>PWM <span>eixo direito</span></button></div>
+<div class="plot-wrap"><canvas id="chart" aria-label="Gráfico de RPM medido, RPM desejado e PWM ao longo do tempo"></canvas><div id="chartEmpty" class="chart-empty"><span class="empty-icon"><svg><use href="#i-chart"/></svg></span><strong>Sua próxima leitura começa aqui.</strong><p>Conecte o ESP32 ou explore o painel<br>com a demonstração.</p><button id="emptyDemo" class="text-button">Explorar demonstração <svg><use href="#i-arrow"/></svg></button></div><div id="chartTooltip" class="chart-tooltip hidden"></div><div id="pausedBadge" class="paused-badge hidden">Gráfico pausado · leitura e controle continuam</div></div>
+<div class="chart-bottom"><span><i class="tiny-dot"></i><span id="samplesLabel">0 amostras na sessão</span></span><span id="sessionTime">Sessão 00:00</span><button id="exportBtn" class="text-button" disabled><svg><use href="#i-download"/></svg>Exportar CSV</button></div></article>
+<aside class="control-panel panel"><div class="panel-heading"><div><span class="section-kicker">CONTROLE DE VELOCIDADE</span><h2>Setpoint de velocidade</h2></div><span class="control-icon"><svg><use href="#i-fan"/></svg></span></div>
+<div class="mode-tabs" role="group" aria-label="Modo de controle"><button id="modeRpm" class="selected" aria-pressed="true">RPM alvo</button><button id="modePwm" aria-pressed="false">Percentual</button></div>
+<div class="control-intro"><span id="controlModeLabel">Percentual de PWM</span><span id="activeModeBadge" class="small-badge">MANUAL</span></div>
+<div class="setpoint"><input id="setpointInput" type="number" value="50" min="0" max="100" step="1" aria-label="Percentual de PWM desejado"><span id="setpointUnit">%</span></div>
+<label class="sr-only" for="setpointSlider">Ajustar ponto de operação</label><input id="setpointSlider" class="range" type="range" min="0" max="100" step="1" value="50"><div class="range-labels"><span>0</span><span id="sliderMaxLabel">100%</span></div>
+<div id="presets" class="presets" aria-label="Valores rápidos"><button data-value="25">25%</button><button data-value="50" class="chosen">50%</button><button data-value="75">75%</button><button data-value="100">100%</button></div>
+<button id="applyBtn" class="button primary apply" disabled><span>Aplicar percentual</span><svg><use href="#i-arrow"/></svg></button><p id="controlHint" class="control-hint">O percentual define o PWM. A rotação resultante é medida pelo sensor.</p>
+<div class="control-separator"></div><button id="stopBtn" class="stop-button" disabled><svg><use href="#i-stop"/></svg>Parar ventoinha</button><div class="stop-note">Envia 0% ao ESP32.</div>
+</aside></section>
+<section class="bottom-grid"><article class="experiment-note"><span class="note-symbol">↳</span><div><h3>Meça. Ajuste. Compare.</h3><p>No modo RPM, o ESP32 ajusta o PWM gradualmente para buscar a rotação desejada. No modo percentual, você escolhe diretamente o PWM.</p></div><span class="experiment-tag">1 PULSO / VOLTA</span></article></section>
+<section id="registro" class="serial-panel panel"><div class="serial-heading"><div><svg><use href="#i-terminal"/></svg><h2>Registro serial</h2><span id="logCount">0 eventos</span></div><button id="clearLog" class="text-button">Limpar registro</button></div><div id="serialLog" class="serial-log" role="log" aria-live="off"><div class="log-placeholder">As leituras e os comandos enviados aparecerão aqui.</div></div></section>
+<footer class="page-footer"><span>AEROLAB <i>•</i> ESP32 + TCRT5000 + IRLZ44N</span><span id="lastUpdate">Nenhuma leitura recebida</span></footer>
+</main></div>
+<dialog id="helpDialog"><div class="dialog-heading"><span class="eyebrow">GUIA RÁPIDO</span><button id="closeHelp" class="icon-button" aria-label="Fechar guia">×</button></div><h2>Da bancada ao gráfico.</h2><ol><li><strong>Envie o sketch completo.</strong><p>Abra o arquivo <code>Ventoinha_Percentual_RPM.ino</code> que acompanha o painel na Arduino IDE. Ele mantém o sensor no GPIO4 e o controle no GPIO21.</p></li><li><strong>Feche o Monitor Serial da Arduino IDE.</strong><p>A porta USB deve ficar livre para o painel. Mantenha o ESP32 conectado ao computador.</p></li><li><strong>Abra este painel no Chrome ou Edge.</strong><p>Use o arquivo HTML no computador. Se estiver numa prévia do chat, baixe o arquivo e abra no navegador. A conexão não funciona nessa prévia.</p></li><li><strong>Clique em “Conectar ESP32”.</strong><p>Escolha a porta da placa. O painel lê a 115200 baud. Ao abrir a porta, a placa pode reiniciar e o sketch incluído inicia em 100%.</p></li><li><strong>Aplique um percentual ou RPM alvo.</strong><p>O gráfico usa os dados recebidos do ESP32. Use “Parar ventoinha” para enviar 0%. Fechar o painel não desliga a fonte de 12 V.</p></li></ol><div class="dialog-tip"><strong>Seu anexo tinha um erro na primeira linha?</strong><p>Se aparecer “expected declaration before '}'”, o sketch está incompleto. Abra o arquivo inteiro incluído, desde <code>#include &lt;Arduino.h&gt;</code>; não cole só o final.</p></div><p class="dialog-note">Se o navegador bloquear a conexão, extraia o pacote e execute <code>Iniciar_Painel_Windows.bat</code> (requer Python). Ele abre o painel em localhost.</p></dialog>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AeroProtocol=api;})(globalThis,function(){
+  function num(s){return Number(String(s).replace(',','.'));}
+  function parseLine(line){
+    const s=String(line).trim();
+    const m=s.match(/PWM:\s*(\d+(?:[.,]\d+)?)%\s*\|\s*RPM:\s*(\d+(?:[.,]\d+)?)\s*\|\s*Passagens:\s*(\d+)/i);
+    if(m){const target=s.match(/\bAlvo:\s*(\d+)\s*RPM/i);const data={rpm:num(m[2]),pwm:num(m[1]),passes:num(m[3]),target:target?num(target[1]):null,mode:target?'rpm':'pwm'};if(data.pwm>100||!Number.isSafeInteger(data.passes))return null;return {type:'sample',...data};}
+    const r=s.match(/Modo RPM:\s*alvo de\s*(\d+)\s*RPM/i);if(r)return {type:'rpm_ack',target:num(r[1])};
+    const p=s.match(/PWM ajustado para\s*(\d+)%/i);if(p&&num(p[1])<=100)return {type:'pwm_ack',pwm:num(p[1])};
+    if(/^(Use 50|Digite somente|Comando muito longo|Primeiro envie)/i.test(s))return {type:'rejected',message:s};
+    if(/^rst:|^ets Jul|^entry 0x/i.test(s))return {type:'boot'};
+    return null;
+  }
+  function encodeCommand(mode,value){
+    const n=Number(value);if(!Number.isInteger(n)||n<0||n>(mode==='rpm'?50000:100)||!['pwm','rpm'].includes(mode))throw Error('Informe um valor inteiro dentro da faixa permitida.');
+    return mode==='rpm'?`${n}rpm\n`:`${n}\n`;
+  }
+  function csv(samples){
+    return '\uFEFFsep=;\r\ntimestamp_iso;origem;rpm_medido;rpm_alvo;pwm_percentual;passagens\r\n'+samples.map(s=>[new Date(s.t).toISOString(),s.source,s.rpm,s.target??'',s.pwm,s.passes].join(';')).join('\r\n');
+  }
+  return {parseLine,encodeCommand,csv};
+});
+</script><script>(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AeroSerial=api;})(globalThis,function(){
+  class SerialLink{
+    constructor(api,callbacks={}){this.api=api;this.cb=callbacks;this.port=null;this.reader=null;this.writer=null;this.task=null;this.closing=false;this.opening=false;}
+    async open(){
+      if(this.port||this.opening)throw Error('Já existe uma conexão em andamento.');
+      if(!this.api)throw Error('Use Chrome ou Edge no computador, fora da prévia do chat.');
+      this.opening=true;this.cb.state?.('opening');let port;
+      try{
+        port=await this.api.requestPort();
+        await port.open({baudRate:115200});
+        this.port=port;this.closing=false;this.writer=port.writable.getWriter();this.reader=port.readable.getReader();
+        this.cb.state?.('connected',port.getInfo?.()||{});
+        this.task=this.readLoop(port,this.reader);
+      }catch(e){
+        if(port){try{this.writer?.releaseLock();}catch{}try{this.reader?.releaseLock();}catch{}try{await port.close();}catch{}}
+        this.port=null;this.writer=null;this.reader=null;this.cb.state?.('disconnected');throw e;
+      }finally{this.opening=false;}
+    }
+    async send(text){if(!this.writer||this.closing)throw Error('Conecte o ESP32 antes de enviar um comando.');await this.writer.write(new TextEncoder().encode(text));}
+    async readLoop(port,reader){
+      let buffer='';const decoder=new TextDecoder();
+      try{
+        while(true){const {value,done}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});let i;while((i=buffer.indexOf('\n'))>=0){const line=buffer.slice(0,i).replace(/\r$/,'');buffer=buffer.slice(i+1);if(line.trim())this.cb.line?.(line);}if(buffer.length>8192){buffer='';this.cb.error?.(Error('Linha serial muito longa; trecho descartado.'));}}
+      }catch(e){if(!this.closing)this.cb.error?.(e);}
+      finally{
+        try{reader.releaseLock();}catch{}
+        if(!this.closing&&this.port===port){
+          try{this.writer?.releaseLock();}catch{}this.writer=null;this.reader=null;this.port=null;
+          try{await port.close();}catch{}
+          this.cb.state?.('disconnected');
+        }
+      }
+    }
+    async close(){
+      if(!this.port)return;this.closing=true;const port=this.port;
+      try{
+        // Melhor esforço: fechar a porta não corta a alimentação de 12 V.
+        if(this.writer){try{await this.writer.write(new TextEncoder().encode('0\n'));await new Promise(r=>setTimeout(r,150));}catch{}}
+        try{await this.reader?.cancel();}catch{}
+        try{await this.task;}catch{}
+        try{this.writer?.releaseLock();}catch{}
+        await port.close();
+      }finally{this.port=null;this.reader=null;this.writer=null;this.task=null;this.closing=false;this.cb.state?.('disconnected');}
+    }
+  }
+  return {SerialLink};
+});
+</script><script>(function(){
+'use strict';
+const $=id=>document.getElementById(id), P=AeroProtocol;
+const state={source:'none',status:'disconnected',samples:[],logs:[],last:null,lastAt:0,started:0,mode:'pwm',draft:{pwm:50,rpm:1500},confirmedMode:'pwm',target:null,pwm:null,pending:null,pendingTimer:null,paused:false,pauseAt:0,window:120,visible:{rpm:true,target:true,pwm:true},hover:null,demo:null};
+const number=new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0});
+let toastTimer, demoTimer, drawQueued=false;
+const colors={rpm:'#2478c8',target:'#c66a16',pwm:'#8656b9'};
+const timeText=t=>new Date(t).toLocaleTimeString('pt-BR',{hour12:false});
+function toast(message,error=false){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.toggle('error',error);$('toast').classList.remove('hidden');toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),6500);}
+function log(text,type='rx'){
+ const item={t:Date.now(),text:String(text),type};state.logs.push(item);if(state.logs.length>100)state.logs.shift();
+ const el=$('serialLog'), nearBottom=el.scrollHeight-el.scrollTop-el.clientHeight<45;
+ if(el.querySelector('.log-placeholder'))el.textContent='';
+ const row=document.createElement('div');row.className='log-line '+type;
+ const clock=document.createElement('span');clock.className='log-time';clock.textContent=timeText(item.t);
+ const body=document.createElement('span');body.className='log-text';body.textContent=(type==='tx'?'→ ':'')+item.text;
+ row.append(clock,body);el.append(row);while(el.children.length>100)el.firstElementChild.remove();if(nearBottom)el.scrollTop=el.scrollHeight;
+ $('logCount').textContent=state.logs.length+' eventos';
+}
+function clearPending(){clearTimeout(state.pendingTimer);state.pending=null;$('pendingBanner').classList.add('hidden');}
+function addSample(data,t=Date.now()){
+ if(!state.started)state.started=t;
+ const sample={...data,t,source:state.source==='demo'?'simulado':'esp32_usb'};
+ state.samples.push(sample);if(state.samples.length>12000)state.samples.shift();state.last=sample;state.lastAt=t;state.pwm=data.pwm;state.confirmedMode=data.mode;state.target=data.target;
+ if(state.pending&&((state.pending.mode==='rpm'&&data.target===state.pending.value)||(state.pending.mode==='pwm'&&data.mode==='pwm'&&data.pwm===state.pending.value)))clearPending();
+ renderMetrics();updateStatus();scheduleDraw();
+}
+function acceptLine(line){
+ log(line);const event=P.parseLine(line);if(!event)return;
+ if(event.type==='sample'){addSample(event);return;}
+ if(event.type==='rpm_ack'){state.confirmedMode='rpm';state.target=event.target;if(state.pending?.mode==='rpm'&&state.pending.value===event.target){clearPending();toast('Alvo de '+number.format(event.target)+' RPM confirmado.');}}
+ if(event.type==='pwm_ack'){state.pwm=event.pwm;if(state.pending?.mode==='pwm'&&state.pending.value===event.pwm){state.confirmedMode='pwm';state.target=null;clearPending();toast(event.pwm===0?'Comando de parada confirmado.':'PWM de '+event.pwm+'% confirmado.');}}
+ if(event.type==='rejected'){clearPending();toast('O ESP32 rejeitou o comando. Confira o sketch completo incluído no pacote.',true);}
+ if(event.type==='boot'){state.confirmedMode='pwm';state.target=null;clearPending();log('Placa reiniciada. Aguardando telemetria; nenhum comando foi reaplicado.','event');}
+ renderMetrics();
+}
+function resetSession(source){clearPending();state.source=source;state.samples=[];state.logs=[];state.last=null;state.lastAt=0;state.started=Date.now();state.target=null;state.pwm=null;state.confirmedMode='pwm';state.paused=false;state.hover=null;$('serialLog').innerHTML='<div class="log-placeholder">As leituras e os comandos enviados aparecerão aqui.</div>';$('logCount').textContent='0 eventos';$('pauseBtn').textContent='Ⅱ';$('pausedBadge').classList.add('hidden');renderMetrics();scheduleDraw();}
+function controlsEnabled(){return state.source==='demo'||state.status==='connected';}
+function updateStatus(){
+ const pill=$('connectionPill'), label=pill.querySelector('span');pill.className='status-pill';
+ let text='Desconectado',detail='Conecte por USB para receber os dados reais.';
+ if(state.source==='demo'){text='Demonstração';detail='Simulação local · dados e comandos fictícios';pill.classList.add('demo');}
+ else if(state.status==='opening'){text='Selecionando porta';detail='Escolha o ESP32 na janela do navegador.';}
+ else if(state.status==='connected'){
+  if(!state.lastAt){text='USB conectado';detail='Aguardando a primeira leitura. A placa pode reiniciar ao conectar.';}
+  else if(Date.now()-state.lastAt>4500){text='Sem telemetria';detail='USB aberto, mas sem novas leituras. Confira o sketch e a conexão.';pill.classList.add('stale');}
+  else{text='Recebendo dados';detail='ESP32 via USB · atualização de aproximadamente 1 s';pill.classList.add('live');}
+ }
+ label.textContent=text;$('connectionDetail').textContent=detail;
+ $('connectBtn').querySelector('span').textContent=state.status==='connected'?'Desconectar':state.status==='opening'?'Conectando…':'Conectar ESP32';
+ $('connectBtn').disabled=state.status==='opening';$('demoBtn').disabled=state.status==='connected'||state.status==='opening';$('demoBtn').textContent=state.source==='demo'?'Encerrar demonstração':'Ver demonstração';
+ $('applyBtn').disabled=!controlsEnabled();$('stopBtn').disabled=!controlsEnabled();$('demoBanner').classList.toggle('hidden',state.source!=='demo');
+ $('pauseBtn').disabled=!state.samples.length;$('exportBtn').disabled=!state.samples.length;
+ if(state.lastAt)$('lastUpdate').textContent=(state.source==='demo'?'Simulação':'Última leitura')+' · '+timeText(state.lastAt);else $('lastUpdate').textContent='Nenhuma leitura recebida';
+}
+function renderMetrics(){
+ const last=state.last;
+ $('rpmMetric').textContent=last?number.format(last.rpm):'—';$('pwmMetric').textContent=state.pwm==null?'—':number.format(state.pwm);
+ $('targetMetric').textContent=state.confirmedMode==='rpm'&&state.target!=null?number.format(state.target):'—';$('passesMetric').textContent=last?number.format(last.passes):'—';
+ $('pwmMeter').style.width=(state.pwm??0)+'%';$('targetFoot').textContent=state.confirmedMode==='rpm'?'Alvo confirmado pelo controlador':'Defina e aplique um RPM alvo';
+ $('activeModeBadge').textContent=state.confirmedMode==='rpm'?'RPM ATIVO':'MANUAL';
+ if(last){const error=state.confirmedMode==='rpm'&&state.target!=null?last.rpm-state.target:null;$('rpmFoot').textContent=error==null?(state.source==='demo'?'Leitura simulada':'Leitura do TCRT5000'):(Math.abs(error)<=60?'Próximo do alvo':(error>0?'+':'')+number.format(error)+' RPM em relação ao alvo');}else $('rpmFoot').textContent='Aguardando primeira leitura';
+ $('pwmFoot').textContent=state.source==='demo'?'PWM simulado':'Comando informado pelo ESP32';
+ $('samplesLabel').textContent=number.format(state.samples.length)+' amostras na sessão';$('chartEmpty').classList.toggle('hidden',state.samples.length>0);$('exportBtn').disabled=!state.samples.length;
+ updateDraftStyles();
+}
+function selectMode(mode){state.mode=mode;const rpm=mode==='rpm';document.querySelector('.control-panel').classList.toggle('rpm-mode',rpm);$('modePwm').classList.toggle('selected',!rpm);$('modeRpm').classList.toggle('selected',rpm);$('modePwm').setAttribute('aria-pressed',String(!rpm));$('modeRpm').setAttribute('aria-pressed',String(rpm));$('controlModeLabel').textContent=rpm?'Rotação desejada':'Percentual de PWM';$('setpointUnit').textContent=rpm?'RPM':'%';$('setpointInput').max=rpm?'50000':'100';$('setpointInput').setAttribute('aria-label',rpm?'RPM desejado':'Percentual de PWM desejado');$('applyBtn').querySelector('span').textContent=rpm?'Aplicar RPM alvo':'Aplicar percentual';$('controlHint').textContent=rpm?'O controlador ajusta o PWM gradualmente. O alvo precisa estar na faixa alcançável da ventoinha.':'O percentual define o PWM. A rotação resultante é medida pelo sensor.';
+ $('presets').textContent='';for(const value of rpm?[1000,1500,2000,2500]:[25,50,75,100]){const b=document.createElement('button');b.dataset.value=value;b.textContent=number.format(value)+(rpm?'':'%');b.addEventListener('click',()=>setDraft(value));$('presets').append(b);}setDraft(state.draft[mode]);}
+function setDraft(value){state.draft[state.mode]=value;$('setpointInput').value=value;updateDraftStyles();}
+function updateDraftStyles(){const rpm=state.mode==='rpm';const value=Number($('setpointInput').value);const max=rpm?Math.min(50000,Math.max(3000,Math.ceil(Math.max(value,1)/1000)*1000)):100;$('setpointSlider').max=max;$('setpointSlider').step=rpm?50:1;$('setpointSlider').value=Number.isFinite(value)?Math.min(value,max):0;$('sliderMaxLabel').textContent=number.format(max)+(rpm?' RPM':'%');const percent=Math.max(0,Math.min(100,(value/max)*100));$('setpointSlider').style.background=`linear-gradient(90deg,#2b9987 ${percent}%,#e5eeeb ${percent}%)`;document.querySelectorAll('#presets button').forEach(b=>b.classList.toggle('chosen',Number(b.dataset.value)===value));}
+async function sendControl(mode,value){
+ if(mode==='rpm'&&Number(value)===0)mode='pwm';
+ let encoded;try{encoded=P.encodeCommand(mode,value);}catch(e){toast(e.message,true);return;}
+ if(!controlsEnabled()){toast('Conecte o ESP32 ou inicie a demonstração.',true);return;}
+ const n=Number(value);clearPending();state.pending={mode,value:n};$('pendingBanner').textContent='Enviando '+(mode==='rpm'?number.format(n)+' RPM':n+'% de PWM')+' · aguardando confirmação do ESP32';$('pendingBanner').classList.remove('hidden');
+ log(encoded.trim(),'tx');
+ try{
+  if(state.source==='demo'){
+   if(mode==='rpm'&&n>0){state.demo.mode='rpm';state.demo.target=n;if(state.demo.pwm===0)state.demo.pwm=100;acceptLine('Modo RPM: alvo de '+n+' RPM');}
+   else{state.demo.mode='pwm';state.demo.target=null;state.demo.pwm=n;acceptLine('PWM ajustado para '+n+'%');}
+   clearPending();renderMetrics();return;
+  }
+  await link.send(encoded);
+  if(state.pending)state.pendingTimer=setTimeout(()=>{if(state.pending){clearPending();toast('Comando enviado, mas sem confirmação. Confira o registro e o firmware.',true);}},4000);
+ }catch(e){clearPending();toast('Não foi possível enviar: '+e.message,true);}
+}
+const link=new AeroSerial.SerialLink(navigator.serial,{
+ line:acceptLine,
+ state:(status)=>{
+  if(status==='connected'){stopDemo(false);resetSession('usb');state.status=status;log('Porta USB aberta a 115200 baud.','event');}
+  else{state.status=status;if(status==='disconnected'&&state.source==='usb'){clearPending();log('Conexão USB encerrada. Fechar a porta não corta a fonte de 12 V.','event');}}
+  updateStatus();
+ },error:e=>{log('USB: '+e.message,'event');toast('Falha na comunicação USB. Confira o registro serial.',true);}
+});
+async function connectClick(){
+ if(state.status==='connected'){try{await link.close();toast('Porta fechada. Foi tentado o envio de 0% antes de desconectar.');}catch(e){toast('Falha ao fechar a porta: '+e.message,true);}return;}
+ if(!('serial' in navigator)){toast('Abra o painel no Chrome ou Edge do computador para conectar por USB.',true);$('helpDialog').showModal();return;}
+ if(!window.isSecureContext){toast('Abra o arquivo local ou execute o iniciador para acessar em localhost.',true);return;}
+ try{await link.open();}catch(e){if(e.name==='NotFoundError')toast('Nenhuma porta foi selecionada.');else toast('Não foi possível abrir a porta. Feche o Monitor Serial da IDE e tente novamente. '+e.message,true);updateStatus();}
+}
+function stopDemo(reset=true){clearInterval(demoTimer);demoTimer=null;if(state.source==='demo'){if(reset){resetSession('none');state.status='disconnected';}state.demo=null;}updateStatus();}
+function startDemo(){
+ if(state.status==='connected'||state.status==='opening')return;
+ if(state.source==='demo'){stopDemo();return;}
+ resetSession('demo');state.status='disconnected';state.demo={pwm:69,rpm:2000,mode:'rpm',target:2000,passes:0};
+ const now=Date.now();for(let i=0;i<90;i++){const target=i<30?1400:2000;const pwm=i<30?48:i<43?55+(i-30):69;const rpm=Math.round((pwm*29+Math.sin(i*.3)*35)/60)*60;const s={rpm,pwm,target,mode:'rpm',passes:Math.max(0,Math.round(i*28))};addSample(s,now-(89-i)*1000);}
+ state.started=now-89000;state.demo.passes=state.last.passes;log('Demonstração iniciada. Todos os dados desta sessão são simulados.','event');
+ demoTimer=setInterval(()=>{
+  const m=state.demo;if(!m)return;
+  if(m.mode==='rpm'){const error=m.target-m.rpm;if(Math.abs(error)>60)m.pwm=Math.max(0,Math.min(100,m.pwm+Math.max(-5,Math.min(5,error*.005))));}
+  const expected=m.pwm<17?0:m.pwm*29;m.rpm=Math.max(0,m.rpm+(expected-m.rpm)*.65+Math.sin(Date.now()/2100)*12);const rpm=Math.round(m.rpm/60)*60;m.passes+=Math.round(rpm/60);
+  acceptLine(`PWM: ${Math.round(m.pwm)}% | RPM: ${rpm} | Passagens: ${m.passes}`+(m.mode==='rpm'?` | Alvo: ${m.target} RPM`:''));
+ },1000);updateStatus();
+}
+function download(text,type,name){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function exportCsv(){if(!state.samples.length)return;const stamp=new Date().toISOString().replace(/[:.]/g,'-');download(P.csv(state.samples),'text/csv;charset=utf-8',`AeroLab_${state.source==='demo'?'SIMULACAO':'ESP32'}_${stamp}.csv`);toast('CSV exportado com '+state.samples.length+' amostras.');}
+function scheduleDraw(){if(drawQueued)return;drawQueued=true;requestAnimationFrame(()=>{drawQueued=false;drawChart();});}
+function chartData(){const end=state.paused?state.pauseAt:Date.now(),start=end-state.window*1000;return {end,start,points:state.samples.filter(s=>s.t>=start&&s.t<=end)};}
+function drawChart(){
+ const canvas=$('chart'),rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;if(rect.width<20)return;const W=rect.width,H=rect.height;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+ const pad={l:44,r:37,t:22,b:35},w=W-pad.l-pad.r,h=H-pad.t-pad.b;const {start,end,points}=chartData();
+ let peak=1000;for(const s of points){if(state.visible.rpm)peak=Math.max(peak,s.rpm);if(state.visible.target&&s.target!=null)peak=Math.max(peak,s.target);}const maxRPM=Math.ceil(peak*1.12/500)*500;
+ const x=t=>pad.l+(t-start)/(end-start)*w,y=rpm=>pad.t+h-Math.max(0,rpm)/maxRPM*h,yp=pwm=>pad.t+h-pwm/100*h;
+ ctx.font='9px Segoe UI, Arial';ctx.textBaseline='middle';
+ for(let i=0;i<=4;i++){const yy=pad.t+h*i/4;ctx.strokeStyle='#edf1f2';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(pad.l+w,yy);ctx.stroke();ctx.fillStyle='#a4b0b5';ctx.textAlign='right';ctx.fillText(number.format(maxRPM*(1-i/4)),pad.l-9,yy);ctx.textAlign='left';ctx.fillText(String(100-i*25)+'%',pad.l+w+8,yy);}
+ ctx.fillStyle='#9eacb2';ctx.textAlign='left';ctx.fillText('RPM',pad.l-21,8);ctx.textAlign='right';ctx.fillStyle=colors.pwm;ctx.fillText('PWM',W-1,8);
+ for(let i=0;i<=4;i++){const xx=pad.l+w*i/4;ctx.textAlign=i===0?'left':i===4?'right':'center';ctx.fillStyle='#a4b0b5';ctx.fillText(timeText(start+(end-start)*i/4),xx,H-13);}
+ function chunks(key){const groups=[];let group=[];for(const s of points){if(s[key]==null||(group.length&&s.t-group[group.length-1].t>3500)){if(group.length)groups.push(group);group=[];}if(s[key]!=null)group.push(s);}if(group.length)groups.push(group);return groups;}
+ if(state.visible.rpm){for(const group of chunks('rpm')){if(group.length<2)continue;ctx.beginPath();ctx.moveTo(x(group[0].t),pad.t+h);for(const s of group)ctx.lineTo(x(s.t),y(s.rpm));ctx.lineTo(x(group[group.length-1].t),pad.t+h);ctx.closePath();const gradient=ctx.createLinearGradient(0,pad.t,0,pad.t+h);gradient.addColorStop(0,'#2478c80b');gradient.addColorStop(1,'#2478c801');ctx.fillStyle=gradient;ctx.fill();}}
+ for(const key of ['pwm','rpm','target']){if(!state.visible[key])continue;ctx.lineWidth=key==='target'?3.2:key==='rpm'?1.7:1.3;ctx.lineCap='round';ctx.strokeStyle=colors[key];ctx.setLineDash(key==='pwm'?[1,5]:[]);for(const group of chunks(key)){ctx.beginPath();for(let i=0;i<group.length;i++){const px=x(group[i].t),py=key==='pwm'?yp(group[i][key]):y(group[i][key]);if(i===0)ctx.moveTo(px,py);else{if(key!=='rpm')ctx.lineTo(px,key==='pwm'?yp(group[i-1][key]):y(group[i-1][key]));ctx.lineTo(px,py);}}ctx.stroke();}ctx.setLineDash([]);}
+ if(state.visible.rpm&&points.length){const s=points[points.length-1];ctx.fillStyle=colors.rpm;ctx.beginPath();ctx.arc(x(s.t),y(s.rpm),3.2,0,Math.PI*2);ctx.fill();}
+ if(state.hover!=null&&points.length){const time=start+Math.max(0,Math.min(1,(state.hover-pad.l)/w))*(end-start);let sample=points[0];for(const s of points)if(Math.abs(s.t-time)<Math.abs(sample.t-time))sample=s;const xx=x(sample.t);ctx.strokeStyle='#b4c9c3';ctx.lineWidth=1;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(xx,pad.t);ctx.lineTo(xx,pad.t+h);ctx.stroke();ctx.setLineDash([]);const tip=$('chartTooltip');tip.textContent='';const title=document.createElement('strong');title.textContent=timeText(sample.t);tip.append(title);for(const [label,value]of [['RPM medido',number.format(sample.rpm)],['RPM desejado',sample.target==null?'—':number.format(sample.target)],['PWM',sample.pwm+'%']]){const row=document.createElement('div'),a=document.createElement('span'),b=document.createElement('b');a.textContent=label;b.textContent=value;row.append(a,b);tip.append(row);}tip.style.left=Math.max(8,Math.min(W-175,xx+12))+'px';tip.classList.remove('hidden');}else $('chartTooltip').classList.add('hidden');
+}
+$('connectBtn').addEventListener('click',connectClick);$('demoBtn').addEventListener('click',startDemo);$('emptyDemo').addEventListener('click',startDemo);$('exitDemo').addEventListener('click',()=>stopDemo());
+$('modePwm').addEventListener('click',()=>selectMode('pwm'));$('modeRpm').addEventListener('click',()=>selectMode('rpm'));
+$('setpointInput').addEventListener('input',()=>{state.draft[state.mode]=Number($('setpointInput').value);updateDraftStyles();});$('setpointInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&controlsEnabled())sendControl(state.mode,$('setpointInput').value);});$('setpointSlider').addEventListener('input',()=>setDraft(Number($('setpointSlider').value)));
+$('applyBtn').addEventListener('click',()=>sendControl(state.mode,$('setpointInput').value));$('stopBtn').addEventListener('click',()=>sendControl('pwm',0));
+$('pauseBtn').addEventListener('click',()=>{state.paused=!state.paused;if(state.paused)state.pauseAt=Date.now();$('pauseBtn').textContent=state.paused?'▷':'Ⅱ';$('pauseBtn').setAttribute('aria-label',state.paused?'Retomar gráfico':'Pausar gráfico');$('pausedBadge').classList.toggle('hidden',!state.paused);state.hover=null;scheduleDraw();});
+$('windowSelect').addEventListener('change',()=>{state.window=Number($('windowSelect').value);scheduleDraw();});document.querySelectorAll('[data-series]').forEach(b=>b.addEventListener('click',()=>{state.visible[b.dataset.series]=!state.visible[b.dataset.series];b.setAttribute('aria-pressed',String(state.visible[b.dataset.series]));scheduleDraw();}));
+$('chart').addEventListener('pointermove',e=>{state.hover=e.clientX-$('chart').getBoundingClientRect().left;scheduleDraw();});$('chart').addEventListener('pointerleave',()=>{state.hover=null;scheduleDraw();});
+$('exportBtn').addEventListener('click',exportCsv);$('clearLog').addEventListener('click',()=>{state.logs=[];$('serialLog').innerHTML='<div class="log-placeholder">Registro limpo. As próximas mensagens aparecerão aqui.</div>';$('logCount').textContent='0 eventos';});
+for(const b of document.querySelectorAll('.help-trigger'))b.addEventListener('click',()=>$('helpDialog').showModal());$('closeHelp').addEventListener('click',()=>$('helpDialog').close());$('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
+new ResizeObserver(scheduleDraw).observe($('chart').parentElement);
+setInterval(()=>{updateStatus();if(state.started){const seconds=Math.floor((Date.now()-state.started)/1000);$('sessionTime').textContent='Sessão '+String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');}if(!state.paused)scheduleDraw();},1000);
+window.addEventListener('beforeunload',e=>{if(state.status==='connected'){e.preventDefault();e.returnValue='';}});
+selectMode('rpm');renderMetrics();updateStatus();scheduleDraw();
+})();
+</script>
+</body></html>

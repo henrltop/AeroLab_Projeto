@@ -1,0 +1,13 @@
+name: Verificar painel
+on: [push, pull_request]
+jobs:
+  painel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test web/tests/*.test.cjs
+      - run: node web/build.cjs
+      - run: git diff --exit-code -- web/dist/Painel_Ventoinha.html

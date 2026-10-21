@@ -1,0 +1,82 @@
+[
+  {
+    "id": "01",
+    "inicio_s": 0,
+    "fim_s": 25,
+    "titulo": "O resultado antes da explicação",
+    "visual": "Gravação real da ventoinha + painel",
+    "recurso": "V01: montagem e interface",
+    "texto_tela": "Uma ventoinha de dois fios. Como medir e controlar?",
+    "narracao": "Essa ventoinha só tem dois fios: positivo e negativo. Nenhum deles informa a velocidade. Então, como medir a rotação e fazer com que ela tente manter a velocidade que eu escolher?\n\nEsse foi o desafio deste projeto. Eu sou Henrique e vou mostrar como usei um ESP32, um sensor óptico e uma interface para medir e controlar essa ventoinha."
+  },
+  {
+    "id": "02",
+    "inicio_s": 25,
+    "fim_s": 65,
+    "titulo": "Quem mede, decide e aciona",
+    "visual": "01_visao_sistema + 02_esquema_gpio21 + detalhes reais",
+    "recurso": "assets/visuais/01_visao_sistema.png; assets/visuais/02_esquema_gpio21.png",
+    "texto_tela": "Sensor GPIO4 • ESP32 • IRLZ44N / GPIO21",
+    "narracao": "O sistema tem três partes: quem mede, quem decide e quem aciona.\n\nQuem mede é o TCRT5000, um sensor que emite luz infravermelha e detecta a luz refletida. Quem decide é o ESP32. E quem aciona é o MOSFET IRLZ44N, que liga e desliga a ventoinha de doze volts muito rapidamente.\n\nNo esquema, o sensor vai no GPIO quatro, e o PWM sai pelo GPIO vinte e um até o gate do MOSFET. O ESP32 usa a USB, a ventoinha usa a fonte de doze volts, e os dois compartilham o terra."
+  },
+  {
+    "id": "03",
+    "inicio_s": 65,
+    "fim_s": 110,
+    "titulo": "Uma marca vira uma volta",
+    "visual": "Foto/vídeo da pá marcada + visual conceitual",
+    "recurso": "assets/visuais/03_um_pulso_por_volta.png",
+    "texto_tela": "9 pás • 1 marca • 1 pulso por volta",
+    "narracao": "O detalhe que permite medir a velocidade é esta marca.\n\nA ventoinha tem nove pás, mas só uma está marcada. Quando ela passa na frente do sensor, a leitura muda. Então, cada passagem corresponde a uma volta completa.\n\nO ESP32 conta essas passagens e, mais ou menos a cada segundo, calcula o RPM: rotações por minuto.\n\nPor exemplo: trinta passagens em um segundo são trinta voltas por segundo. Vezes sessenta, mil e oitocentas RPM."
+  },
+  {
+    "id": "04",
+    "inicio_s": 110,
+    "fim_s": 145,
+    "titulo": "Suporte e leitura",
+    "visual": "Prévia CAD V1 e peça atual; trechos reais",
+    "recurso": "mecanica/v1_original/Previa_Suporte_V1.png; assets/visuais/codigo_01.png; assets/visuais/codigo_02.png",
+    "texto_tela": "Montagem 3D • Limiares 1300 / 2350",
+    "narracao": "Para manter o sensor no lugar, usei este suporte impresso em 3D. Ele prende a ventoinha e deixa o sensor de frente para as pás, sem encostar no que gira.\n\nNo início, o modelo foi pensado para ler os espaços entre as pás. Depois, passei a usar uma única pá marcada.\n\nNo código, esta linha lê o sensor de forma analógica, o tempo todo.\n\nE para reconhecer a passagem, uso dois limites. Quando a leitura cai abaixo de mil e trezentos, a marca chegou e o programa conta uma volta. Uma nova contagem só vale depois que a leitura sobe acima de dois mil trezentos e cinquenta. Isso evita contar a mesma passagem várias vezes."
+  },
+  {
+    "id": "05",
+    "inicio_s": 145,
+    "fim_s": 180,
+    "titulo": "PWM ou velocidade desejada",
+    "visual": "Painel real, modos e legenda",
+    "recurso": "assets/visuais/05_legenda_grafico.png; assets/visuais/codigo_06.png",
+    "texto_tela": "PWM escolhido ≠ RPM garantido",
+    "narracao": "Na interface, dá para controlar a ventoinha de dois jeitos.\n\nNo modo percentual, eu escolho direto o PWM, que é a fração do tempo em que o acionamento fica ligado. Cinquenta por cento de PWM não quer dizer metade da velocidade máxima: isso depende da ventoinha.\n\nNo modo RPM, eu escolho a velocidade desejada, o setpoint. Aí o próprio ESP32 usa o sensor para ajustar o PWM sozinho."
+  },
+  {
+    "id": "06",
+    "inicio_s": 180,
+    "fim_s": 240,
+    "titulo": "Compensação automática",
+    "visual": "Exemplo conceitual e trecho de controle",
+    "recurso": "assets/visuais/04_compensacao.png; assets/visuais/codigo_04.png",
+    "texto_tela": "Erro = desejado − medido • Exemplo didático",
+    "narracao": "Um exemplo: eu peço duas mil RPM, mas o sensor mede mil e seiscentas.\n\nO erro é desejado menos medido: mais quatrocentas RPM. Como está abaixo do alvo, o PWM precisa subir. Essa conta acontece aqui.\n\nDepois, o erro é multiplicado pelo ganho, que define a força da correção. Com ganho de zero vírgula zero zero cinco, quatrocentas RPM viram dois pontos percentuais de PWM em um segundo.\n\nO ajuste vai sendo acumulado e medido de novo. Se a velocidade passar do alvo, o erro fica negativo e o PWM diminui.\n\nDentro de sessenta RPM, o programa não mexe no PWM. E esse número não é por acaso: com uma marca por volta, um pulso a mais em um segundo já vale sessenta RPM. Além disso, a correção é limitada a cinco pontos por segundo, para evitar mudanças bruscas."
+  },
+  {
+    "id": "07",
+    "inicio_s": 240,
+    "fim_s": 310,
+    "titulo": "Demonstração real",
+    "visual": "Gravação painel + montagem com dois modos",
+    "recurso": "V02: percentual; V03: RPM com mudança de alvo",
+    "texto_tela": "Desejado laranja • Medido azul • PWM roxo pontilhado",
+    "narracao": "Agora, na prática. Primeiro, no modo percentual, eu escolho um PWM e observo a velocidade medida.\n\nDepois, passo para o modo RPM e escolho uma velocidade desejada.\n\nA linha laranja é o setpoint. A azul é o RPM medido. E a roxa pontilhada é o PWM, no eixo da direita.\n\nQuando eu mudo o alvo, o ESP32 recalcula o erro e vai ajustando o acionamento.\n\nIsso é uma malha fechada: a medição volta para o controlador e influencia a próxima correção. A interface só envia comandos e mostra os dados; o controle roda no ESP32."
+  },
+  {
+    "id": "08",
+    "inicio_s": 310,
+    "fim_s": 330,
+    "titulo": "Resultado e repositório",
+    "visual": "Montagem; GitHub só após URL real",
+    "recurso": "V04: encerramento; video/config.json",
+    "texto_tela": "Medição óptica • PWM • Realimentação",
+    "narracao": "Com esse projeto, consegui medir a rotação de uma ventoinha de dois fios e controlar sua velocidade pela interface.\n\nNo modo percentual, eu escolho o acionamento. No modo RPM, eu escolho a velocidade, e o sistema tenta alcançá-la dentro do que a ventoinha consegue.\n\nO código, o painel e o modelo 3D estão no repositório, no link da descrição."
+  }
+]
