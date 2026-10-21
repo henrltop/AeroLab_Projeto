@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<script src="fw.js"></script>
+<style>
+.hdr{font-size:40px;color:var(--gr);font-weight:600}
+#vp{position:absolute;left:0;top:118px;width:100%;height:590px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%)}
+#code{position:absolute;left:0;top:22px;width:100%}
+.ln{position:relative;display:flex;font-size:36px;line-height:54px;height:54px;white-space:pre;padding-left:40px}
+.no{color:#9AA6B6;text-align:right;width:70px;margin-right:30px;flex:none}
+.bg{position:absolute;left:14px;right:14px;top:2px;bottom:2px;border-radius:10px;background:#FBEBD6;opacity:0}
+.ln span.tx{position:relative}
+.ln .no{position:relative}
+.cap{position:absolute;left:80px;top:46px;font-size:56px;font-weight:800;white-space:nowrap}
+.cap b{color:var(--gr);font-weight:800;margin-right:14px}
+</style></head><body>
+<div id="caps"></div>
+<div class="card" id="card" style="left:40px;top:160px;width:1840px;height:730px;overflow:hidden">
+  <div class="hdr" style="position:absolute;left:44px;top:34px">firmware · controlarRPM() · linhas 35–53</div>
+  <div id="vp"><div id="code"></div></div>
+</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('codigo_controle', 16, {erro: 0.6, ajuste: 4.0, acumula: 7.4, margem: 10.8, limite: 13.6});
+const A = 35, Z = 53, LH = 54, VPH = 590;
+const steps = [
+  {k: 'erro', L: [38], c: 'erro = desejado − medido'},
+  {k: 'ajuste', L: [43], c: 'ajuste = erro × ganho (0,005)'},
+  {k: 'acumula', L: [48, 49], c: 'acumula no PWM e limita entre 0 e 100%'},
+  {k: 'margem', L: [41], c: 'dentro de ±60 RPM: não mexe no PWM'},
+  {k: 'limite', L: [45, 46], c: 'correção máxima: ±5 p.p. por segundo'},
+];
+let h = '';
+for (let i = A; i <= Z; i++) h += `<div class="ln code" id="L${i}"><div class="bg"></div><span class="no">${i}</span><span class="tx">${hlCode(FW[i])}</span></div>`;
+$('code').innerHTML = h;
+$('caps').innerHTML = steps.map((s, i) => `<div class="cap" id="cap${i}" style="opacity:0"><b>${i + 1}</b>${s.c}</div>`).join('');
+const center = L => ((L.reduce((a, b) => a + b, 0) / L.length) - A + .5) * LH;
+const maxScroll = (Z - A + 1) * LH + 44 - VPH;
+const scrollFor = L => clamp(center(L) + 22 - VPH / 2, 0, maxScroll);
+window.render = t => {
+  let k = -1; steps.forEach((s, i) => { if (t >= B[s.k]) k = i; });
+  const u = k < 0 ? 0 : prog(t, B[steps[k].k], 1.0);
+  const sA = k <= 0 ? 0 : scrollFor(steps[k - 1].L), sB = k < 0 ? 0 : scrollFor(steps[k].L);
+  $('code').style.transform = `translateY(${-lerp(sA, sB, u)}px)`;
+  fadeUp('card', prog(t, 0, .6), 30);
+  for (let i = A; i <= Z; i++) {
+    const on = k >= 0 && steps[k].L.includes(i);
+    const was = k >= 1 && steps[k - 1].L.includes(i);
+    const a0 = k <= 0 ? 1 : (was ? 1 : .28), a1 = k < 0 ? 1 : (on ? 1 : .28);
+    const el = $('L' + i);
+    el.querySelector('.tx').style.opacity = el.querySelector('.no').style.opacity = lerp(a0, a1, u);
+    el.querySelector('.bg').style.opacity = lerp(was ? 1 : 0, on ? 1 : 0, u);
+  }
+  steps.forEach((s, i) => {
+    const nx = i + 1 < steps.length ? B[steps[i + 1].k] : 1e9;
+    fadeUp('cap' + i, t >= B[s.k] ? Math.min(prog(t, B[s.k], .5), 1 - prog(t, nx - .35, .35)) : 0, 14);
+  });
+};
+render(0);
+</script></body></html>

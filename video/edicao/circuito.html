@@ -1,0 +1,140 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  body{margin:0;width:1920px;height:1080px;background:#F4F6FA;font-family:Inter,sans-serif;color:#1B2A41}
+  text{font-family:Inter,sans-serif}
+  .mono{font-family:"DejaVu Sans Mono",monospace}
+</style></head>
+<body>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .card{fill:#fff;stroke:#D5DCE6;stroke-width:2}
+      .t-title{font-size:52px;font-weight:700;fill:#1B2A41}
+      .t-sub{font-size:26px;fill:#5B6B80}
+      .t-h{font-size:26px;font-weight:700;letter-spacing:1px}
+      .t-lbl{font-size:24px;fill:#1B2A41}
+      .t-sm{font-size:21px;fill:#5B6B80}
+      .t-pin{font-size:23px;font-weight:600;fill:#1B2A41}
+      .r{fill:#FFF3D6;stroke:#A07A1C;stroke-width:2}
+      .w3{stroke:#D64545;stroke-width:5;fill:none;stroke-linecap:round}
+      .w12{stroke:#B3261E;stroke-width:6;fill:none;stroke-linecap:round}
+      .wg{stroke:#1B2A41;stroke-width:5;fill:none;stroke-linecap:round}
+      .ws{stroke:#2478C8;stroke-width:5;fill:none;stroke-linecap:round}
+      .wp{stroke:#8656B9;stroke-width:5;fill:none;stroke-linecap:round}
+      .dot{stroke:none}
+    </style>
+  </defs>
+
+  <text x="60" y="88" class="t-title">Circuito completo</text>
+  <text x="60" y="128" class="t-sub">Para replicar: pause o vídeo e confira cada ligação</text>
+
+  <!-- ================= ESP32 ================= -->
+  <rect x="60" y="180" width="330" height="560" rx="18" class="card"/>
+  <text x="85" y="222" class="t-h" fill="#1B2A41">ESP32</text>
+  <rect x="100" y="260" width="160" height="400" rx="10" fill="#26364D"/>
+  <text x="180" y="470" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">ESP32</text>
+  <text x="180" y="505" text-anchor="middle" font-size="20" fill="#C9D3E0">DevKit</text>
+  <!-- pinos -->
+  <g>
+    <line x1="260" y1="300" x2="390" y2="300" class="w3"/><text x="272" y="290" class="t-pin">3V3</text>
+    <line x1="260" y1="390" x2="390" y2="390" class="ws"/><text x="272" y="380" class="t-pin" fill="#2478C8">GPIO4</text>
+    <line x1="260" y1="610" x2="390" y2="610" class="wp"/><text x="272" y="600" class="t-pin" fill="#8656B9">GPIO21</text>
+    <line x1="260" y1="520" x2="390" y2="520" class="wg"/><text x="272" y="510" class="t-pin">GND</text>
+  </g>
+  <text x="85" y="700" class="t-sm">USB do PC: alimentação</text>
+  <text x="85" y="726" class="t-sm">e comunicação serial</text>
+
+  <!-- ================= SENSOR ================= -->
+  <rect x="430" y="180" width="420" height="560" rx="18" class="card"/>
+  <text x="455" y="222" class="t-h" fill="#2478C8">SENSOR · TCRT5000</text>
+  <!-- trilho 3V3 -->
+  <path d="M390 300 H410 V270 H780" class="w3"/>
+  <text x="790" y="278" class="t-pin" fill="#D64545">3V3</text>
+  <!-- R2 10k -> coletor (fototransistor à esquerda) -->
+  <line x1="560" y1="270" x2="560" y2="300" class="w3"/>
+  <rect x="545" y="300" width="30" height="60" rx="4" class="r"/>
+  <text x="535" y="340" class="t-lbl" text-anchor="end">10 kΩ</text>
+  <line x1="560" y1="360" x2="560" y2="410" class="ws"/>
+  <circle cx="560" cy="450" r="40" fill="#E6EBF2" stroke="#1B2A41" stroke-width="3"/>
+  <text x="560" y="458" text-anchor="middle" font-size="20" font-weight="700">Foto</text>
+  <text x="512" y="408" class="t-sm" text-anchor="end">C</text>
+  <text x="512" y="512" class="t-sm" text-anchor="end">E</text>
+  <line x1="560" y1="490" x2="560" y2="660" class="wg"/>
+  <!-- GPIO4 -> coletor -->
+  <path d="M390 390 H560" class="ws"/>
+  <circle cx="560" cy="390" r="7" fill="#2478C8"/>
+  <!-- R1 220 -> LED IR (à direita) -->
+  <line x1="760" y1="270" x2="760" y2="300" class="w3"/>
+  <rect x="745" y="300" width="30" height="60" rx="4" class="r"/>
+  <text x="785" y="340" class="t-lbl">220 Ω</text>
+  <line x1="760" y1="360" x2="760" y2="410" class="w3"/>
+  <circle cx="760" cy="450" r="40" fill="#CDEBF8" stroke="#2478C8" stroke-width="3"/>
+  <text x="760" y="458" text-anchor="middle" font-size="22" font-weight="700" fill="#2478C8">IR</text>
+  <text x="808" y="408" class="t-sm">A</text>
+  <text x="808" y="512" class="t-sm">K</text>
+  <line x1="760" y1="490" x2="760" y2="660" class="wg"/>
+  <path d="M720 450 H600" stroke="#C66A16" stroke-width="3" stroke-dasharray="8 6" fill="none"/>
+  <text x="660" y="436" text-anchor="middle" font-size="18" fill="#C66A16">reflexão</text>
+  <!-- GND do ESP32 -> trilho GND comum (y=660) -->
+  <path d="M390 520 H460 V660 H880" class="wg"/>
+  <circle cx="560" cy="660" r="7" fill="#1B2A41"/><circle cx="760" cy="660" r="7" fill="#1B2A41"/>
+  <text x="470" y="700" class="t-sm">GND comum</text>
+
+  <!-- ================= ACIONAMENTO ================= -->
+  <rect x="890" y="180" width="440" height="560" rx="18" class="card"/>
+  <text x="915" y="222" class="t-h" fill="#8656B9">ACIONAMENTO · IRLZ44N</text>
+  <!-- +12V -> ventoinha -->
+  <text x="1150" y="268" class="t-pin" fill="#B3261E">+12 V da fonte</text>
+  <line x1="1200" y1="278" x2="1200" y2="300" class="w12"/>
+  <rect x="1120" y="300" width="160" height="90" rx="12" fill="#fff" stroke="#1B2A41" stroke-width="2.5"/>
+  <text x="1200" y="338" text-anchor="middle" font-size="22" font-weight="700">VENTOINHA</text>
+  <text x="1200" y="368" text-anchor="middle" class="t-sm">12 V · 2 fios</text>
+  <text x="1288" y="318" class="t-sm">+</text>
+  <text x="1288" y="388" class="t-sm">−</text>
+  <line x1="1200" y1="390" x2="1200" y2="440" class="wg"/>
+  <!-- MOSFET -->
+  <rect x="1120" y="440" width="160" height="130" rx="12" fill="#26364D"/>
+  <text x="1212" y="512" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">IRLZ44N</text>
+  <text x="1200" y="468" text-anchor="middle" font-size="20" font-weight="700" fill="#C9D3E0">D</text>
+  <text x="1130" y="512" font-size="20" font-weight="700" fill="#C9D3E0">G</text>
+  <text x="1200" y="560" text-anchor="middle" font-size="20" font-weight="700" fill="#C9D3E0">S</text>
+  <!-- gate: GPIO21 -> 220 -> G -->
+  <path d="M390 610 H420 V720 H870 V672 A12 12 0 0 1 870 648 V505 H930" class="wp"/>
+  <rect x="930" y="490" width="80" height="30" rx="4" class="r"/>
+  <text x="970" y="478" class="t-lbl" text-anchor="middle">220 Ω</text>
+  <line x1="1010" y1="505" x2="1120" y2="505" class="wp"/>
+  <circle cx="1050" cy="505" r="7" fill="#8656B9"/>
+  <!-- 10k gate-GND -->
+  <line x1="1050" y1="505" x2="1050" y2="560" class="wp"/>
+  <rect x="1035" y="560" width="30" height="60" rx="4" class="r"/>
+  <text x="1000" y="598" class="t-lbl" text-anchor="end">10 kΩ</text>
+  <line x1="1050" y1="620" x2="1050" y2="660" class="wg"/>
+  <!-- source -> GND -->
+  <line x1="1200" y1="570" x2="1200" y2="660" class="wg"/>
+  <path d="M880 660 H1300" class="wg"/>
+  
+  <circle cx="1050" cy="660" r="7" fill="#1B2A41"/><circle cx="1200" cy="660" r="7" fill="#1B2A41"/>
+  <text x="1300" y="700" class="t-sm" text-anchor="end">GND comum + − da fonte 12 V</text>
+  <!-- GND comum entre cartões -->
+  
+
+  <!-- ================= TABELA ================= -->
+  <rect x="1370" y="180" width="500" height="560" rx="18" class="card"/>
+  <text x="1395" y="222" class="t-h" fill="#1B2A41">LIGAÇÕES</text>
+  <g font-size="23">
+    <text x="1395" y="275"><tspan font-weight="700">3V3</tspan> → 220 Ω → ânodo do LED IR</text>
+    <text x="1395" y="322"><tspan font-weight="700">3V3</tspan> → 10 kΩ → coletor</text>
+    <text x="1395" y="369"><tspan font-weight="700" fill="#2478C8">GPIO4</tspan> → coletor do sensor</text>
+    <text x="1395" y="416">Cátodo e emissor → <tspan font-weight="700">GND</tspan></text>
+    <text x="1395" y="463"><tspan font-weight="700" fill="#8656B9">GPIO21</tspan> → 220 Ω → gate (G)</text>
+    <text x="1395" y="510">Gate → 10 kΩ → <tspan font-weight="700">GND</tspan></text>
+    <text x="1395" y="557"><tspan font-weight="700" fill="#B3261E">+12 V</tspan> → fio + da ventoinha</text>
+    <text x="1395" y="604">Fio − da ventoinha → dreno (D)</text>
+    <text x="1395" y="651">Source (S) → <tspan font-weight="700">GND</tspan></text>
+    <text x="1395" y="698">− da fonte ↔ GND do ESP32</text>
+  </g>
+
+  <text x="60" y="800" class="t-sm">Sensor alimentado em 3,3 V (nunca em 12 V). IRLZ44N visto de frente, pernas para baixo: G · D · S. Confira a pinagem do seu TCRT5000 no componente.</text>
+</svg>
+</body></html>

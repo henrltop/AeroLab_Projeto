@@ -1,0 +1,399 @@
+1
+00:00:00,070 --> 00:00:02,820
+Essa ventoinha só tem dois fios,
+o positivo e o negativo,
+
+2
+00:00:02,900 --> 00:00:05,220
+e nenhum deles informa
+pra gente a velocidade.
+
+3
+00:00:05,320 --> 00:00:06,980
+Então, como é que a gente
+faz pra medir a rotação
+
+4
+00:00:07,020 --> 00:00:09,860
+e fazer com que ele tente manter
+a velocidade que a gente quiser?
+
+5
+00:00:10,310 --> 00:00:12,600
+Esse é o desafio desse
+projeto. Eu sou Henrique,
+
+6
+00:00:12,680 --> 00:00:15,300
+estudante de Engenharia de Controle
+e Automação do Instituto Federal,
+
+7
+00:00:15,560 --> 00:00:19,060
+e vou mostrar pra vocês como eu
+usei um ESP32, um sensor óptico,
+
+8
+00:00:19,160 --> 00:00:21,920
+pra poder medir e controlar
+a velocidade dessa ventoinha.
+
+9
+00:00:22,670 --> 00:00:26,700
+O sistema tem três partes:
+quem mede, quem decide, quem aciona.
+
+10
+00:00:27,150 --> 00:00:29,660
+Quem mede é o TCRT5000,
+
+11
+00:00:29,700 --> 00:00:32,860
+um sensor que emite luz infravermelha
+e detecta a luz refletida.
+
+12
+00:00:32,950 --> 00:00:34,560
+Assim a gente consegue
+fazer a contagem
+
+13
+00:00:34,600 --> 00:00:37,100
+de quantas voltas a ventoinha deu.
+
+14
+00:00:37,200 --> 00:00:39,860
+Quem decide,
+faz os cálculos, é o ESP32.
+
+15
+00:00:39,960 --> 00:00:44,880
+E quem aciona é o MOSFET IRLZ44N,
+que liga e desliga a ventoinha muito
+
+16
+00:00:44,920 --> 00:00:48,580
+rapidamente, fazendo assim a gente
+consegue controlar a nossa ventoinha.
+
+17
+00:00:49,030 --> 00:00:51,320
+No nosso esquema,
+o sensor vai no GPIO4
+
+18
+00:00:51,360 --> 00:00:56,160
+e o PWM sai pelo GPIO21
+até o gate do MOSFET.
+
+19
+00:00:56,260 --> 00:00:59,820
+O ESP32 usa USB, e a ventoinha
+usa a fonte de 12 volts,
+
+20
+00:00:59,860 --> 00:01:02,220
+e ambos compartilham o mesmo terra.
+
+21
+00:01:10,950 --> 00:01:13,960
+O detalhe que permite a gente
+medir a velocidade é essa marca.
+
+22
+00:01:14,410 --> 00:01:17,600
+A ventoinha tem 9 pás,
+mas só uma delas está marcada.
+
+23
+00:01:17,680 --> 00:01:20,260
+Quando ela passa na frente
+do sensor, a leitura muda.
+
+24
+00:01:20,340 --> 00:01:23,150
+Então, cada passagem corresponde
+a uma volta completa.
+
+25
+00:01:23,600 --> 00:01:27,160
+O ESP32 conta essas passagens e,
+mais ou menos a cada segundo,
+
+26
+00:01:27,200 --> 00:01:30,360
+calcula a quantidade
+de rotações por minuto.
+
+27
+00:01:30,810 --> 00:01:34,400
+Por exemplo, 30 passagens em um
+segundo são 30 voltas por segundo.
+
+28
+00:01:34,480 --> 00:01:38,440
+Vezes 60, 1800 rotações
+por minuto, mais ou menos.
+
+29
+00:01:38,540 --> 00:01:40,340
+É essa conta que o ESP
+faz pra dizer pra gente
+
+30
+00:01:40,380 --> 00:01:43,050
+qual a velocidade efetiva
+do nosso ventiladorzinho.
+
+31
+00:01:43,800 --> 00:01:46,980
+Para manter o sensor no lugar,
+eu usei suporte impresso em 3D.
+
+32
+00:01:47,280 --> 00:01:50,340
+Ele prende a ventoinha e deixa
+o sensor de frente para as pás,
+
+33
+00:01:50,380 --> 00:01:52,870
+sem encostar no que gira,
+ele não pode encostar.
+
+34
+00:01:53,320 --> 00:01:56,280
+No início, o modelo foi pensado
+para ler o espaço entre as pás,
+
+35
+00:01:56,320 --> 00:01:58,900
+depois passamos a usar
+uma única pá marcada.
+
+36
+00:01:59,310 --> 00:02:00,840
+No código, essa é a linha
+
+37
+00:02:00,880 --> 00:02:03,740
+que lê o sensor de forma
+analógica o tempo inteiro.
+
+38
+00:02:04,190 --> 00:02:07,030
+E para reconhecer as passagens,
+uso dois limites.
+
+39
+00:02:07,130 --> 00:02:09,080
+Quando a leitura cai abaixo de 1300,
+
+40
+00:02:09,180 --> 00:02:12,040
+a marca chegou e o programa
+conta uma volta.
+
+41
+00:02:12,120 --> 00:02:16,150
+Uma nova contagem só vale depois
+que a leitura sobe acima de 2350.
+
+42
+00:02:16,190 --> 00:02:22,190
+E isso evita contar a mesma
+passagem várias vezes.
+
+43
+00:02:23,010 --> 00:02:25,560
+Na interface, dá pra controlar
+a ventoinha de dois jeitos.
+
+44
+00:02:26,010 --> 00:02:28,760
+No modo percentual,
+eu escolho direto o PWM.
+
+45
+00:02:28,840 --> 00:02:32,300
+PWM, que é a fração do tempo
+em que o acionamento fica ligado.
+
+46
+00:02:32,380 --> 00:02:35,600
+50% do PWM não quer dizer
+metade da velocidade.
+
+47
+00:02:35,680 --> 00:02:37,990
+Isso depende muito
+de ventoinha para ventoinha.
+
+48
+00:02:38,390 --> 00:02:40,680
+No modo RPM, eu escolho
+a velocidade desejada,
+
+49
+00:02:40,760 --> 00:02:45,520
+nosso setpoint, e aí o próprio ESP usa
+o sensor para ajustar o PWM sozinho.
+
+50
+00:02:46,270 --> 00:02:50,920
+Um exemplo: eu peço 2000 RPM,
+mas o sensor mede 1600.
+
+51
+00:02:50,960 --> 00:02:56,310
+O erro é desejado menos
+medido: mais 400 RPM.
+
+52
+00:02:56,410 --> 00:02:59,160
+Como está abaixo do alvo,
+o PWM precisa subir,
+
+53
+00:02:59,860 --> 00:03:01,760
+e essa conta acontece bem aqui.
+
+54
+00:03:02,210 --> 00:03:06,280
+Depois, o erro é multiplicado pelo
+ganho, que define a força de correção.
+
+55
+00:03:06,380 --> 00:03:08,780
+Com ganho de 0,005,
+
+56
+00:03:08,820 --> 00:03:14,060
+400 RPM viram dois pontos
+percentuais de PWM em um segundo.
+
+57
+00:03:14,510 --> 00:03:16,880
+O ajuste vai ser acumulado
+e medido de novo.
+
+58
+00:03:17,000 --> 00:03:21,230
+Se a velocidade passar do alvo,
+o erro fica negativo e o PWM diminui.
+
+59
+00:03:21,680 --> 00:03:24,270
+Dentro de 60 RPM,
+o programa não mexe no PWM,
+
+60
+00:03:24,310 --> 00:03:28,120
+e esse número não é por acaso.
+Como a gente tem uma marca por volta,
+
+61
+00:03:28,440 --> 00:03:31,480
+um pulso a mais
+de um segundo já vale 60 RPM.
+
+62
+00:03:31,580 --> 00:03:34,700
+Além disso, a correção é limitada
+a 5 pontos por segundo,
+
+63
+00:03:34,780 --> 00:03:37,020
+para evitar mudanças muito bruscas.
+
+64
+00:03:37,770 --> 00:03:39,070
+Agora, na prática.
+
+65
+00:03:40,600 --> 00:03:41,980
+Primeiro, no modo percentual,
+
+66
+00:03:42,060 --> 00:03:44,810
+eu escolho um PWM e observo
+a velocidade medida.
+
+67
+00:03:48,000 --> 00:03:51,640
+Depois, passo para o modo RPM
+e escolho a velocidade desejada.
+
+68
+00:03:52,000 --> 00:03:55,500
+A linha laranja é o setpoint,
+o azul é o RPM medido
+
+69
+00:03:55,540 --> 00:03:59,560
+e a roxa pontilhada é o PWM,
+isso aqui no eixo da direita.
+
+70
+00:04:03,600 --> 00:04:06,060
+Quando eu mudo o alvo,
+o ESP32 recalcula o erro
+
+71
+00:04:06,100 --> 00:04:07,750
+e vai ajustando o acionamento.
+
+72
+00:04:13,300 --> 00:04:14,500
+Isso é uma malha fechada:
+
+73
+00:04:14,580 --> 00:04:18,280
+a medição volta para o controlador
+e influencia a próxima correção.
+
+74
+00:04:18,600 --> 00:04:21,540
+A interface só envia
+o comando e mostra os dados.
+
+75
+00:04:21,860 --> 00:04:24,640
+O controle roda 100% no ESP32.
+
+76
+00:04:28,970 --> 00:04:31,310
+Com esse projeto, consegui medir
+a rotação de uma ventoinha
+
+77
+00:04:31,350 --> 00:04:34,470
+de dois fios e controlar sua
+velocidade pela interface.
+
+78
+00:04:34,920 --> 00:04:37,150
+No modo percentual,
+eu escolho o acionamento.
+
+79
+00:04:37,230 --> 00:04:39,090
+No modo RPM, eu escolho a velocidade,
+
+80
+00:04:39,130 --> 00:04:42,750
+e o sistema tenta alcançá-la
+dentro do que a ventoinha consegue.
+
+81
+00:04:43,200 --> 00:04:46,330
+O código, painel e o modelo 3D vão
+estar no repositório do GitHub,
+
+82
+00:04:46,570 --> 00:04:48,240
+que o link está bem aqui na descrição.
+
+83
+00:04:48,340 --> 00:04:50,900
+Bom, muito obrigado e aguardo
+vocês no próximo vídeo.

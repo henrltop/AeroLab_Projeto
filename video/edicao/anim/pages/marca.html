@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+.big{font-size:80px;font-weight:800}
+.t48{font-size:48px;font-weight:700}
+.t40{font-size:40px;color:var(--gr)}
+#ex div{white-space:nowrap}
+</style></head><body>
+<div class="title" id="ttl">Uma pá marcada = um pulso por volta</div>
+<div class="selo" id="selo1">ILUSTRAÇÃO</div>
+<div class="selo" id="selo2" style="opacity:0">EXEMPLO DIDÁTICO</div>
+<div class="card" style="left:70px;top:160px;width:860px;height:720px"></div>
+<div class="card" style="left:970px;top:160px;width:880px;height:720px"></div>
+<svg class="abs" style="left:0;top:0" width="1920" height="1080">
+  <defs><clipPath id="trclip"><rect x="1020" y="280" width="780" height="200"/></clipPath></defs>
+  <circle cx="470" cy="520" r="300" fill="#E7EDF4"/>
+  <g id="rot"></g>
+  <circle cx="470" cy="520" r="70" fill="#1B2A41"/>
+  <!-- feixe e sensor (fixos, à direita) -->
+  <path id="beam" d="M800 520 L760 520" stroke="#C8443A" stroke-width="10" stroke-linecap="round" opacity=".25"/>
+  <rect x="800" y="482" width="70" height="76" rx="10" fill="#1B2A41"/>
+  <circle cx="812" cy="505" r="8" fill="#5B6B80"/><circle cx="812" cy="535" r="8" fill="#5B6B80"/>
+  <!-- traço de pulsos -->
+  <g id="trg"><line x1="1020" y1="460" x2="1800" y2="460" stroke="#D8E0EB" stroke-width="2"/>
+  <g clip-path="url(#trclip)"><path id="trace" fill="none" stroke="#2478C8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></g>
+  <line x1="1800" y1="280" x2="1800" y2="480" stroke="#5B6B80" stroke-width="2" stroke-dasharray="6 8"/></g>
+  <!-- seta "pá marcada" -->
+  <g id="lblMark"><line id="ld" x1="200" y1="250" x2="300" y2="300" stroke="#1B2A41" stroke-width="4"/><circle id="ldc" r="8" fill="#1B2A41"/></g>
+</svg>
+<div class="abs t40" style="left:776px;top:572px;color:var(--tx);font-weight:700;width:140px;text-align:center">sensor</div>
+<div class="abs t40" id="lblMarkT" style="left:110px;top:186px;color:var(--tx);font-weight:700">pá marcada</div>
+<div class="abs t40" style="left:110px;top:806px;width:740px;text-align:center">9 pás · só uma marcada</div>
+
+<div id="cnt">
+  <div class="abs t48" style="left:1020px;top:196px" id="h1">cada passagem da marca</div>
+  <div class="abs t40" style="left:1020px;top:494px">tempo →</div>
+  <div class="abs t48" style="left:1020px;top:570px;color:var(--tx)">voltas contadas</div>
+  <div class="abs big" style="left:1020px;top:630px;color:var(--bl)" id="n">0</div>
+  <div class="abs t40" style="left:1020px;top:770px;color:var(--tx);opacity:0" id="rpmt">≈ a cada 1 s: calcula o RPM</div>
+</div>
+<div id="ex" style="opacity:0">
+  <div class="abs t48" style="left:1020px;top:220px">exemplo</div>
+  <div class="abs big" style="left:1020px;top:300px;font-size:66px" id="e1">30 passagens em 1 s</div>
+  <div class="abs t48" style="left:1020px;top:440px;color:var(--gr);font-weight:600" id="e2">= 30 voltas por segundo</div>
+  <div class="abs big" style="left:1020px;top:560px" id="e3">30 × 60 =</div>
+  <div class="abs big" style="left:1020px;top:670px;color:var(--bl)" id="e4">1800 RPM</div>
+</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('marca', 14, {marca: 0.3, passagem: 2.2, rpm: 6.0, exemplo: 9.0});
+// pá modelo (do SVG 03, escala 1.2, relativa ao centro)
+const P = [[59.3, -9.0], [217.5, -32.9], [224.5, 69.4], [79.8, 41.6]].map(([x, y]) => [x * 1.2, y * 1.2]);
+const BL = Math.atan2(P.reduce((s, p) => s + p[1], 0), P.reduce((s, p) => s + p[0], 0)) * 180 / Math.PI; // ângulo médio da pá
+const rot = $('rot');
+for (let k = 0; k < 9; k++) {
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  g.setAttribute('points', P.map(p => p.join(',')).join(' '));
+  g.setAttribute('fill', k === 0 ? '#5B6B80' : '#9BAEC0');
+  g.setAttribute('transform', `rotate(${k * 40 - BL})`);
+  rot.appendChild(g);
+}
+// marca refletiva na pá 0
+const m = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+m.setAttribute('x', 190); m.setAttribute('y', -18); m.setAttribute('width', 70); m.setAttribute('height', 50); m.setAttribute('rx', 6);
+m.setAttribute('fill', '#FFFFFF'); m.setAttribute('stroke', '#1B2A41'); m.setAttribute('stroke-width', 4);
+m.setAttribute('transform', `rotate(${-BL + 2})`);
+rot.appendChild(m);
+const REV = 0.5;                                // voltas/s da ilustração (lento, para ver)
+const tPass0 = B.passagem + 0.4;                // primeira passagem
+const ang = t => (t - tPass0) * REV * 360;     // 0 = marca em frente ao sensor
+const passes = t => t < tPass0 ? 0 : Math.floor((t - tPass0) * REV) + 1;
+const passTime = k => tPass0 + k / REV;         // k = 0,1,2...
+const PW = 0.22;                                // largura do pulso (s)
+const WIN = 4.0;                                // janela do traço (s)
+window.render = t => {
+  fadeUp('ttl', prog(t, 0, .6), 16);
+  rot.setAttribute('transform', `translate(470 520) rotate(${ang(t)})`);
+  // sensor/feixe acende quando a marca passa
+  const a = ((ang(t) % 360) + 360) % 360;
+  const d = Math.min(a, 360 - a);
+  const lit = clamp(1 - d / 14);
+  $('beam').style.opacity = .25 + .75 * lit;
+  // rótulo "pá marcada": só no começo
+  const lm = win(t, B.marca, B.passagem + 1.5);
+  $('lblMark').style.opacity = lm; $('lblMarkT').style.opacity = lm;
+  const ra = ang(t) * Math.PI / 180, mx = 470 + 205 * Math.cos(ra), my = 520 + 205 * Math.sin(ra);
+  $('ld').setAttribute('x2', mx); $('ld').setAttribute('y2', my);
+  $('ldc').setAttribute('cx', mx); $('ldc').setAttribute('cy', my);
+  // traço: últimos WIN segundos; x direita = agora
+  const x0 = 1020, x1 = 1800, yL = 450, yH = 320;
+  const X = tt => x1 - (t - tt) / WIN * (x1 - x0);
+  let dpath = `M${x0 - 20} ${yL}`;
+  for (let k = 0; ; k++) {
+    const tp = passTime(k) - PW / 2;
+    if (tp > t) break;
+    if (tp + PW < t - WIN - 1) continue;
+    const xa = X(tp), xb = X(Math.min(tp + PW, t));
+    dpath += ` L${xa} ${yL} L${xa} ${yH} L${xb} ${yH}` + (tp + PW <= t ? ` L${xb} ${yL}` : '');
+  }
+  const last = passes(t + PW / 2) > passes(t - PW / 2) && t >= passTime(0) - PW / 2 ? yH : yL;
+  dpath += ` L${x1} ${last}`;
+  $('trace').setAttribute('d', dpath);
+  $('trace').style.opacity = prog(t, B.passagem - .4, .6);
+  // contador (incrementa no centro do pulso)
+  const n = passes(t);
+  $('n').textContent = n;
+  const bump = n > 0 ? clamp(1 - (t - passTime(n - 1)) / .4) : 0;
+  $('n').style.transform = `scale(${1 + .12 * bump})`; $('n').style.transformOrigin = 'left center';
+  fadeUp('rpmt', prog(t, B.rpm, .7), 20);
+  // troca para o exemplo
+  const ex = prog(t, B.exemplo, .8);
+  $('cnt').style.opacity = 1 - ex; $('trg').style.opacity = 1 - ex;
+  $('ex').style.opacity = ex;
+  fadeUp('e1', prog(t, B.exemplo, .7), 20);
+  fadeUp('e2', prog(t, B.exemplo + 1.0, .7), 20);
+  fadeUp('e3', prog(t, B.exemplo + 2.0, .7), 20);
+  fadeUp('e4', prog(t, B.exemplo + 2.8, .7), 20);
+  $('selo1').style.opacity = 1 - ex; $('selo2').style.opacity = ex;
+};
+render(0);
+</script></body></html>

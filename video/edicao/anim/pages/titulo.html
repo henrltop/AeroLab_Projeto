@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+#p{position:absolute;left:120px;top:560px;width:1240px;padding:44px 60px 48px 70px;border-radius:28px;
+  background:rgba(15,25,40,.72);color:#fff}
+#bar{position:absolute;left:30px;top:52px;bottom:52px;width:10px;border-radius:5px;background:#C66A16}
+.l1{font-size:64px;font-weight:700;white-space:nowrap}
+.l2{font-size:76px;font-weight:800;white-space:nowrap;margin-top:6px}
+</style></head><body>
+<div id="p"><div id="bar"></div>
+  <div class="l1" id="a">Uma ventoinha de 2 fios.</div>
+  <div class="l2" id="b">Como medir e controlar?</div>
+</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('titulo', 5, {entra: 0.2, pergunta: 0.9, sai: 4.3});
+window.render = t => {
+  const o = Math.min(prog(t, B.entra, .6), 1 - prog(t, B.sai, Math.max(.3, dur - B.sai)));
+  fadeUp('p', o, 24);
+  fadeUp('a', prog(t, B.entra + .15, .6), 14);
+  fadeUp('b', prog(t, B.pergunta, .6), 14);
+};
+render(0);
+</script></body></html>

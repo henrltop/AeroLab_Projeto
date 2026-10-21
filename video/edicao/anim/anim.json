@@ -1,0 +1,185 @@
+{
+  "formato": "1920x1080, 30 fps; .mp4 = H.264 crf 18 yuv420p; .mov alfa = QuickTime Animation (qtrle, argb)",
+  "rerender": {
+    "comando": "python3 render.py <nome> <duracao_s> <saida.mp4> [beats_json] [--alpha [--prores]]",
+    "beats": "beats omitidos são escalados proporcionalmente (beat_padrao × duracao/duracao_padrao); beats passados no JSON são tempos ABSOLUTOS em segundos. Ex.: python3 render.py sistema 10.4 out/sistema.mp4 '{\"decidir\":2.1,\"acionar\":4.6,\"realimentacao\":7.0}'",
+    "teste_rapido": "python3 render.py <nome> <dur> pasta/ --stills 1,5,9 --scale 0.5",
+    "todas": "./todas.sh  (ou ./todas.sh marca limiares)"
+  },
+  "animacoes": [
+    {
+      "id": "A1",
+      "nome": "sistema",
+      "arquivos": [
+        "out/sistema.mp4"
+      ],
+      "duracao_padrao_s": 12,
+      "beats_padrao_s": {
+        "medir": 0.3,
+        "decidir": 2.8,
+        "acionar": 5.4,
+        "realimentacao": 8.2
+      },
+      "selo": null,
+      "descricao": "Três cartões MEDIR/DECIDIR/ACIONAR e seta de realimentação",
+      "alfa": false
+    },
+    {
+      "id": "A2",
+      "nome": "esquema",
+      "arquivos": [
+        "out/esquema.mp4"
+      ],
+      "duracao_padrao_s": 14,
+      "beats_padrao_s": {
+        "sensor": 0.4,
+        "pwm": 3.8,
+        "potencia": 7.4,
+        "terra": 10.6
+      },
+      "selo": null,
+      "descricao": "Esquema GPIO4/GPIO21 com destaque por etapas e zoom (restante esmaecido a 25%)",
+      "alfa": false
+    },
+    {
+      "id": "A3",
+      "nome": "marca",
+      "arquivos": [
+        "out/marca.mp4"
+      ],
+      "duracao_padrao_s": 14,
+      "beats_padrao_s": {
+        "marca": 0.3,
+        "passagem": 2.2,
+        "rpm": 6,
+        "exemplo": 9
+      },
+      "selo": "ILUSTRAÇÃO → EXEMPLO DIDÁTICO no beat \"exemplo\"",
+      "descricao": "Rotor de 9 pás com 1 pá marcada, pulsos e contador; depois 30 × 60 = 1800 RPM",
+      "alfa": false
+    },
+    {
+      "id": "A4",
+      "nome": "limiares",
+      "arquivos": [
+        "out/limiares.mp4"
+      ],
+      "duracao_padrao_s": 14,
+      "beats_padrao_s": {
+        "limites": 0.3,
+        "entrada": 4,
+        "saida": 7.2,
+        "ruido": 10.2
+      },
+      "selo": "ILUSTRAÇÃO",
+      "descricao": "Sinal analógico idealizado com limites 1300/2350, contagem, rearme e ruído ignorado",
+      "alfa": false
+    },
+    {
+      "id": "A5",
+      "nome": "codigo_leitura",
+      "arquivos": [
+        "out/codigo_leitura.mp4"
+      ],
+      "duracao_padrao_s": 8,
+      "beats_padrao_s": {
+        "leitura": 0.2,
+        "bloco": 3.4,
+        "limites": 4.8
+      },
+      "selo": null,
+      "descricao": "Linha 120 (analogRead) e bloco 123–130 com LIMITE_ENTRADA/LIMITE_SAIDA destacados",
+      "alfa": false
+    },
+    {
+      "id": "A6",
+      "nome": "compensacao",
+      "arquivos": [
+        "out/compensacao.mp4"
+      ],
+      "duracao_padrao_s": 22,
+      "beats_padrao_s": {
+        "erro": 0.3,
+        "sobe": 3.6,
+        "ganho": 7,
+        "acumula": 11,
+        "negativo": 14.2,
+        "margem": 17.4
+      },
+      "selo": "EXEMPLO DIDÁTICO",
+      "descricao": "Desejado − medido = erro; PWM ↑; 400 × 0,005 = +2 p.p.; acumula; erro negativo; margem ±60 / máx ±5 p.p./s",
+      "alfa": false
+    },
+    {
+      "id": "A7",
+      "nome": "codigo_controle",
+      "arquivos": [
+        "out/codigo_controle.mp4"
+      ],
+      "duracao_padrao_s": 16,
+      "beats_padrao_s": {
+        "erro": 0.6,
+        "ajuste": 4,
+        "acumula": 7.4,
+        "margem": 10.8,
+        "limite": 13.6
+      },
+      "selo": null,
+      "descricao": "controlarRPM() linhas 35–53 com destaque 38 → 43 → 48–49 → 41 → 45–46",
+      "alfa": false
+    },
+    {
+      "id": "A8",
+      "nome": "legenda",
+      "arquivos": [
+        "out/legenda.mp4",
+        "out/legenda_alpha.mov"
+      ],
+      "duracao_padrao_s": 6,
+      "beats_padrao_s": {
+        "desejado": 0.2,
+        "medido": 1.9,
+        "pwm": 3.6
+      },
+      "selo": null,
+      "descricao": "Legenda das cores do gráfico (fundo cheio e versão com alfa sem título)",
+      "alfa": true
+    },
+    {
+      "id": "A9",
+      "nome": "titulo",
+      "arquivos": [
+        "out/titulo_alpha.mov",
+        "out/titulo_alpha.png"
+      ],
+      "duracao_padrao_s": 5,
+      "beats_padrao_s": {
+        "entra": 0.2,
+        "pergunta": 0.9,
+        "sai": 4.3
+      },
+      "selo": null,
+      "descricao": "Cartão de abertura translúcido para sobrepor ao vídeo (canto inferior esquerdo, acima de y=900)",
+      "alfa": true
+    },
+    {
+      "id": "A10",
+      "nome": "rotulos",
+      "arquivos": "out/rotulos/*.png (50 arquivos)",
+      "descricao": "Pílulas PNG RGBA recortadas no tamanho do conteúdo; para cada rótulo: <nome>.png, <nome>_seta_baixo/_seta_cima/_seta_esq/_seta_dir.png (seta branca com sombra apontando para fora)",
+      "rotulos": [
+        "tcrt5000",
+        "esp32",
+        "irlz44n",
+        "ventoinha_12v_2fios",
+        "pa_marcada",
+        "suporte_3d",
+        "modo_percentual",
+        "modo_rpm",
+        "acelerado_2x",
+        "exemplo_didatico"
+      ],
+      "rerender": "python3 rotulos.py out/rotulos"
+    }
+  ]
+}

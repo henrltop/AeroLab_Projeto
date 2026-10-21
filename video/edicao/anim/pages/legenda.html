@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+.r{position:absolute;left:560px;font-size:64px;font-weight:800;white-space:nowrap}
+body.alpha #ttl{display:none}
+</style></head><body>
+<div class="title" id="ttl">Como ler o gráfico</div>
+<div class="card" id="cd" style="left:120px;top:190px;width:1680px;height:680px"></div>
+<svg class="abs" style="left:0;top:0" width="1920" height="1080">
+  <line id="s1" x1="220" y1="335" x2="480" y2="335" stroke="#C66A16" stroke-width="14" stroke-linecap="round"/>
+  <line id="s2" x1="220" y1="530" x2="480" y2="530" stroke="#2478C8" stroke-width="7" stroke-linecap="round"/>
+  <line id="s3" x1="220" y1="725" x2="480" y2="725" stroke="#8656B9" stroke-width="9" stroke-linecap="round" stroke-dasharray="1 20"/>
+</svg>
+<div class="r" id="r1" style="top:296px;color:var(--or)">RPM desejado <span style="color:var(--gr);font-weight:600">(setpoint)</span></div>
+<div class="r" id="r2" style="top:491px;color:var(--bl)">RPM medido</div>
+<div class="r" id="r3" style="top:686px;color:var(--pu)">PWM <span style="color:var(--gr);font-weight:600">· eixo direito</span></div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('legenda', 6, {desejado: 0.2, medido: 1.9, pwm: 3.6});
+window.render = t => {
+  fadeUp('ttl', prog(t, 0, .5), 16);
+  fadeUp('cd', prog(t, 0, .5), 20);
+  [['s1', 'r1', B.desejado], ['s2', 'r2', B.medido], ['s3', 'r3', B.pwm]].forEach(([s, r, t0]) => {
+    const u = prog(t, t0, .7);
+    $(s).setAttribute('x2', 220 + 260 * u); $(s).style.opacity = u > 0 ? 1 : 0;
+    fadeUp(r, prog(t, t0 + .2, .6), 16);
+  });
+};
+render(0);
+</script></body></html>

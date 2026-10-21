@@ -1,0 +1,20 @@
+:root{
+  --bg:#F4F6FA; --tx:#1B2A41; --gr:#5B6B80; --line:#D8E0EB;
+  --or:#C66A16; --bl:#2478C8; --pu:#8656B9;
+  --ent:#C8443A; --sai:#118B80;
+}
+html,body{margin:0;padding:0;width:1920px;height:1080px;overflow:hidden;background:var(--bg);
+  font-family:'Inter',sans-serif;color:var(--tx);font-feature-settings:'tnum' 1;-webkit-font-smoothing:antialiased}
+body.alpha{background:transparent}
+*{box-sizing:border-box}
+.abs{position:absolute}
+.card{position:absolute;background:#fff;border:2px solid var(--line);border-radius:28px;
+  box-shadow:0 8px 28px rgba(27,42,65,.07)}
+.title{position:absolute;left:80px;top:46px;font-size:60px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.selo{position:absolute;right:56px;top:52px;padding:10px 26px;border-radius:999px;background:#E2E7EE;
+  color:#5B6B80;font-weight:700;font-size:30px;letter-spacing:.08em;white-space:nowrap}
+.mono{font-family:'DejaVu Sans Mono',monospace;font-feature-settings:normal}
+.code{font-family:'DejaVu Sans Mono',monospace;white-space:pre;font-feature-settings:normal}
+.kw{color:#2F4F8F;font-weight:700}
+.cm{color:#7D8A9C}
+.num{color:#A0522D}

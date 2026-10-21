@@ -1,0 +1,112 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+.tc{top:160px;height:230px;padding:30px 40px}
+.lab{font-size:40px;font-weight:800;letter-spacing:.06em}
+.val{font-size:84px;font-weight:800;margin-top:10px;white-space:nowrap}
+.op{position:absolute;top:220px;width:80px;text-align:center;font-size:84px;font-weight:700;color:var(--gr)}
+.row{position:absolute;left:0;width:1920px;text-align:center;white-space:nowrap}
+#msg{top:440px;font-size:60px;font-weight:800}
+#frm{top:560px;font-size:58px;font-weight:800;color:var(--pu)}
+#pwmrow{position:absolute;left:150px;top:700px;width:1620px;height:110px}
+#txtM{top:800px;font-size:44px;font-weight:700;color:var(--tx)}
+</style></head><body>
+<div class="title" id="ttl">Compensação no modo RPM</div>
+<div class="selo">EXEMPLO DIDÁTICO</div>
+<div class="card tc" id="c1" style="left:70px;width:520px;background:#FFF7ED;border-color:#F0D3B5">
+  <div class="lab" style="color:var(--or)">DESEJADO</div><div class="val" style="color:var(--or)">2000 RPM</div></div>
+<div class="op" id="o1" style="left:595px">−</div>
+<div class="card tc" id="c2" style="left:680px;width:520px;background:#EFF6FF;border-color:#C8DBED">
+  <div class="lab" style="color:var(--bl)">MEDIDO</div><div class="val" style="color:var(--bl)"><span id="vm">1600</span> RPM</div></div>
+<div class="op" id="o2" style="left:1205px">=</div>
+<div class="card tc" id="c3" style="left:1290px;width:560px">
+  <div class="lab" style="color:var(--tx)">ERRO</div><div class="val"><span id="ve">+400</span> RPM</div></div>
+
+<div class="row" id="msg"></div>
+<div class="row" id="frm"></div>
+<div id="pwmrow">
+  <div class="abs" style="left:0;top:22px;font-size:52px;font-weight:800;color:var(--pu)">PWM</div>
+  <div class="abs" style="left:170px;top:30px;width:1100px;height:50px;border-radius:25px;background:#EEE8F6"></div>
+  <div class="abs" id="bar" style="left:170px;top:30px;width:550px;height:50px;border-radius:25px;background:#8656B9"></div>
+  <div class="abs" style="left:715px;top:16px;width:4px;height:78px;background:#1B2A41;opacity:.35"></div>
+  <div class="abs" id="pv" style="left:1310px;top:14px;font-size:68px;font-weight:800;color:var(--pu)">50%</div>
+</div>
+<!-- margem -->
+<svg class="abs" id="band" style="left:0;top:50px;opacity:0" width="1920" height="1080">
+  <line x1="560" y1="640" x2="1660" y2="640" stroke="#B9C4D2" stroke-width="4"/>
+  <rect x="750" y="600" width="420" height="80" rx="12" fill="#5B6B80" opacity=".16"/>
+  <line x1="750" y1="590" x2="750" y2="690" stroke="#5B6B80" stroke-width="3"/>
+  <line x1="1170" y1="590" x2="1170" y2="690" stroke="#5B6B80" stroke-width="3"/>
+  <line x1="960" y1="615" x2="960" y2="665" stroke="#5B6B80" stroke-width="3"/>
+  <text x="750" y="560" font-size="40" fill="#5B6B80" text-anchor="middle" font-family="Inter" font-weight="700">−60</text>
+  <text x="1170" y="560" font-size="40" fill="#5B6B80" text-anchor="middle" font-family="Inter" font-weight="700">+60</text>
+  <text x="960" y="560" font-size="40" fill="#5B6B80" text-anchor="middle" font-family="Inter" font-weight="700">0</text>
+  <text x="260" y="625" font-size="40" fill="#5B6B80" font-family="Inter">erro (RPM)</text>
+  <circle id="bm" cx="855" cy="640" r="16" fill="#1B2A41"/>
+</svg>
+<div class="row" id="txtM" style="opacity:0">1 pulso a mais em 1 s = 60 RPM &nbsp;·&nbsp; correção máx. ±5 p.p./s</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('compensacao', 22, {erro: 0.3, sobe: 3.6, ganho: 7.0, acumula: 11.0, negativo: 14.2, margem: 17.4});
+const G = 0.005;
+const fmt = (x, d = 0) => (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x).toFixed(d).replace('.', ',');
+// estados do exemplo (medido, pwm resultante); o PWM acumula erro × ganho a cada 1 s
+const da = (B.negativo - B.acumula) / 3;
+const S = [
+  {t: -1, med: 1600, pwm: 50},
+  {t: B.ganho + 1.6, med: 1600, pwm: 52},          // 400 × 0,005 = +2
+  {t: B.acumula + .2, med: 1750, pwm: 53.25},       // 250 × 0,005 = +1,25
+  {t: B.acumula + .2 + da * 1.5, med: 1900, pwm: 53.75}, // 100 × 0,005 = +0,5
+  {t: B.negativo, med: 2150, pwm: 53.0},            // −150 × 0,005 = −0,75
+  {t: B.margem, med: 2030, pwm: 53.0},              // −30: dentro de ±60, sem ajuste
+];
+function state(t) {
+  let i = 0; S.forEach((s, j) => { if (t >= s.t) i = j; });
+  const a = S[Math.max(0, i - 1)], b = S[i];
+  const u = i === 0 ? 1 : prog(t, b.t, .8);
+  return {i, med: lerp(a.med, b.med, u), pwm: lerp(a.pwm, b.pwm, u), u};
+}
+// erro "atual" usado no cálculo mostrado = erro ANTES do ajuste do passo
+const erroDe = med => 2000 - med;
+window.render = t => {
+  fadeUp('ttl', prog(t, 0, .6), 16);
+  ['c1', 'o1', 'c2', 'o2', 'c3'].forEach((id, k) => fadeUp(id, prog(t, B.erro + k * .35, .7), 26));
+  const st = state(t);
+  // cartão medido/erro: o valor medido muda quando a nova medição chega
+  const med = Math.round(st.med);
+  $('vm').textContent = med;
+  $('ve').textContent = fmt(2000 - med);
+  // mensagem de direção
+  const msg = $('msg');
+  let m = '', col = '#8656B9', mt = B.sobe;
+  if (t >= B.margem) { m = 'Dentro de ±60 RPM: sem ajuste'; col = '#5B6B80'; mt = B.margem; }
+  else if (t >= B.negativo) { m = 'Acima do alvo: erro negativo → PWM ↓'; mt = B.negativo; }
+  else if (t >= B.acumula) { m = 'O ajuste acumula; mede de novo'; mt = B.acumula; }
+  else if (t >= B.sobe) { m = 'Abaixo do alvo → PWM ↑'; mt = B.sobe; }
+  msg.textContent = m; msg.style.color = col;
+  const nextMsg = [B.sobe, B.acumula, B.negativo, B.margem, 1e9].find(x => x > t + 1e-6) || 1e9;
+  fadeUp(msg, Math.min(prog(t, mt, .6), 1 - prog(t, nextMsg - .3, .3)), 18);
+  // fórmula: erro × ganho
+  const frm = $('frm');
+  let e = 400, ft = B.ganho;
+  if (t >= B.negativo) { e = -150; ft = B.negativo; }
+  else if (t >= S[3].t) { e = 100; ft = S[3].t - .6; }
+  else if (t >= S[2].t) { e = 250; ft = S[2].t - .2; }
+  const aj = e * G;
+  const ajs = fmt(aj, Math.abs(aj) % 1 === 0 ? 0 : 2).replace(/,(\d)0$/, ',$1');
+  frm.textContent = `${fmt(e)} × 0,005 = ${ajs} p.p. em 1 s`;
+  const nf = [B.ganho, S[2].t - .2, S[3].t - .6, B.negativo, B.margem].find(x => x > t + 1e-6) || 1e9;
+  fadeUp(frm, t < B.ganho ? 0 : Math.min(prog(t, ft, .5), 1 - prog(t, nf - .3, .3), 1 - prog(t, B.margem - .3, .3)), 14);
+  // barra PWM
+  const pv = st.pwm;
+  $('bar').style.width = (1100 * pv / 100) + 'px';
+  $('pv').textContent = (t < B.ganho ? 50 : Math.round(pv)) + '%';
+  const pr = prog(t, B.sobe + .4, .6) * (1 - prog(t, B.margem - .2, .5));
+  fadeUp('pwmrow', pr, 20);
+  // margem
+  const mg = prog(t, B.margem + .2, .7);
+  $('band').style.opacity = mg;
+  $('bm').setAttribute('cx', 960 + (-30) / 60 * 210);
+  fadeUp('txtM', prog(t, B.margem + 1.4, .7), 16);
+};
+render(0);
+</script></body></html>

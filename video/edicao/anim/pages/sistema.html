@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+.c{width:520px;height:400px;top:250px;padding:44px 44px}
+.lab{font-size:40px;font-weight:800;letter-spacing:.08em}
+.nm{font-size:76px;font-weight:800;margin-top:22px;letter-spacing:-.01em}
+.dt{font-size:40px;color:var(--gr);margin-top:14px;line-height:1.25}
+#fb{position:absolute;left:0;width:1920px;top:770px;text-align:center;font-size:48px;font-weight:700;color:var(--bl)}
+</style></head><body>
+<div class="title" id="ttl">Quem mede, quem decide, quem aciona</div>
+<div class="card c" id="c1" style="left:90px"><div class="lab" style="color:var(--bl)">MEDIR</div>
+  <div class="nm">TCRT5000</div><div class="dt">sensor óptico IR<br>leitura no GPIO4</div></div>
+<div class="card c" id="c2" style="left:700px"><div class="lab" style="color:var(--or)">DECIDIR</div>
+  <div class="nm">ESP32</div><div class="dt">calcula o RPM<br>e ajusta o PWM</div></div>
+<div class="card c" id="c3" style="left:1310px"><div class="lab" style="color:var(--pu)">ACIONAR</div>
+  <div class="nm">IRLZ44N</div><div class="dt">PWM pelo GPIO21<br>→ ventoinha 12 V</div></div>
+<svg class="abs" style="left:0;top:0" width="1920" height="1080">
+  <g id="a1" stroke="#5B6B80" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M622 450 H676"/><path d="M660 436 L678 450 L660 464"/></g>
+  <g id="a2" stroke="#5B6B80" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1232 450 H1286"/><path d="M1270 436 L1288 450 L1270 464"/></g>
+  <path id="fbp" d="M1570 660 V730 H350 V668" stroke="#2478C8" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fbh" d="M332 688 L350 664 L368 688" stroke="#2478C8" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div id="fb">A velocidade medida volta ao controlador</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('sistema', 12, {medir: 0.3, decidir: 2.8, acionar: 5.4, realimentacao: 8.2});
+const fbp = $('fbp'), L = fbp.getTotalLength();
+fbp.style.strokeDasharray = L;
+const acc = ['#2478C8', '#C66A16', '#8656B9'];
+window.render = t => {
+  fadeUp('ttl', prog(t, 0, .6), 16);
+  const ts = [B.medir, B.decidir, B.acionar];
+  const nxt = [B.decidir, B.acionar, B.realimentacao];
+  ts.forEach((t0, i) => {
+    const c = $('c' + (i + 1)); const u = prog(t, t0, .8);
+    fadeUp(c, u, 40);
+    const act = t >= t0 && t < nxt[i];
+    const h = act ? Math.min(prog(t, t0, .5), 1 - prog(t, nxt[i] - .4, .4)) : 0;
+    c.style.borderColor = h > 0 ? acc[i] : '#D8E0EB';
+    c.style.boxShadow = `0 0 0 ${2.5 * h}px ${acc[i]}, 0 8px 28px rgba(27,42,65,${.07 + .08 * h})`;
+  });
+  $('a1').style.opacity = prog(t, B.decidir - .1, .6);
+  $('a2').style.opacity = prog(t, B.acionar - .1, .6);
+  const f = prog(t, B.realimentacao, 1.6);
+  fbp.style.strokeDashoffset = L * (1 - f);
+  fbp.style.opacity = f > 0 ? 1 : 0;
+  $('fbh').style.opacity = prog(t, B.realimentacao + 1.4, .4);
+  fadeUp('fb', prog(t, B.realimentacao + .8, .8), 20);
+};
+render(0);
+</script></body></html>

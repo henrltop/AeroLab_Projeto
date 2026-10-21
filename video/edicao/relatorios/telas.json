@@ -1,0 +1,977 @@
+{
+ "espec": "/home/claude/edit/ESPEC.md",
+ "resumo": {
+  "origem_dados": "REAL em todos: pílula 'Recebendo dados' + 'ESP32 via USB · atualização de aproximadamente 1 s' + '115200 baud'; botão 'Ver demonstração' desabilitado; nenhum aviso de simulação. A palavra 'esp32_usb' não aparece na tela (apenas o texto 'ESP32 via USB').",
+  "valor_100_rpm": "É 100 RPM mesmo (não 1000). Vídeo C: alvo 2.000 -> 100 RPM; medido cai a 120/60 RPM e PWM trava em 10%.",
+  "video_B_tema": "Velocidade (modo RPM alvo 200 -> 2000 -> 2500), não temperatura.",
+  "audio": "Os três arquivos têm áudio AAC em silêncio digital (RMS -inf; único valor ~-115 dBFS no 1º décimo de B). Sem palma/som para sincronizar; usar eventos visuais.",
+  "ordem_cronologica_real": "B (~08:48–08:50) -> C (~09:12–09:15) -> A (~09:15–09:17), pelos horários no eixo do gráfico e relógio da barra de tarefas (21/10/2026)."
+ },
+ "arquivos": {
+  "A": {
+   "arquivo": "/home/claude/edit/proj/video/entrada/cideo mostrando a ventoinha sendo contraolada pela PWM colocando em 100%.mp4",
+   "dur": 36.2,
+   "res": [
+    1918,
+    1150
+   ],
+   "fps": 30,
+   "modo": "Percentual (badge MANUAL) já selecionado desde 0 s; valor 100 já digitado",
+   "geometria_px": {
+    "nota": "pixels no frame original; video C tem layout deslocado dy=-6",
+    "barra_navegador_EVITAR": [
+     0,
+     0,
+     1918,
+     87
+    ],
+    "sidebar": [
+     0,
+     87,
+     217,
+     1150
+    ],
+    "titulo_e_status": [
+     267,
+     190,
+     1855,
+     335
+    ],
+    "pilula_recebendo_dados": [
+     270,
+     315,
+     640,
+     337
+    ],
+    "kpis": [
+     268,
+     366,
+     1854,
+     505
+    ],
+    "kpi_setpoint": [
+     268,
+     366,
+     652,
+     505
+    ],
+    "kpi_rpm_medido": [
+     669,
+     366,
+     1052,
+     505
+    ],
+    "kpi_pwm": [
+     1069,
+     366,
+     1453,
+     505
+    ],
+    "kpi_passagens": [
+     1470,
+     366,
+     1854,
+     505
+    ],
+    "grafico_card": [
+     268,
+     528,
+     1513,
+     1062
+    ],
+    "grafico_legenda": [
+     288,
+     618,
+     628,
+     642
+    ],
+    "grafico_area_plot": [
+     290,
+     655,
+     1500,
+     985
+    ],
+    "grafico_eixo_tempo": [
+     320,
+     968,
+     1470,
+     985
+    ],
+    "controle_card": [
+     1535,
+     528,
+     1855,
+     1062
+    ],
+    "seletor_modo_RPMalvo_Percentual": [
+     1562,
+     622,
+     1828,
+     660
+    ],
+    "campo_valor": [
+     1562,
+     688,
+     1828,
+     780
+    ],
+    "slider_e_presets": [
+     1562,
+     790,
+     1828,
+     865
+    ],
+    "botao_aplicar": [
+     1561,
+     875,
+     1827,
+     915
+    ],
+    "toast_confirmacao": [
+     1697,
+     1080,
+     1878,
+     1127
+    ],
+    "rodape_meca_ajuste_compare": [
+     268,
+     1085,
+     1855,
+     1145
+    ]
+   },
+   "crops_16x9": {
+    "painel": {
+     "x": 226,
+     "y": 176,
+     "w": 1664,
+     "h": 936,
+     "escala_para_1920": 1.1538,
+     "uso": "visão geral sem navegador/sidebar: título, pílula 'Recebendo dados', KPIs, gráfico c/ legenda e controles"
+    },
+    "dados": {
+     "x": 272,
+     "y": 262,
+     "w": 1578,
+     "h": 888,
+     "escala_para_1920": 1.2167,
+     "uso": "pílula 'Recebendo dados' + KPIs + gráfico + controle; corta só ~4 px das bordas dos cartões; toast pode aparecer no canto inf. dir."
+    },
+    "grafico": {
+     "x": 269,
+     "y": 450,
+     "w": 1244,
+     "h": 700,
+     "escala_para_1920": 1.5434,
+     "uso": "gráfico inteiro com legenda e eixos; topo pega a base dos KPIs (y 450–515): cobrir com faixa #F4F6FA ou aceitar"
+    },
+    "controle": {
+     "x": 1080,
+     "y": 540,
+     "w": 816,
+     "h": 459,
+     "escala_para_1920": 2.3529,
+     "uso": "cena 5: seletor de modo, valor, slider, presets e botão Aplicar (zoom 2,35x, fica um pouco suave)"
+    },
+    "tela_sem_navegador_letterbox_minimo": {
+     "x": 15,
+     "y": 87,
+     "w": 1888,
+     "h": 1062,
+     "escala_para_1920": 1.0169,
+     "uso": "quase tela cheia sem barra do navegador; inclui sidebar"
+    }
+   },
+   "eventos": [
+    {
+     "t": 0.0,
+     "ev": "estado herdado do modo RPM: setpoint card 100 RPM, PWM 10%, medido alterna 60/120 RPM (zona morta ±60). Gráfico mostra à esquerda a queda 2000->100 de C."
+    },
+    {
+     "t": [
+      0,
+      13.6
+     ],
+     "ev": "parado/inútil (cursor parado); 12–14 s valor '100' selecionado (realce azul)"
+    },
+    {
+     "t": 13.7,
+     "ev": "cursor entra no botão 'Aplicar percentual'"
+    },
+    {
+     "t": 14.75,
+     "ev": "CLIQUE Aplicar percentual 100%"
+    },
+    {
+     "t": 14.9,
+     "ev": "PWM card 10->100%; setpoint card vira '—' ('Defina e aplique um RPM alvo'); roxo pontilhado salta a 100%"
+    },
+    {
+     "t": 15.8,
+     "ev": "RPM medido 1.860"
+    },
+    {
+     "t": 16.8,
+     "ev": "RPM 4.080"
+    },
+    {
+     "t": 17.8,
+     "ev": "RPM 4.500"
+    },
+    {
+     "t": 18.8,
+     "ev": "RPM 4.560 (pico)"
+    },
+    {
+     "t": [
+      19,
+      36
+     ],
+     "ev": "regime ~4.200–4.440 RPM com PWM 100% (leve queda: aquecimento/variação de tensão)"
+    },
+    {
+     "t": [
+      15.2,
+      20.5
+     ],
+     "ev": "toast 'PWM de 100% confirmado.' canto inf. dir."
+    },
+    {
+     "t": "16–25",
+     "ev": "eixo Y do gráfico reescala (2.500->5.000->5.500)"
+    }
+   ],
+   "sobreposicoes": [
+    {
+     "t": "todo",
+     "o": "barra do Chrome: caminho C:/Users/Cyber/Downloads/... (nome de usuário 'Cyber'), avatar do perfil, 'Peça ao Gemini' — cortar (y<87)"
+    },
+    {
+     "t": [
+      20.8,
+      22.5
+     ],
+     "o": "tooltip do gráfico (cursor sobre o plot)"
+    },
+    {
+     "t": [
+      25.8,
+      30.5
+     ],
+     "o": "tooltip do gráfico"
+    },
+    {
+     "t": [
+      33.8,
+      34.6
+     ],
+     "o": "tooltip do gráfico"
+    },
+    {
+     "t": "vários",
+     "o": "cursor visível"
+    }
+   ],
+   "audio": {
+    "silencio_digital": true,
+    "pico_sync": null
+   }
+  },
+  "B": {
+   "arquivo": "/home/claude/edit/proj/video/entrada/gravação tela controlando temperatura (video q mostra eu controlando a temperatura q sincroniza com o video gravado do celular).mp4",
+   "dur": 88.1,
+   "res": [
+    1918,
+    1198
+   ],
+   "fps": 30,
+   "modo": "RPM alvo (badge RPM ATIVO) o tempo todo",
+   "geometria_px": {
+    "nota": "pixels no frame original; video C tem layout deslocado dy=-6",
+    "barra_navegador_EVITAR": [
+     0,
+     0,
+     1918,
+     87
+    ],
+    "sidebar": [
+     0,
+     87,
+     217,
+     1150
+    ],
+    "titulo_e_status": [
+     267,
+     190,
+     1855,
+     335
+    ],
+    "pilula_recebendo_dados": [
+     270,
+     315,
+     640,
+     337
+    ],
+    "kpis": [
+     268,
+     366,
+     1854,
+     505
+    ],
+    "kpi_setpoint": [
+     268,
+     366,
+     652,
+     505
+    ],
+    "kpi_rpm_medido": [
+     669,
+     366,
+     1052,
+     505
+    ],
+    "kpi_pwm": [
+     1069,
+     366,
+     1453,
+     505
+    ],
+    "kpi_passagens": [
+     1470,
+     366,
+     1854,
+     505
+    ],
+    "grafico_card": [
+     268,
+     528,
+     1513,
+     1062
+    ],
+    "grafico_legenda": [
+     288,
+     618,
+     628,
+     642
+    ],
+    "grafico_area_plot": [
+     290,
+     655,
+     1500,
+     985
+    ],
+    "grafico_eixo_tempo": [
+     320,
+     968,
+     1470,
+     985
+    ],
+    "controle_card": [
+     1535,
+     528,
+     1855,
+     1062
+    ],
+    "seletor_modo_RPMalvo_Percentual": [
+     1562,
+     622,
+     1828,
+     660
+    ],
+    "campo_valor": [
+     1562,
+     688,
+     1828,
+     780
+    ],
+    "slider_e_presets": [
+     1562,
+     790,
+     1828,
+     865
+    ],
+    "botao_aplicar": [
+     1561,
+     875,
+     1827,
+     915
+    ],
+    "toast_confirmacao": [
+     1697,
+     1080,
+     1878,
+     1127
+    ],
+    "rodape_meca_ajuste_compare": [
+     268,
+     1085,
+     1855,
+     1145
+    ],
+    "barra_tarefas_windows_EVITAR": [
+     0,
+     1152,
+     1918,
+     1198
+    ]
+   },
+   "crops_16x9": {
+    "painel": {
+     "x": 226,
+     "y": 176,
+     "w": 1664,
+     "h": 936,
+     "escala_para_1920": 1.1538,
+     "uso": "visão geral sem navegador/sidebar: título, pílula 'Recebendo dados', KPIs, gráfico c/ legenda e controles"
+    },
+    "dados": {
+     "x": 272,
+     "y": 262,
+     "w": 1578,
+     "h": 888,
+     "escala_para_1920": 1.2167,
+     "uso": "pílula 'Recebendo dados' + KPIs + gráfico + controle; corta só ~4 px das bordas dos cartões; toast pode aparecer no canto inf. dir."
+    },
+    "grafico": {
+     "x": 269,
+     "y": 450,
+     "w": 1244,
+     "h": 700,
+     "escala_para_1920": 1.5434,
+     "uso": "gráfico inteiro com legenda e eixos; topo pega a base dos KPIs (y 450–515): cobrir com faixa #F4F6FA ou aceitar"
+    },
+    "controle": {
+     "x": 1080,
+     "y": 540,
+     "w": 816,
+     "h": 459,
+     "escala_para_1920": 2.3529,
+     "uso": "cena 5: seletor de modo, valor, slider, presets e botão Aplicar (zoom 2,35x, fica um pouco suave)"
+    },
+    "tela_sem_navegador_letterbox_minimo": {
+     "x": 15,
+     "y": 87,
+     "w": 1888,
+     "h": 1062,
+     "escala_para_1920": 1.0169,
+     "uso": "quase tela cheia sem barra do navegador; inclui sidebar"
+    }
+   },
+   "relogio": "barra de tarefas 08:48–08:50, 21/10/2026; estimativa t=0 ≈ 08:48:55 (±2 s) pelo eixo do gráfico",
+   "eventos": [
+    {
+     "t": [
+      0,
+      40
+     ],
+     "ev": "parado: alvo 200 RPM, medido 180/240 (às vezes 120), PWM 11–12%. Gráfico mostra histórico em degraus 1500->1000(?)->200 de antes da gravação. Inútil exceto como referência de sync."
+    },
+    {
+     "t": [
+      39.5,
+      40.6
+     ],
+     "ev": "valor digitado/preset 2000 aparece no campo"
+    },
+    {
+     "t": 41.7,
+     "ev": "CLIQUE Aplicar RPM alvo 2000 (sync)"
+    },
+    {
+     "t": 41.9,
+     "ev": "setpoint card 200->2.000; laranja sobe em degrau"
+    },
+    {
+     "t": 42.9,
+     "ev": "PWM 12->17% (1º relatório do ESP32 após o clique)"
+    },
+    {
+     "t": [
+      43,
+      48
+     ],
+     "ev": "PWM sobe ~5 p.p./s: 17,22,27,32,37,40% (rampa limitada do firmware visível)"
+    },
+    {
+     "t": 44.8,
+     "ev": "RPM medido 540"
+    },
+    {
+     "t": 46,
+     "ev": "780"
+    },
+    {
+     "t": 47,
+     "ev": "1.080"
+    },
+    {
+     "t": 48,
+     "ev": "1.380"
+    },
+    {
+     "t": 49,
+     "ev": "1.680"
+    },
+    {
+     "t": 50,
+     "ev": "1.860"
+    },
+    {
+     "t": 51,
+     "ev": "1.980"
+    },
+    {
+     "t": 52,
+     "ev": "2.040 (entra na faixa ±60; PWM estabiliza 41–42%)"
+    },
+    {
+     "t": [
+      55.3,
+      56.9
+     ],
+     "ev": "cursor/preset 2500 escolhido"
+    },
+    {
+     "t": 58.2,
+     "ev": "CLIQUE Aplicar RPM alvo 2500 (sync)"
+    },
+    {
+     "t": 58.4,
+     "ev": "setpoint card 2.000->2.500"
+    },
+    {
+     "t": [
+      58.9,
+      63
+     ],
+     "ev": "PWM 41->43->45->47->48%; RPM 2.100->2.220->2.280->2.460"
+    },
+    {
+     "t": [
+      63,
+      88
+     ],
+     "ev": "regime 2.400–2.520 RPM, PWM sobe devagar 48->50% (ajuste fino dentro/perto da faixa)"
+    }
+   ],
+   "sobreposicoes": [
+    {
+     "t": "todo",
+     "o": "barra de tarefas do Windows (relógio/data, Spotify, ChatGPT etc.) y>1152 — cortar"
+    },
+    {
+     "t": "todo",
+     "o": "barra do Chrome com usuário 'Cyber' — cortar"
+    },
+    {
+     "t": "~42–47 e ~58–61",
+     "o": "toasts de confirmação de alvo (canto inf. dir.)"
+    },
+    {
+     "t": "vários",
+     "o": "cursor"
+    }
+   ],
+   "audio": {
+    "silencio_digital": true,
+    "pico_sync": null,
+    "sync_visual_sugerido": [
+     "clique 2000 em 41.7 s (setpoint muda 41.9 s; PWM começa a subir 42.9 s; ventoinha deve acelerar audivelmente a partir de ~43 s)",
+     "clique 2500 em 58.2 s (PWM sobe a partir de 58.9 s)"
+    ]
+   }
+  },
+  "C": {
+   "arquivo": "/home/claude/edit/proj/video/entrada/video mostrando a ventoinha a 1600 RPM e indo para 2000 RPM e dps indo para 100 RMP.mp4",
+   "dur": 72.07,
+   "res": [
+    1918,
+    1144
+   ],
+   "fps": 30,
+   "modo": "RPM alvo o tempo todo",
+   "geometria_px": {
+    "nota": "pixels no frame original; video C tem layout deslocado dy=-6",
+    "barra_navegador_EVITAR": [
+     0,
+     0,
+     1918,
+     81
+    ],
+    "sidebar": [
+     0,
+     81,
+     217,
+     1144
+    ],
+    "titulo_e_status": [
+     267,
+     184,
+     1855,
+     329
+    ],
+    "pilula_recebendo_dados": [
+     270,
+     309,
+     640,
+     331
+    ],
+    "kpis": [
+     268,
+     360,
+     1854,
+     499
+    ],
+    "kpi_setpoint": [
+     268,
+     360,
+     652,
+     499
+    ],
+    "kpi_rpm_medido": [
+     669,
+     360,
+     1052,
+     499
+    ],
+    "kpi_pwm": [
+     1069,
+     360,
+     1453,
+     499
+    ],
+    "kpi_passagens": [
+     1470,
+     360,
+     1854,
+     499
+    ],
+    "grafico_card": [
+     268,
+     522,
+     1513,
+     1056
+    ],
+    "grafico_legenda": [
+     288,
+     612,
+     628,
+     636
+    ],
+    "grafico_area_plot": [
+     290,
+     649,
+     1500,
+     979
+    ],
+    "grafico_eixo_tempo": [
+     320,
+     962,
+     1470,
+     979
+    ],
+    "controle_card": [
+     1535,
+     522,
+     1855,
+     1056
+    ],
+    "seletor_modo_RPMalvo_Percentual": [
+     1562,
+     616,
+     1828,
+     654
+    ],
+    "campo_valor": [
+     1562,
+     682,
+     1828,
+     774
+    ],
+    "slider_e_presets": [
+     1562,
+     784,
+     1828,
+     859
+    ],
+    "botao_aplicar": [
+     1561,
+     869,
+     1827,
+     909
+    ],
+    "toast_confirmacao": [
+     1697,
+     1074,
+     1878,
+     1121
+    ],
+    "rodape_meca_ajuste_compare": [
+     268,
+     1079,
+     1855,
+     1139
+    ]
+   },
+   "crops_16x9": {
+    "painel": {
+     "x": 226,
+     "y": 170,
+     "w": 1664,
+     "h": 936,
+     "escala_para_1920": 1.1538,
+     "uso": "visão geral sem navegador/sidebar: título, pílula 'Recebendo dados', KPIs, gráfico c/ legenda e controles"
+    },
+    "dados": {
+     "x": 272,
+     "y": 256,
+     "w": 1578,
+     "h": 888,
+     "escala_para_1920": 1.2167,
+     "uso": "pílula 'Recebendo dados' + KPIs + gráfico + controle; corta só ~4 px das bordas dos cartões; toast pode aparecer no canto inf. dir."
+    },
+    "grafico": {
+     "x": 269,
+     "y": 444,
+     "w": 1244,
+     "h": 700,
+     "escala_para_1920": 1.5434,
+     "uso": "gráfico inteiro com legenda e eixos; topo pega a base dos KPIs (y 450–515): cobrir com faixa #F4F6FA ou aceitar"
+    },
+    "controle": {
+     "x": 1080,
+     "y": 534,
+     "w": 816,
+     "h": 459,
+     "escala_para_1920": 2.3529,
+     "uso": "cena 5: seletor de modo, valor, slider, presets e botão Aplicar (zoom 2,35x, fica um pouco suave)"
+    },
+    "tela_sem_navegador_letterbox_minimo": {
+     "x": 15,
+     "y": 81,
+     "w": 1888,
+     "h": 1062,
+     "escala_para_1920": 1.0169,
+     "uso": "quase tela cheia sem barra do navegador; inclui sidebar"
+    }
+   },
+   "eventos": [
+    {
+     "t": [
+      0,
+      16
+     ],
+     "ev": "alvo 1.600, medido 1.560/1.620, PWM 38% estável; gráfico mostra a descida anterior (de ~2.800 a 1.600)"
+    },
+    {
+     "t": [
+      16,
+      21.5
+     ],
+     "ev": "usuário muda o valor no campo (1600->200->2000)"
+    },
+    {
+     "t": 22.0,
+     "ev": "CLIQUE Aplicar RPM alvo 2000"
+    },
+    {
+     "t": 22.13,
+     "ev": "setpoint card 1.600->2.000; toast 'Alvo de 2.000 RPM confirmado.' ~22–27 s"
+    },
+    {
+     "t": [
+      23,
+      27
+     ],
+     "ev": "PWM 38->40->42->43->44%; RPM 1.620->1.740->1.860->1.920"
+    },
+    {
+     "t": [
+      28,
+      43
+     ],
+     "ev": "regime 1.980–2.100, PWM 44–45% (parado; candidato a acelerar 2x)"
+    },
+    {
+     "t": [
+      43,
+      46.5
+     ],
+     "ev": "usuário seleciona o campo e digita 100"
+    },
+    {
+     "t": 46.75,
+     "ev": "CLIQUE Aplicar RPM alvo 100"
+    },
+    {
+     "t": 46.9,
+     "ev": "setpoint card 2.000->100"
+    },
+    {
+     "t": [
+      47.2,
+      56
+     ],
+     "ev": "PWM desce 5 p.p./s: 39,34,29,24,19,15,13,12,11,10%; RPM 2.040->1.860->1.680->1.380->1.140->840->540->420->240"
+    },
+    {
+     "t": [
+      56,
+      72
+     ],
+     "ev": "PWM fixo 10%, RPM 120/60 (dentro de ±60 de 100 -> controlador não mexe; resolução 60 RPM = 1 pulso/s)"
+    }
+   ],
+   "sobreposicoes": [
+    {
+     "t": [
+      68.9,
+      69.9
+     ],
+     "o": "ALT+TAB do Windows: mostra janelas Claude, ChatGPT, 'Aura · computador de sala', Spotify, Explorador de Arquivos, Ferramenta de Captura — CORTAR (dados pessoais)"
+    },
+    {
+     "t": "todo",
+     "o": "barra do Chrome com usuário 'Cyber' — cortar"
+    },
+    {
+     "t": "22–27, 47–53",
+     "o": "toasts"
+    }
+   ],
+   "audio": {
+    "silencio_digital": true,
+    "pico_sync": null
+   }
+  }
+ },
+ "trechos_sugeridos": {
+  "abertura": [
+   {
+    "arq": "A",
+    "in": 14.4,
+    "out": 20.7,
+    "crop": "grafico",
+    "vel": 1.0,
+    "nota": "PWM salta a 100% e RPM azul dispara 60->4.500; termina antes do tooltip"
+   },
+   {
+    "arq": "C",
+    "alt": true,
+    "in": 46.5,
+    "out": 54.0,
+    "crop": "grafico",
+    "vel": 1.0,
+    "nota": "alternativa: degrau laranja 2000->100 e azul/roxo descendo juntos"
+   }
+  ],
+  "cena5_modos": [
+   {
+    "arq": "A",
+    "in": 4.0,
+    "out": 9.0,
+    "crop": "controle",
+    "vel": 1.0,
+    "nota": "modo Percentual (badge MANUAL), valor 100 %, slider e presets 25/50/75/100; destacar o seletor"
+   },
+   {
+    "arq": "C",
+    "in": 16.0,
+    "out": 22.6,
+    "crop": "controle",
+    "vel": 1.0,
+    "nota": "modo RPM alvo (badge RPM ATIVO): valor muda para 2000 e clique em Aplicar RPM alvo"
+   },
+   {
+    "nota": "Nenhuma gravação mostra o clique trocando de aba entre 'RPM alvo' e 'Percentual'; usar destaque gráfico (seta/realce) no seletor."
+   }
+  ],
+  "cena7_demo": [
+   {
+    "ordem": 1,
+    "arq": "A",
+    "in": 13.5,
+    "out": 20.7,
+    "crop": "dados",
+    "vel": 1.0,
+    "dur": 7.2,
+    "nota": "modo percentual: clique 100% em 14.75; PWM 100 em 14.9; RPM 1.860/4.080/4.500 em ~3 s"
+   },
+   {
+    "ordem": 2,
+    "arq": "B",
+    "in": 40.0,
+    "out": 54.0,
+    "crop": "dados",
+    "vel": 1.0,
+    "dur": 14.0,
+    "nota": "modo RPM 200->2000 (gravação sincronizada c/ celular); rampa de PWM ~5 p.p./s visível; chega a 2.040 em ~10 s"
+   },
+   {
+    "ordem": 3,
+    "arq": "B",
+    "in": 56.5,
+    "out": 66.0,
+    "crop": "dados",
+    "vel": 1.0,
+    "dur": 9.5,
+    "nota": "2000->2500, clique 58.2; chega ~2.460 em ~5 s"
+   },
+   {
+    "ordem": 4,
+    "arq": "C",
+    "in": 45.5,
+    "out": 58.0,
+    "crop": "dados",
+    "vel": 1.0,
+    "dur": 12.5,
+    "nota": "2000->100, clique 46.75; PWM desce 44->10%, RPM a 120 em ~10 s"
+   },
+   {
+    "ordem": 5,
+    "arq": "C",
+    "in": 58.0,
+    "out": 68.0,
+    "crop": "grafico",
+    "vel": 2.0,
+    "dur": 5.0,
+    "nota": "OPCIONAL acelerado 2x (rotular 'x2'): 100 RPM com PWM 10%, medido 60/120 = limite de resolução; parar antes de 68.9 (Alt+Tab)"
+   },
+   {
+    "total_s": "48.2 sem o opcional; 53.2 com; para chegar a 60–70 s acrescentar B 66–80 (2x, 7 s, regime 2.500) ou C 19.5–29 (1x, 9.5 s, 1600->2000)"
+   }
+  ],
+  "evitar": [
+   [
+    "A",
+    20.8,
+    22.5,
+    "tooltip"
+   ],
+   [
+    "A",
+    25.8,
+    30.5,
+    "tooltip"
+   ],
+   [
+    "A",
+    0,
+    13.6,
+    "parado"
+   ],
+   [
+    "B",
+    0,
+    39.5,
+    "parado (só sync)"
+   ],
+   [
+    "C",
+    68.9,
+    69.9,
+    "Alt+Tab com janelas pessoais"
+   ]
+  ]
+ }
+}

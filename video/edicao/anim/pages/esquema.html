@@ -1,0 +1,134 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px}
+svg text{font-family:Inter,sans-serif}
+#cap{left:60px;top:30px;height:150px;width:1800px;padding:22px 40px 0 64px;z-index:5}
+#bar{position:absolute;left:24px;top:28px;width:10px;height:94px;border-radius:5px}
+.ct{position:absolute;left:64px;top:20px;font-size:56px;font-weight:800;white-space:nowrap}
+.cs{position:absolute;left:64px;top:90px;font-size:40px;color:var(--gr);white-space:nowrap}
+.fl{fill:none;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body>
+<div id="stage">
+<svg id="sv" width="1920" height="1080" viewBox="0 0 1920 1080">
+<g id="cam">
+ <rect x="64" y="192" width="860" height="710" rx="22" fill="white" stroke="#d8e0eb" stroke-width="2"/>
+ <rect x="960" y="192" width="896" height="710" rx="22" fill="white" stroke="#d8e0eb" stroke-width="2"/>
+ <text data-s="1" x="98" y="250" font-size="32" fill="#2478c8" font-weight="800">SENSOR AVULSO · GPIO4</text>
+ <text data-s="2" x="994" y="250" font-size="32" fill="#8656b9" font-weight="800">ACIONAMENTO · GPIO21</text>
+ <!-- sensor -->
+ <g data-s="1">
+  <polyline class="fl" points="180,310 700,310" stroke="#d54343" stroke-width="6"/>
+  <text x="104" y="321" font-size="30" fill="#d54343" font-weight="700">3V3</text>
+  <polyline class="fl" points="350,310 350,360" stroke="#d54343" stroke-width="6"/>
+  <rect x="330" y="360" width="40" height="90" fill="#fff2cc" stroke="#a67a14" stroke-width="2"/>
+  <polyline class="fl" points="350,450 350,540" stroke="#d54343" stroke-width="6"/>
+  <text x="390" y="416" font-size="30" fill="#172b43">220 Ω</text>
+  <circle cx="350" cy="580" r="40" fill="#cdebf7" stroke="#2478c8" stroke-width="3"/>
+  <text x="350" y="590" font-size="28" fill="#2478c8" font-weight="700" text-anchor="middle">IR</text>
+  <polyline class="fl" points="350,620 350,770" stroke="#172b43" stroke-width="6"/>
+  <text x="300" y="558" font-size="26" fill="#172b43" text-anchor="end">Ânodo (+)</text>
+  <text x="300" y="650" font-size="26" fill="#172b43" text-anchor="end">Cátodo (−)</text>
+  <polyline class="fl" points="700,310 700,360" stroke="#d54343" stroke-width="6"/>
+  <rect x="680" y="360" width="40" height="90" fill="#fff2cc" stroke="#a67a14" stroke-width="2"/>
+  <polyline class="fl" points="700,450 700,540" stroke="#2478c8" stroke-width="6"/>
+  <text x="740" y="416" font-size="30" fill="#172b43">10 kΩ</text>
+  <circle cx="700" cy="585" r="45" fill="#e5eaf0" stroke="#172b43" stroke-width="3"/>
+  <text x="700" y="594" font-size="24" fill="#172b43" font-weight="600" text-anchor="middle">Foto</text>
+  <polyline class="fl" points="700,630 700,770" stroke="#172b43" stroke-width="6"/>
+  <polyline class="fl" points="700,500 835,500" stroke="#2478c8" stroke-width="6"/>
+  <circle cx="700" cy="500" r="8" fill="#2478c8"/>
+  <text x="790" y="478" font-size="34" fill="#2478c8" font-weight="800" text-anchor="middle">GPIO4</text>
+  <text x="640" y="534" font-size="26" fill="#172b43" text-anchor="end">Coletor</text>
+  <text x="755" y="668" font-size="26" fill="#172b43">Emissor</text>
+  <polyline class="fl" points="414,580 636,580" stroke="#c66a16" stroke-width="4" stroke-dasharray="6 9"/>
+  <polyline class="fl" points="622,588 638,580 622,572" stroke="#c66a16" stroke-width="4"/>
+  <text x="525" y="622" font-size="26" fill="#c66a16" text-anchor="middle">reflexão</text>
+ </g>
+ <g data-s="1 4">
+  <polyline class="fl" points="180,770 835,770" stroke="#172b43" stroke-width="6"/>
+  <text x="180" y="818" font-size="28" fill="#5b6d80">GND · mesmo referencial do ESP32</text>
+ </g>
+ <!-- acionamento -->
+ <g data-s="3"><text x="1665" y="316" font-size="34" fill="#d54343" font-weight="800" text-anchor="middle">+12 V</text>
+  <polyline class="fl" points="1665,330 1665,372" stroke="#d54343" stroke-width="6"/>
+  <rect x="1555" y="372" width="220" height="106" rx="10" fill="#fff" stroke="#172b43" stroke-width="2"/>
+  <text x="1665" y="418" font-size="28" fill="#172b43" font-weight="800" text-anchor="middle">VENTOINHA</text>
+  <text x="1665" y="458" font-size="24" fill="#5b6d80" text-anchor="middle">12 V · 2 fios</text>
+  <polyline class="fl" points="1665,478 1665,555" stroke="#2478c8" stroke-width="6"/></g>
+ <g data-s="2 3 4"><rect x="1515" y="555" width="260" height="150" rx="12" fill="#26384c"/>
+  <text x="1645" y="640" font-size="32" fill="white" font-weight="800" text-anchor="middle">IRLZ44N</text></g>
+ <text data-s="2" x="1537" y="660" font-size="28" fill="white" font-weight="800">G</text>
+ <text data-s="3" x="1665" y="586" font-size="28" fill="white" font-weight="800" text-anchor="middle">D</text>
+ <text data-s="3 4" x="1665" y="696" font-size="28" fill="white" font-weight="800" text-anchor="middle">S</text>
+ <g data-s="2"><text x="1004" y="568" font-size="34" fill="#8656b9" font-weight="800">GPIO21</text>
+  <polyline class="fl" points="1010,610 1170,610" stroke="#8656b9" stroke-width="6"/>
+  <rect x="1170" y="590" width="105" height="40" fill="#fff2cc" stroke="#a67a14" stroke-width="2"/>
+  <text x="1222" y="572" font-size="30" fill="#172b43" text-anchor="middle">220 Ω</text>
+  <polyline class="fl" points="1275,610 1515,610" stroke="#8656b9" stroke-width="6"/>
+  <circle cx="1400" cy="610" r="8" fill="#8656b9"/>
+  <polyline class="fl" points="1400,610 1400,680" stroke="#172b43" stroke-width="6"/>
+  <rect x="1380" y="680" width="40" height="70" fill="#fff2cc" stroke="#a67a14" stroke-width="2"/>
+  <text x="1366" y="726" font-size="30" fill="#172b43" text-anchor="end">10 kΩ</text>
+  <polyline class="fl" points="1400,750 1400,805" stroke="#172b43" stroke-width="6"/>
+  <circle cx="1400" cy="805" r="8" fill="#172b43"/></g>
+ <polyline data-s="3 4" class="fl" points="1665,705 1665,805" stroke="#172b43" stroke-width="6"/>
+ <g data-s="2 3 4"><polyline class="fl" points="1060,805 1790,805" stroke="#172b43" stroke-width="6"/></g>
+ <circle data-s="3 4" cx="1665" cy="805" r="8" fill="#172b43"/>
+ <text data-s="4" x="1004" y="856" font-size="28" fill="#5b6d80">GND comum: ESP32 + fonte (−) + sensor + source</text>
+ <!-- fluxos (destaque animado) -->
+ <polyline id="f1" class="fl" points="700,545 700,500 835,500" stroke="#2478c8" stroke-width="18" opacity="0"/>
+ <polyline id="f2" class="fl" points="1010,610 1515,610" stroke="#8656b9" stroke-width="18" opacity="0"/>
+ <path id="f3" class="fl" d="M1665 334 V372 M1665 478 V555" stroke="#d54343" stroke-width="18" opacity="0"/>
+ <polyline id="f4a" class="fl" points="180,770 835,770" stroke="#5b6b80" stroke-width="18" opacity="0"/>
+ <polyline id="f4b" class="fl" points="1665,705 1665,805 1060,805 1790,805" stroke="#5b6b80" stroke-width="18" opacity="0"/>
+</g></svg>
+</div>
+<div class="card" id="cap"><div id="bar"></div><div class="ct" id="ct"></div><div class="cs" id="cs"></div></div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('esquema', 14, {sensor: 0.4, pwm: 3.8, potencia: 7.4, terra: 10.6});
+const steps = [
+  {t: 'sensor', c: '#2478C8', ti: '1 · Sensor → GPIO4', su: 'o ESP32 lê o sensor de forma analógica', cam: [560, 556, 1.28], f: ['f1']},
+  {t: 'pwm', c: '#8656B9', ti: '2 · GPIO21 → 220 Ω → gate (G)', su: '10 kΩ do gate ao GND', cam: [1390, 680, 1.6], f: ['f2']},
+  {t: 'potencia', c: '#D54343', ti: '3 · +12 V → ventoinha → dreno (D)', su: 'a ventoinha usa a fonte de 12 V', cam: [1410, 570, 1.25], f: ['f3']},
+  {t: 'terra', c: '#5B6B80', ti: '4 · Source (S) no GND comum', su: 'ESP32 (pela USB), fonte de 12 V e sensor', cam: [960, 547, 0.97], f: ['f4a', 'f4b']},
+];
+const els = [...document.querySelectorAll('[data-s]')].map(e => [e, e.dataset.s.split(' ').map(Number)]);
+const flows = {};
+['f1', 'f2', 'f3', 'f4a', 'f4b'].forEach(id => { const e = $(id); flows[id] = e; e.style.strokeDasharray = '26 30'; });
+const CAM0 = [960, 547, 0.97];
+const cy0 = 535; // centro vertical da área útil (abaixo da legenda)
+window.render = t => {
+  // passo ativo e transição
+  let k = -1; steps.forEach((s, i) => { if (t >= B[s.t]) k = i; });
+  const camA = k <= 0 ? CAM0 : steps[k - 1].cam;
+  const camB = k < 0 ? CAM0 : steps[k].cam;
+  const u = k < 0 ? 0 : prog(t, B[steps[k].t], 1.2);
+  const cx = lerp(camA[0], camB[0], u), cy = lerp(camA[1], camB[1], u), s = lerp(camA[2], camB[2], u);
+  $('cam').setAttribute('transform', `translate(960 ${cy0}) scale(${s}) translate(${-cx} ${-cy})`);
+  // esmaecimento
+  const dimU = k < 0 ? 0 : (k === 0 ? u : 1);
+  els.forEach(([e, ss]) => {
+    const on = k >= 0 && ss.includes(k + 1);
+    const wasOn = k >= 1 && ss.includes(k);
+    const a = k === 0 ? (on ? 1 : lerp(1, .25, u)) : (k < 0 ? 1 : lerp(wasOn ? 1 : .25, on ? 1 : .25, u));
+    e.style.opacity = a;
+  });
+  // fluxos
+  for (const id in flows) flows[id].style.opacity = 0;
+  if (k >= 0) steps[k].f.forEach(id => {
+    flows[id].style.opacity = .28 * prog(t, B[steps[k].t] + .6, .6);
+    flows[id].style.strokeDashoffset = -t * 70;
+  });
+  // legenda
+  const cap = $('cap');
+  if (k < 0) { cap.style.opacity = 0; return; }
+  const st = steps[k];
+  $('ct').textContent = st.ti; $('cs').textContent = st.su; $('bar').style.background = st.c;
+  const nxt = k + 1 < steps.length ? B[steps[k + 1].t] : 1e9;
+  const a = Math.min(prog(t, B[st.t], .5), 1 - prog(t, nxt - .3, .3));
+  $('ct').style.opacity = $('cs').style.opacity = a;
+  cap.style.opacity = prog(t, B.sensor, .5);
+};
+render(0);
+</script></body></html>

@@ -1,0 +1,95 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: L,Inter SemiBold,46,&H00FFFFFF,&H00FFFFFF,&H5A121A26,&H00000000,0,0,0,0,100,100,0,0,3,14,0,2,120,120,34,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.07,0:00:02.82,L,,0,0,0,,Essa ventoinha só tem dois fios,\No positivo e o negativo,
+Dialogue: 0,0:00:02.90,0:00:05.22,L,,0,0,0,,e nenhum deles informa\Npra gente a velocidade.
+Dialogue: 0,0:00:05.32,0:00:06.98,L,,0,0,0,,Então, como é que a gente\Nfaz pra medir a rotação
+Dialogue: 0,0:00:07.02,0:00:09.86,L,,0,0,0,,e fazer com que ele tente manter\Na velocidade que a gente quiser?
+Dialogue: 0,0:00:10.31,0:00:12.60,L,,0,0,0,,Esse é o desafio desse\Nprojeto. Eu sou Henrique,
+Dialogue: 0,0:00:12.68,0:00:15.30,L,,0,0,0,,estudante de Engenharia de Controle\Ne Automação do Instituto Federal,
+Dialogue: 0,0:00:15.56,0:00:19.06,L,,0,0,0,,e vou mostrar pra vocês como eu\Nusei um ESP32, um sensor óptico,
+Dialogue: 0,0:00:19.16,0:00:21.92,L,,0,0,0,,pra poder medir e controlar\Na velocidade dessa ventoinha.
+Dialogue: 0,0:00:22.67,0:00:26.70,L,,0,0,0,,O sistema tem três partes:\Nquem mede, quem decide, quem aciona.
+Dialogue: 0,0:00:27.15,0:00:29.66,L,,0,0,0,,Quem mede é o TCRT5000,
+Dialogue: 0,0:00:29.70,0:00:32.86,L,,0,0,0,,um sensor que emite luz infravermelha\Ne detecta a luz refletida.
+Dialogue: 0,0:00:32.95,0:00:34.56,L,,0,0,0,,Assim a gente consegue\Nfazer a contagem
+Dialogue: 0,0:00:34.60,0:00:37.10,L,,0,0,0,,de quantas voltas a ventoinha deu.
+Dialogue: 0,0:00:37.20,0:00:39.86,L,,0,0,0,,Quem decide,\Nfaz os cálculos, é o ESP32.
+Dialogue: 0,0:00:39.96,0:00:44.88,L,,0,0,0,,E quem aciona é o MOSFET IRLZ44N,\Nque liga e desliga a ventoinha muito
+Dialogue: 0,0:00:44.92,0:00:48.58,L,,0,0,0,,rapidamente, fazendo assim a gente\Nconsegue controlar a nossa ventoinha.
+Dialogue: 0,0:00:49.03,0:00:51.32,L,,0,0,0,,No nosso esquema,\No sensor vai no GPIO4
+Dialogue: 0,0:00:51.36,0:00:56.16,L,,0,0,0,,e o PWM sai pelo GPIO21\Naté o gate do MOSFET.
+Dialogue: 0,0:00:56.26,0:00:59.82,L,,0,0,0,,O ESP32 usa USB, e a ventoinha\Nusa a fonte de 12 volts,
+Dialogue: 0,0:00:59.86,0:01:02.22,L,,0,0,0,,e ambos compartilham o mesmo terra.
+Dialogue: 0,0:01:10.95,0:01:13.96,L,,0,0,0,,O detalhe que permite a gente\Nmedir a velocidade é essa marca.
+Dialogue: 0,0:01:14.41,0:01:17.60,L,,0,0,0,,A ventoinha tem 9 pás,\Nmas só uma delas está marcada.
+Dialogue: 0,0:01:17.68,0:01:20.26,L,,0,0,0,,Quando ela passa na frente\Ndo sensor, a leitura muda.
+Dialogue: 0,0:01:20.34,0:01:23.15,L,,0,0,0,,Então, cada passagem corresponde\Na uma volta completa.
+Dialogue: 0,0:01:23.60,0:01:27.16,L,,0,0,0,,O ESP32 conta essas passagens e,\Nmais ou menos a cada segundo,
+Dialogue: 0,0:01:27.20,0:01:30.36,L,,0,0,0,,calcula a quantidade\Nde rotações por minuto.
+Dialogue: 0,0:01:30.81,0:01:34.40,L,,0,0,0,,Por exemplo, 30 passagens em um\Nsegundo são 30 voltas por segundo.
+Dialogue: 0,0:01:34.48,0:01:38.44,L,,0,0,0,,Vezes 60, 1800 rotações\Npor minuto, mais ou menos.
+Dialogue: 0,0:01:38.54,0:01:40.34,L,,0,0,0,,É essa conta que o ESP\Nfaz pra dizer pra gente
+Dialogue: 0,0:01:40.38,0:01:43.05,L,,0,0,0,,qual a velocidade efetiva\Ndo nosso ventiladorzinho.
+Dialogue: 0,0:01:43.80,0:01:46.98,L,,0,0,0,,Para manter o sensor no lugar,\Neu usei suporte impresso em 3D.
+Dialogue: 0,0:01:47.28,0:01:50.34,L,,0,0,0,,Ele prende a ventoinha e deixa\No sensor de frente para as pás,
+Dialogue: 0,0:01:50.38,0:01:52.87,L,,0,0,0,,sem encostar no que gira,\Nele não pode encostar.
+Dialogue: 0,0:01:53.32,0:01:56.28,L,,0,0,0,,No início, o modelo foi pensado\Npara ler o espaço entre as pás,
+Dialogue: 0,0:01:56.32,0:01:58.90,L,,0,0,0,,depois passamos a usar\Numa única pá marcada.
+Dialogue: 0,0:01:59.31,0:02:00.84,L,,0,0,0,,No código, essa é a linha
+Dialogue: 0,0:02:00.88,0:02:03.74,L,,0,0,0,,que lê o sensor de forma\Nanalógica o tempo inteiro.
+Dialogue: 0,0:02:04.19,0:02:07.03,L,,0,0,0,,E para reconhecer as passagens,\Nuso dois limites.
+Dialogue: 0,0:02:07.13,0:02:09.08,L,,0,0,0,,Quando a leitura cai abaixo de 1300,
+Dialogue: 0,0:02:09.18,0:02:12.04,L,,0,0,0,,a marca chegou e o programa\Nconta uma volta.
+Dialogue: 0,0:02:12.12,0:02:16.15,L,,0,0,0,,Uma nova contagem só vale depois\Nque a leitura sobe acima de 2350.
+Dialogue: 0,0:02:16.19,0:02:22.19,L,,0,0,0,,E isso evita contar a mesma\Npassagem várias vezes.
+Dialogue: 0,0:02:23.01,0:02:25.56,L,,0,0,0,,Na interface, dá pra controlar\Na ventoinha de dois jeitos.
+Dialogue: 0,0:02:26.01,0:02:28.76,L,,0,0,0,,No modo percentual,\Neu escolho direto o PWM.
+Dialogue: 0,0:02:28.84,0:02:32.30,L,,0,0,0,,PWM, que é a fração do tempo\Nem que o acionamento fica ligado.
+Dialogue: 0,0:02:32.38,0:02:35.60,L,,0,0,0,,50% do PWM não quer dizer\Nmetade da velocidade.
+Dialogue: 0,0:02:35.68,0:02:37.99,L,,0,0,0,,Isso depende muito\Nde ventoinha para ventoinha.
+Dialogue: 0,0:02:38.39,0:02:40.68,L,,0,0,0,,No modo RPM, eu escolho\Na velocidade desejada,
+Dialogue: 0,0:02:40.76,0:02:45.52,L,,0,0,0,,nosso setpoint, e aí o próprio ESP usa\No sensor para ajustar o PWM sozinho.
+Dialogue: 0,0:02:46.27,0:02:50.92,L,,0,0,0,,Um exemplo: eu peço 2000 RPM,\Nmas o sensor mede 1600.
+Dialogue: 0,0:02:50.96,0:02:56.31,L,,0,0,0,,O erro é desejado menos\Nmedido: mais 400 RPM.
+Dialogue: 0,0:02:56.41,0:02:59.16,L,,0,0,0,,Como está abaixo do alvo,\No PWM precisa subir,
+Dialogue: 0,0:02:59.86,0:03:01.76,L,,0,0,0,,e essa conta acontece bem aqui.
+Dialogue: 0,0:03:02.21,0:03:06.28,L,,0,0,0,,Depois, o erro é multiplicado pelo\Nganho, que define a força de correção.
+Dialogue: 0,0:03:06.38,0:03:08.78,L,,0,0,0,,Com ganho de 0,005,
+Dialogue: 0,0:03:08.82,0:03:14.06,L,,0,0,0,,400 RPM viram dois pontos\Npercentuais de PWM em um segundo.
+Dialogue: 0,0:03:14.51,0:03:16.88,L,,0,0,0,,O ajuste vai ser acumulado\Ne medido de novo.
+Dialogue: 0,0:03:17.00,0:03:21.23,L,,0,0,0,,Se a velocidade passar do alvo,\No erro fica negativo e o PWM diminui.
+Dialogue: 0,0:03:21.68,0:03:24.27,L,,0,0,0,,Dentro de 60 RPM,\No programa não mexe no PWM,
+Dialogue: 0,0:03:24.31,0:03:28.12,L,,0,0,0,,e esse número não é por acaso.\NComo a gente tem uma marca por volta,
+Dialogue: 0,0:03:28.44,0:03:31.48,L,,0,0,0,,um pulso a mais\Nde um segundo já vale 60 RPM.
+Dialogue: 0,0:03:31.58,0:03:34.70,L,,0,0,0,,Além disso, a correção é limitada\Na 5 pontos por segundo,
+Dialogue: 0,0:03:34.78,0:03:37.02,L,,0,0,0,,para evitar mudanças muito bruscas.
+Dialogue: 0,0:03:37.77,0:03:39.07,L,,0,0,0,,Agora, na prática.
+Dialogue: 0,0:03:40.60,0:03:41.98,L,,0,0,0,,Primeiro, no modo percentual,
+Dialogue: 0,0:03:42.06,0:03:44.81,L,,0,0,0,,eu escolho um PWM e observo\Na velocidade medida.
+Dialogue: 0,0:03:48.00,0:03:51.64,L,,0,0,0,,Depois, passo para o modo RPM\Ne escolho a velocidade desejada.
+Dialogue: 0,0:03:52.00,0:03:55.50,L,,0,0,0,,A linha laranja é o setpoint,\No azul é o RPM medido
+Dialogue: 0,0:03:55.54,0:03:59.56,L,,0,0,0,,e a roxa pontilhada é o PWM,\Nisso aqui no eixo da direita.
+Dialogue: 0,0:04:03.60,0:04:06.06,L,,0,0,0,,Quando eu mudo o alvo,\No ESP32 recalcula o erro
+Dialogue: 0,0:04:06.10,0:04:07.75,L,,0,0,0,,e vai ajustando o acionamento.
+Dialogue: 0,0:04:13.30,0:04:14.50,L,,0,0,0,,Isso é uma malha fechada:
+Dialogue: 0,0:04:14.58,0:04:18.28,L,,0,0,0,,a medição volta para o controlador\Ne influencia a próxima correção.
+Dialogue: 0,0:04:18.60,0:04:21.54,L,,0,0,0,,A interface só envia\No comando e mostra os dados.
+Dialogue: 0,0:04:21.86,0:04:24.64,L,,0,0,0,,O controle roda 100% no ESP32.
+Dialogue: 0,0:04:28.97,0:04:31.31,L,,0,0,0,,Com esse projeto, consegui medir\Na rotação de uma ventoinha
+Dialogue: 0,0:04:31.35,0:04:34.47,L,,0,0,0,,de dois fios e controlar sua\Nvelocidade pela interface.
+Dialogue: 0,0:04:34.92,0:04:37.15,L,,0,0,0,,No modo percentual,\Neu escolho o acionamento.
+Dialogue: 0,0:04:37.23,0:04:39.09,L,,0,0,0,,No modo RPM, eu escolho a velocidade,
+Dialogue: 0,0:04:39.13,0:04:42.75,L,,0,0,0,,e o sistema tenta alcançá-la\Ndentro do que a ventoinha consegue.
+Dialogue: 0,0:04:43.20,0:04:46.33,L,,0,0,0,,O código, painel e o modelo 3D vão\Nestar no repositório do GitHub,
+Dialogue: 0,0:04:46.57,0:04:48.24,L,,0,0,0,,que o link está bem aqui na descrição.
+Dialogue: 0,0:04:48.34,0:04:50.90,L,,0,0,0,,Bom, muito obrigado e aguardo\Nvocês no próximo vídeo.

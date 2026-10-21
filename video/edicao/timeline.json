@@ -1,0 +1,378 @@
+{
+ "arquivo": "narracao_editada.wav",
+ "duracao_total_s": 266.05,
+ "nota": "inicio_s/fim_s = início e fim da fala (sem as folgas de silêncio). Áudio começa com a fala em ~0,07 s; entre cenas há ~1,0 s de silêncio.",
+ "cenas": [
+  {
+   "cena": 1,
+   "inicio_s": 0.07,
+   "fim_s": 21.67,
+   "frases": [
+    {
+     "ordem": 1,
+     "inicio_s": 0.07,
+     "fim_s": 4.97,
+     "texto": "Essa ventoinha só tem dois fios, o positivo e o negativo, e nenhum deles informa pra gente a velocidade.",
+     "frase_roteiro": "Essa ventoinha só tem dois fios: positivo e negativo. Nenhum deles informa a velocidade."
+    },
+    {
+     "ordem": 2,
+     "inicio_s": 5.32,
+     "fim_s": 9.61,
+     "texto": "Então, como é que a gente faz pra medir a rotação e fazer com que ele tente manter a velocidade que a gente quiser?",
+     "frase_roteiro": "Então, como medir a rotação e fazer com que ela tente manter a velocidade que eu escolher?"
+    },
+    {
+     "ordem": 3,
+     "inicio_s": 10.31,
+     "fim_s": 21.67,
+     "texto": "Esse é o desafio desse projeto. Eu sou Henrique, estudante de Engenharia de Controle e Automação do Instituto Federal, e vou mostrar pra vocês como eu usei um ESP32, um sensor óptico, pra poder medir e controlar a velocidade dessa ventoinha.",
+     "frase_roteiro": "Esse foi o desafio deste projeto. Eu sou Henrique e vou mostrar como usei um ESP32, um sensor óptico e uma interface para medir e controlar essa ventoinha."
+    }
+   ]
+  },
+  {
+   "cena": 2,
+   "inicio_s": 22.67,
+   "fim_s": 61.95,
+   "frases": [
+    {
+     "ordem": 4,
+     "inicio_s": 22.67,
+     "fim_s": 26.45,
+     "texto": "O sistema tem três partes: quem mede, quem decide, quem aciona.",
+     "frase_roteiro": "O sistema tem três partes: quem mede, quem decide e quem aciona."
+    },
+    {
+     "ordem": 5,
+     "inicio_s": 27.15,
+     "fim_s": 32.6,
+     "texto": "Quem mede é o TCRT5000, um sensor que emite luz infravermelha e detecta a luz refletida.",
+     "frase_roteiro": "Quem mede é o TCRT5000, um sensor que emite luz infravermelha e detecta a luz refletida."
+    },
+    {
+     "ordem": 6,
+     "inicio_s": 32.95,
+     "fim_s": 36.85,
+     "texto": "Assim a gente consegue fazer a contagem de quantas voltas a ventoinha deu.",
+     "frase_roteiro": "(improviso) contagem de voltas"
+    },
+    {
+     "ordem": 7,
+     "inicio_s": 37.2,
+     "fim_s": 39.61,
+     "texto": "Quem decide, faz os cálculos, é o ESP32.",
+     "frase_roteiro": "Quem decide é o ESP32."
+    },
+    {
+     "ordem": 8,
+     "inicio_s": 39.96,
+     "fim_s": 48.33,
+     "texto": "E quem aciona é o MOSFET IRLZ44N, que liga e desliga a ventoinha muito rapidamente, fazendo assim a gente consegue controlar a nossa ventoinha.",
+     "frase_roteiro": "E quem aciona é o MOSFET IRLZ44N, que liga e desliga a ventoinha de doze volts muito rapidamente."
+    },
+    {
+     "ordem": 9,
+     "inicio_s": 49.03,
+     "fim_s": 55.91,
+     "texto": "No nosso esquema, o sensor vai no GPIO4 e o PWM sai pelo GPIO21 até o gate do MOSFET.",
+     "frase_roteiro": "No esquema, o sensor vai no GPIO quatro, e o PWM sai pelo GPIO vinte e um até o gate do MOSFET."
+    },
+    {
+     "ordem": 10,
+     "inicio_s": 56.26,
+     "fim_s": 61.95,
+     "texto": "O ESP32 usa USB, e a ventoinha usa a fonte de 12 volts, e ambos compartilham o mesmo terra.",
+     "frase_roteiro": "O ESP32 usa a USB, a ventoinha usa a fonte de doze volts, e os dois compartilham o terra."
+    }
+   ]
+  },
+  {
+   "cena": 3,
+   "inicio_s": 62.95,
+   "fim_s": 94.8,
+   "frases": [
+    {
+     "ordem": 11,
+     "inicio_s": 62.95,
+     "fim_s": 65.71,
+     "texto": "O detalhe que permite a gente medir a velocidade é essa marca.",
+     "frase_roteiro": "O detalhe que permite medir a velocidade é esta marca."
+    },
+    {
+     "ordem": 12,
+     "inicio_s": 66.41,
+     "fim_s": 69.33,
+     "texto": "A ventoinha tem 9 pás, mas só uma delas está marcada.",
+     "frase_roteiro": "A ventoinha tem nove pás, mas só uma está marcada."
+    },
+    {
+     "ordem": 13,
+     "inicio_s": 69.68,
+     "fim_s": 74.9,
+     "texto": "Quando ela passa na frente do sensor, a leitura muda. Então, cada passagem corresponde a uma volta completa.",
+     "frase_roteiro": "Quando ela passa na frente do sensor, a leitura muda. Então, cada passagem corresponde a uma volta completa."
+    },
+    {
+     "ordem": 14,
+     "inicio_s": 75.6,
+     "fim_s": 82.11,
+     "texto": "O ESP32 conta essas passagens e, mais ou menos a cada segundo, calcula a quantidade de rotações por minuto.",
+     "frase_roteiro": "O ESP32 conta essas passagens e, mais ou menos a cada segundo, calcula o RPM: rotações por minuto."
+    },
+    {
+     "ordem": 15,
+     "inicio_s": 82.81,
+     "fim_s": 90.19,
+     "texto": "Por exemplo, 30 passagens em um segundo são 30 voltas por segundo. Vezes 60, 1800 rotações por minuto, mais ou menos.",
+     "frase_roteiro": "Por exemplo: trinta passagens em um segundo são trinta voltas por segundo. Vezes sessenta, mil e oitocentas RPM."
+    },
+    {
+     "ordem": 16,
+     "inicio_s": 90.54,
+     "fim_s": 94.8,
+     "texto": "É essa conta que o ESP faz pra dizer pra gente qual a velocidade efetiva do nosso ventiladorzinho.",
+     "frase_roteiro": "(improviso) é essa conta que o ESP faz"
+    }
+   ]
+  },
+  {
+   "cena": 4,
+   "inicio_s": 95.8,
+   "fim_s": 134.01,
+   "frases": [
+    {
+     "ordem": 17,
+     "inicio_s": 95.8,
+     "fim_s": 104.62,
+     "texto": "Para manter o sensor no lugar, eu usei suporte impresso em 3D. Ele prende a ventoinha e deixa o sensor de frente para as pás, sem encostar no que gira, ele não pode encostar.",
+     "frase_roteiro": "Para manter o sensor no lugar, usei este suporte impresso em 3D. Ele prende a ventoinha e deixa o sensor de frente para as pás, sem encostar no que gira."
+    },
+    {
+     "ordem": 18,
+     "inicio_s": 105.32,
+     "fim_s": 110.61,
+     "texto": "No início, o modelo foi pensado para ler o espaço entre as pás, depois passamos a usar uma única pá marcada.",
+     "frase_roteiro": "No início, o modelo foi pensado para ler os espaços entre as pás. Depois, passei a usar uma única pá marcada."
+    },
+    {
+     "ordem": 19,
+     "inicio_s": 111.31,
+     "fim_s": 115.49,
+     "texto": "No código, essa é a linha que lê o sensor de forma analógica o tempo inteiro.",
+     "frase_roteiro": "No código, esta linha lê o sensor de forma analógica, o tempo todo."
+    },
+    {
+     "ordem": 20,
+     "inicio_s": 116.19,
+     "fim_s": 118.78,
+     "texto": "E para reconhecer as passagens, uso dois limites.",
+     "frase_roteiro": "E para reconhecer a passagem, uso dois limites."
+    },
+    {
+     "ordem": 21,
+     "inicio_s": 119.13,
+     "fim_s": 123.77,
+     "texto": "Quando a leitura cai abaixo de 1300, a marca chegou e o programa conta uma volta.",
+     "frase_roteiro": "Quando a leitura cai abaixo de mil e trezentos, a marca chegou e o programa conta uma volta."
+    },
+    {
+     "ordem": 22,
+     "inicio_s": 124.12,
+     "fim_s": 134.01,
+     "texto": "Uma nova contagem só vale depois que a leitura sobe acima de 2350. E isso evita contar a mesma passagem várias vezes.",
+     "frase_roteiro": "Uma nova contagem só vale depois que a leitura sobe acima de dois mil trezentos e cinquenta. Isso evita contar a mesma passagem várias vezes."
+    }
+   ]
+  },
+  {
+   "cena": 5,
+   "inicio_s": 135.01,
+   "fim_s": 157.27,
+   "frases": [
+    {
+     "ordem": 23,
+     "inicio_s": 135.01,
+     "fim_s": 137.31,
+     "texto": "Na interface, dá pra controlar a ventoinha de dois jeitos.",
+     "frase_roteiro": "Na interface, dá para controlar a ventoinha de dois jeitos."
+    },
+    {
+     "ordem": 24,
+     "inicio_s": 138.01,
+     "fim_s": 144.03,
+     "texto": "No modo percentual, eu escolho direto o PWM. PWM, que é a fração do tempo em que o acionamento fica ligado.",
+     "frase_roteiro": "No modo percentual, eu escolho direto o PWM, que é a fração do tempo em que o acionamento fica ligado."
+    },
+    {
+     "ordem": 25,
+     "inicio_s": 144.38,
+     "fim_s": 149.69,
+     "texto": "50% do PWM não quer dizer metade da velocidade. Isso depende muito de ventoinha para ventoinha.",
+     "frase_roteiro": "Cinquenta por cento de PWM não quer dizer metade da velocidade máxima: isso depende da ventoinha."
+    },
+    {
+     "ordem": 26,
+     "inicio_s": 150.39,
+     "fim_s": 157.27,
+     "texto": "No modo RPM, eu escolho a velocidade desejada, nosso setpoint, e aí o próprio ESP usa o sensor para ajustar o PWM sozinho.",
+     "frase_roteiro": "No modo RPM, eu escolho a velocidade desejada, o setpoint. Aí o próprio ESP32 usa o sensor para ajustar o PWM sozinho."
+    }
+   ]
+  },
+  {
+   "cena": 6,
+   "inicio_s": 158.27,
+   "fim_s": 208.77,
+   "frases": [
+    {
+     "ordem": 27,
+     "inicio_s": 158.27,
+     "fim_s": 168.06,
+     "texto": "Um exemplo: eu peço 2000 RPM, mas o sensor mede 1600. O erro é desejado menos medido: mais 400 RPM.",
+     "frase_roteiro": "Um exemplo: eu peço duas mil RPM, mas o sensor mede mil e seiscentas. O erro é desejado menos medido: mais quatrocentas RPM."
+    },
+    {
+     "ordem": 28,
+     "inicio_s": 168.41,
+     "fim_s": 173.51,
+     "texto": "Como está abaixo do alvo, o PWM precisa subir, e essa conta acontece bem aqui.",
+     "frase_roteiro": "Como está abaixo do alvo, o PWM precisa subir. Essa conta acontece aqui."
+    },
+    {
+     "ordem": 29,
+     "inicio_s": 174.21,
+     "fim_s": 178.03,
+     "texto": "Depois, o erro é multiplicado pelo ganho, que define a força de correção.",
+     "frase_roteiro": "Depois, o erro é multiplicado pelo ganho, que define a força da correção."
+    },
+    {
+     "ordem": 30,
+     "inicio_s": 178.38,
+     "fim_s": 185.81,
+     "texto": "Com ganho de 0,005, 400 RPM viram dois pontos percentuais de PWM em um segundo.",
+     "frase_roteiro": "Com ganho de zero vírgula zero zero cinco, quatrocentas RPM viram dois pontos percentuais de PWM em um segundo."
+    },
+    {
+     "ordem": 31,
+     "inicio_s": 186.51,
+     "fim_s": 192.98,
+     "texto": "O ajuste vai ser acumulado e medido de novo. Se a velocidade passar do alvo, o erro fica negativo e o PWM diminui.",
+     "frase_roteiro": "O ajuste vai sendo acumulado e medido de novo. Se a velocidade passar do alvo, o erro fica negativo e o PWM diminui."
+    },
+    {
+     "ordem": 32,
+     "inicio_s": 193.68,
+     "fim_s": 203.23,
+     "texto": "Dentro de 60 RPM, o programa não mexe no PWM, e esse número não é por acaso. Como a gente tem uma marca por volta, um pulso a mais de um segundo já vale 60 RPM.",
+     "frase_roteiro": "Dentro de sessenta RPM, o programa não mexe no PWM. E esse número não é por acaso: com uma marca por volta, um pulso a mais em um segundo já vale sessenta RPM."
+    },
+    {
+     "ordem": 33,
+     "inicio_s": 203.58,
+     "fim_s": 208.77,
+     "texto": "Além disso, a correção é limitada a 5 pontos por segundo, para evitar mudanças muito bruscas.",
+     "frase_roteiro": "Além disso, a correção é limitada a cinco pontos por segundo, para evitar mudanças bruscas."
+    }
+   ]
+  },
+  {
+   "cena": 7,
+   "inicio_s": 209.77,
+   "fim_s": 243.12,
+   "frases": [
+    {
+     "ordem": 34,
+     "inicio_s": 209.77,
+     "fim_s": 210.81,
+     "texto": "Agora, na prática.",
+     "frase_roteiro": "Agora, na prática."
+    },
+    {
+     "ordem": 35,
+     "inicio_s": 211.16,
+     "fim_s": 215.12,
+     "texto": "Primeiro, no modo percentual, eu escolho um PWM e observo a velocidade medida.",
+     "frase_roteiro": "Primeiro, no modo percentual, eu escolho um PWM e observo a velocidade medida."
+    },
+    {
+     "ordem": 36,
+     "inicio_s": 215.82,
+     "fim_s": 219.04,
+     "texto": "Depois, passo para o modo RPM e escolho a velocidade desejada.",
+     "frase_roteiro": "Depois, passo para o modo RPM e escolho uma velocidade desejada."
+    },
+    {
+     "ordem": 37,
+     "inicio_s": 219.74,
+     "fim_s": 227.0,
+     "texto": "A linha laranja é o setpoint, o azul é o RPM medido e a roxa pontilhada é o PWM, isso aqui no eixo da direita.",
+     "frase_roteiro": "A linha laranja é o setpoint. A azul é o RPM medido. E a roxa pontilhada é o PWM, no eixo da direita."
+    },
+    {
+     "ordem": 38,
+     "inicio_s": 227.7,
+     "fim_s": 231.6,
+     "texto": "Quando eu mudo o alvo, o ESP32 recalcula o erro e vai ajustando o acionamento.",
+     "frase_roteiro": "Quando eu mudo o alvo, o ESP32 recalcula o erro e vai ajustando o acionamento."
+    },
+    {
+     "ordem": 39,
+     "inicio_s": 232.3,
+     "fim_s": 237.03,
+     "texto": "Isso é uma malha fechada: a medição volta para o controlador e influencia a próxima correção.",
+     "frase_roteiro": "Isso é uma malha fechada: a medição volta para o controlador e influencia a próxima correção."
+    },
+    {
+     "ordem": 40,
+     "inicio_s": 237.38,
+     "fim_s": 243.12,
+     "texto": "A interface só envia o comando e mostra os dados. O controle roda 100% no ESP32.",
+     "frase_roteiro": "A interface só envia comandos e mostra os dados; o controle roda no ESP32."
+    }
+   ]
+  },
+  {
+   "cena": 8,
+   "inicio_s": 244.12,
+   "fim_s": 265.94,
+   "frases": [
+    {
+     "ordem": 41,
+     "inicio_s": 244.12,
+     "fim_s": 249.37,
+     "texto": "Com esse projeto, consegui medir a rotação de uma ventoinha de dois fios e controlar sua velocidade pela interface.",
+     "frase_roteiro": "Com esse projeto, consegui medir a rotação de uma ventoinha de dois fios e controlar sua velocidade pela interface."
+    },
+    {
+     "ordem": 42,
+     "inicio_s": 250.07,
+     "fim_s": 252.03,
+     "texto": "No modo percentual, eu escolho o acionamento.",
+     "frase_roteiro": "No modo percentual, eu escolho o acionamento."
+    },
+    {
+     "ordem": 43,
+     "inicio_s": 252.38,
+     "fim_s": 257.65,
+     "texto": "No modo RPM, eu escolho a velocidade, e o sistema tenta alcançá-la dentro do que a ventoinha consegue.",
+     "frase_roteiro": "No modo RPM, eu escolho a velocidade, e o sistema tenta alcançá-la dentro do que a ventoinha consegue."
+    },
+    {
+     "ordem": 44,
+     "inicio_s": 258.35,
+     "fim_s": 263.14,
+     "texto": "O código, painel e o modelo 3D vão estar no repositório do GitHub, que o link está bem aqui na descrição.",
+     "frase_roteiro": "O código, o painel e o modelo 3D estão no repositório, no link da descrição."
+    },
+    {
+     "ordem": 45,
+     "inicio_s": 263.49,
+     "fim_s": 265.94,
+     "texto": "Bom, muito obrigado e aguardo vocês no próximo vídeo.",
+     "frase_roteiro": "(improviso) encerramento"
+    }
+   ]
+  }
+ ]
+}

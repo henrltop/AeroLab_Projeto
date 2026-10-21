@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+.t40{font-size:40px}
+.ev{position:absolute;left:1478px;width:360px;font-size:44px;font-weight:800;line-height:1.15}
+</style></head><body>
+<div class="title" id="ttl">Dois limites: uma contagem por passagem</div>
+<div class="selo">ILUSTRAÇÃO</div>
+<div class="card" style="left:50px;top:160px;width:1360px;height:720px"></div>
+<div class="card" style="left:1440px;top:160px;width:430px;height:720px"></div>
+<svg class="abs" style="left:0;top:0" width="1920" height="1080">
+  <rect id="zs" x="210" y="200" width="830" height="239" fill="#118B80" opacity=".06"/>
+  <rect id="ze" x="210" y="582" width="830" height="178" fill="#C8443A" opacity=".06"/>
+  <line x1="210" y1="200" x2="210" y2="760" stroke="#B9C4D2" stroke-width="2"/>
+  <line x1="210" y1="760" x2="1040" y2="760" stroke="#B9C4D2" stroke-width="2"/>
+  <line id="ls" x1="210" y1="439" x2="1040" y2="439" stroke="#118B80" stroke-width="4" stroke-dasharray="16 10"/>
+  <line id="le" x1="210" y1="582" x2="1040" y2="582" stroke="#C8443A" stroke-width="4" stroke-dasharray="16 10"/>
+  <path id="sig" fill="none" stroke="#1B2A41" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle id="head" r="10" fill="#1B2A41"/>
+  <g id="mk"></g><line id="ncl" stroke="#5B6B80" stroke-width="3" opacity="0"/>
+</svg>
+<div class="abs t40" style="left:90px;top:176px;color:var(--gr)">4095</div>
+<div class="abs t40" style="left:150px;top:730px;color:var(--gr)">0</div>
+<div class="abs t40" style="left:210px;top:776px;color:var(--gr)">leitura analógica · traço idealizado, não é captura</div>
+<div id="lbs" class="abs" style="left:1048px;top:380px">
+  <div class="mono t40" style="color:#118B80;font-weight:700">LIMITE_SAIDA</div>
+  <div class="t40" style="color:#118B80;font-weight:800">2350</div></div>
+<div id="lbe" class="abs" style="left:1048px;top:556px">
+  <div class="mono t40" style="color:#C8443A;font-weight:700">LIMITE_ENTRADA</div>
+  <div class="t40" style="color:#C8443A;font-weight:800">1300</div></div>
+<div class="abs" id="nc" style="left:520px;top:600px;width:220px;text-align:right;font-size:40px;font-weight:800;color:var(--gr);opacity:0">não conta</div>
+<!-- painel de estado -->
+<div class="abs mono" style="left:1478px;top:196px;font-size:40px;color:var(--gr)">marcaPresente</div>
+<div class="abs mono" id="mp" style="left:1478px;top:250px;font-size:64px;font-weight:700">false</div>
+<div class="abs" style="left:1478px;top:380px;font-size:44px;font-weight:700">voltas</div>
+<div class="abs" id="n" style="left:1478px;top:430px;font-size:120px;font-weight:800;color:var(--bl);transform-origin:left center">0</div>
+<div class="ev" id="ev" style="top:640px"></div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('limiares', 14, {limites: 0.3, entrada: 4.0, saida: 7.2, ruido: 10.2});
+const LE = 1300, LS = 2350;
+// pontos-chave do sinal idealizado (u, leitura)
+const K = [[0, 3300], [.08, 3360], [.14, 3250], [.20, 3300], [.27, 700], [.33, 650], [.40, 3300], [.48, 3360],
+  [.54, 3250], [.58, 3300], [.635, 1150], [.66, 1650], [.69, 800], [.75, 700], [.83, 3300], [.92, 3360], [1, 3300]];
+function v(u) {
+  for (let i = 0; i < K.length - 1; i++) if (u <= K[i + 1][0]) {
+    const w = (u - K[i][0]) / (K[i + 1][0] - K[i][0]);
+    return lerp(K[i][1], K[i + 1][1], (1 - Math.cos(Math.PI * w)) / 2);
+  }
+  return K[K.length - 1][1];
+}
+const X = u => 210 + u * 830, Y = val => 760 - val / 4095 * 560;
+// cruzamentos (amostragem fina) e eventos da lógica do firmware
+const N = 4000; const ev = []; let marca = false, cont = 0;
+for (let i = 1; i <= N; i++) {
+  const u = i / N, a = v((i - 1) / N), b = v(u);
+  if (a >= LE && b < LE) { if (!marca) { marca = true; cont++; ev.push({u, tipo: 'conta', n: cont}); } else ev.push({u, tipo: 'ruido', n: cont}); }
+  if (a <= LS && b > LS && marca) { marca = false; ev.push({u, tipo: 'rearma', n: cont}); }
+}
+const uc1 = ev[0].u, uc2 = ev[1].u, uc3 = ev[2].u; // conta, rearma, conta (o ruído vem logo depois)
+const A = [[0, 0], [B.entrada, uc1], [B.saida, uc2], [B.ruido, uc3], [dur - .4, 1]];
+function uOf(t) {
+  if (t >= A[A.length - 1][0]) return 1;
+  for (let i = 0; i < A.length - 1; i++) if (t <= A[i + 1][0]) return lerp(A[i][1], A[i + 1][1], clamp((t - A[i][0]) / (A[i + 1][0] - A[i][0])));
+  return 1;
+}
+const tOf = u => { let lo = 0, hi = dur; for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (uOf(m) < u) lo = m; else hi = m; } return hi; };
+ev.forEach(e => e.t = tOf(e.u));
+// marcadores
+const mk = $('mk');
+ev.forEach(e => {
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  c.setAttribute('cx', X(e.u)); c.setAttribute('cy', e.tipo === 'rearma' ? Y(LS) : Y(LE)); c.setAttribute('r', 13);
+  const col = e.tipo === 'conta' ? '#C8443A' : e.tipo === 'rearma' ? '#118B80' : '#FFFFFF';
+  c.setAttribute('fill', col); c.setAttribute('stroke', e.tipo === 'ruido' ? '#5B6B80' : '#fff'); c.setAttribute('stroke-width', 4);
+  e.el = c; mk.appendChild(c);
+});
+const TXT = {conta: ['+1 volta', '#C8443A'], rearma: ['rearmou<br>(acima de 2350)', '#118B80'], ruido: ['ruído:<br>não conta<br>de novo', '#5B6B80']};
+window.render = t => {
+  fadeUp('ttl', prog(t, 0, .6), 16);
+  const lu = prog(t, B.limites, 1.0);
+  ['ls', 'le'].forEach(id => { $(id).setAttribute('x2', 210 + 830 * lu); });
+  $('lbs').style.opacity = $('lbe').style.opacity = prog(t, B.limites + .6, .6);
+  $('zs').style.opacity = $('ze').style.opacity = .06 * lu;
+  const u = uOf(t);
+  let d = ''; const S = Math.max(2, Math.ceil(u * 600));
+  for (let i = 0; i <= S; i++) { const uu = u * i / S; d += (i ? 'L' : 'M') + X(uu).toFixed(1) + ' ' + Y(v(uu)).toFixed(1); }
+  $('sig').setAttribute('d', d);
+  $('head').setAttribute('cx', X(u)); $('head').setAttribute('cy', Y(v(u)));
+  $('head').style.opacity = u < 1 ? 1 : 0;
+  // estado
+  let st = false, n = 0, last = null;
+  ev.forEach(e => {
+    const on = t >= e.t;
+    e.el.style.opacity = on ? 1 : 0;
+    e.el.setAttribute('r', 13 + (on ? 10 * clamp(1 - (t - e.t) / .5) : 0));
+    if (on) { last = e; if (e.tipo === 'conta') { st = true; n = e.n; } if (e.tipo === 'rearma') st = false; }
+  });
+  $('mp').textContent = st ? 'true' : 'false';
+  $('mp').style.color = st ? '#C8443A' : '#118B80';
+  $('n').textContent = n;
+  const lc = ev.filter(e => e.tipo === 'conta' && t >= e.t).pop();
+  $('n').style.transform = `scale(${1 + .15 * (lc ? clamp(1 - (t - lc.t) / .5) : 0)})`;
+  const evd = $('ev');
+  if (last) { evd.innerHTML = TXT[last.tipo][0]; evd.style.color = TXT[last.tipo][1]; fadeUp(evd, prog(t, last.t, .4), 14); }
+  else evd.style.opacity = 0;
+  const nr = ev.find(e => e.tipo === 'ruido');
+  const no = nr ? prog(t, nr.t, .5) : 0;
+  $('nc').style.opacity = no; $('ncl').style.opacity = no;
+  if (nr) { const mx = X(nr.u), my = Y(LE);
+    css('nc', {left: (mx - 60 - 220) + 'px', top: (my + 26) + 'px'});
+    const l = $('ncl'); l.setAttribute('x1', mx - 52); l.setAttribute('y1', my + 50); l.setAttribute('x2', mx - 12); l.setAttribute('y2', my + 12); }
+};
+render(0);
+</script></body></html>

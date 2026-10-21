@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<script src="fw.js"></script>
+<style>
+.hdr{font-size:40px;color:var(--gr);font-weight:600}
+.ln{display:flex;align-items:center;white-space:pre}
+.no{color:#9AA6B6;text-align:right;flex:none}
+.hl{border-radius:8px;padding:0 4px;margin:0 -4px}
+.chip{display:inline-block;margin-left:36px;padding:2px 18px;border-radius:999px;font-family:Inter;font-weight:800;font-size:40px;color:#fff}
+</style></head><body>
+<div class="title" id="t1">Esta linha lê o sensor</div>
+<div class="title" id="t2" style="opacity:0">Dois limites para contar</div>
+<div class="card" id="c1" style="left:110px;top:330px;width:1700px;height:300px;padding:40px 60px">
+  <div class="hdr" id="h1"></div>
+  <div class="ln code" id="l1" style="font-size:64px;margin-top:40px"></div>
+</div>
+<div class="card" id="c2" style="left:110px;top:170px;width:1700px;height:700px;padding:36px 60px;opacity:0">
+  <div class="hdr" id="h2"></div>
+  <div id="blk" style="margin-top:28px"></div>
+</div>
+<script src="common.js"></script>
+<script>
+const {dur, B} = setupAnim('codigo_leitura', 8, {leitura: 0.2, bloco: 3.4, limites: 4.8});
+const L1 = 120, A = 123, Z = 130;
+$('h1').textContent = `firmware · linha ${L1}`;
+$('l1').innerHTML = `<span class="no" style="width:120px;margin-right:40px">${L1}</span><span>${hlCode(FW[L1].trim())}</span>`;
+$('h2').textContent = `firmware · linhas ${A}–${Z}`;
+let h = '';
+for (let i = A; i <= Z; i++) {
+  let chip = '';
+  if (FW[i].includes('LIMITE_ENTRADA')) chip = `<span class="chip" id="chE" style="background:#C8443A">1300</span>`;
+  if (FW[i].includes('LIMITE_SAIDA')) chip = `<span class="chip" id="chS" style="background:#118B80">2350</span>`;
+  h += `<div class="ln code" style="font-size:40px;line-height:68px"><span class="no" style="width:90px;margin-right:36px">${i}</span><span>${hlCode(FW[i].slice(2))}</span>${chip}</div>`;
+}
+$('blk').innerHTML = h;
+const tE = document.querySelectorAll('#blk .tok-LIMITE_ENTRADA'), tS = document.querySelectorAll('#blk .tok-LIMITE_SAIDA');
+[...tE, ...tS].forEach(e => e.classList.add('hl'));
+window.render = t => {
+  fadeUp('t1', prog(t, B.leitura, .6) * (1 - prog(t, B.bloco - .3, .5)), 16);
+  fadeUp('c1', prog(t, B.leitura, .7), 30);
+  const b = prog(t, B.bloco - .3, .7);
+  $('c1').style.opacity = prog(t, B.leitura, .7) * (1 - b);
+  $('c1').style.transform = `translateY(${-60 * b}px)`;
+  fadeUp('c2', prog(t, B.bloco, .7), 40);
+  fadeUp('t2', prog(t, B.bloco, .6), 16);
+  const e = prog(t, B.limites, .5), s = prog(t, B.limites + .7, .5);
+  tE.forEach(x => { x.style.background = `rgba(200,68,58,${.16 * e})`; x.style.color = e > .5 ? '#A3332B' : ''; x.style.fontWeight = e > .5 ? 700 : ''; });
+  tS.forEach(x => { x.style.background = `rgba(17,139,128,${.16 * s})`; x.style.color = s > .5 ? '#0C6E66' : ''; x.style.fontWeight = s > .5 ? 700 : ''; });
+  if ($('chE')) fadeUp('chE', e, 10);
+  if ($('chS')) fadeUp('chS', s, 10);
+};
+render(0);
+</script></body></html>
